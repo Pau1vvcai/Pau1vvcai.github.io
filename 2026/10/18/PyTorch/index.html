@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="下面是整理后的笔记和一份由基础到实践的 PyTorch 学习方案。论文部分依据你提供的 PyTorch 论文，学习方案是面向动手掌握框架的补充建议。  title: PyTorchdate: 2026-10-18 21:33:48tags: Machine Learning, Deep Learning PyTorchReadingPyTorch: An Imperative Style, Hig">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Hexo">
+<meta property="og:url" content="http://example.com/2026/10/18/PyTorch/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="下面是整理后的笔记和一份由基础到实践的 PyTorch 学习方案。论文部分依据你提供的 PyTorch 论文，学习方案是面向动手掌握框架的补充建议。  title: PyTorchdate: 2026-10-18 21:33:48tags: Machine Learning, Deep Learning PyTorchReadingPyTorch: An Imperative Style, Hig">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-18T13:33:48.982Z">
+<meta property="article:modified_time" content="2026-10-19T06:55:37.600Z">
+<meta property="article:author" content="CAI">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-PyTorch" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/10/18/PyTorch/" class="article-date">
+  <time class="dt-published" datetime="2026-10-18T13:33:48.982Z" itemprop="datePublished">2026-10-18</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <p>下面是整理后的笔记和一份由基础到实践的 PyTorch 学习方案。论文部分依据你提供的 <a target="_blank" rel="noopener" href="https://arxiv.org/abs/1912.01703">PyTorch 论文</a>，学习方案是面向动手掌握框架的补充建议。</p>
+<hr>
+<p>title: PyTorch<br>date: 2026-10-18 21:33:48<br>tags: Machine Learning, Deep Learning</p>
+<h1 id="PyTorch"><a href="#PyTorch" class="headerlink" title="PyTorch"></a>PyTorch</h1><h2 id="Reading"><a href="#Reading" class="headerlink" title="Reading"></a>Reading</h2><p><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1912.01703">PyTorch: An Imperative Style, High-Performance Deep Learning Library</a></p>
+<h2 id="1-Introduction"><a href="#1-Introduction" class="headerlink" title="1. Introduction"></a>1. Introduction</h2><p>PyTorch 是一个支持 GPU 加速和自动微分的机器学习库，并与 Python 科学计算生态紧密集成。</p>
+<p>论文的核心观点是：<strong>易用性与高性能并不冲突</strong>。PyTorch 采用命令式、Pythonic 的编程风格，让模型代码更接近普通 Python 程序，同时通过运行时和底层组件实现高效执行。</p>
+<h2 id="2-Background"><a href="#2-Background" class="headerlink" title="2. Background"></a>2. Background</h2><p>深度学习框架需要同时处理几个方面：</p>
+<ul>
+<li>表达模型结构和张量计算。</li>
+<li>计算损失对模型参数的梯度。</li>
+<li>在 CPU 和 GPU 等设备上高效执行。</li>
+<li>支持研究人员快速尝试新模型和新算法。</li>
+</ul>
+<p>传统框架常在易用性与性能之间做取舍。PyTorch 试图将命令式编程、自动微分和硬件加速结合起来，让用户可以灵活表达模型，同时保留良好的运行性能。</p>
+<h2 id="3-Design-Principles"><a href="#3-Design-Principles" class="headerlink" title="3. Design Principles"></a>3. Design Principles</h2><h3 id="Be-Pythonic"><a href="#Be-Pythonic" class="headerlink" title="Be Pythonic"></a>Be Pythonic</h3><p>PyTorch 尽量遵循 Python 的编程习惯，让模型、控制流和调试过程自然地融入 Python 程序。</p>
+<h3 id="Put-Researchers-First"><a href="#Put-Researchers-First" class="headerlink" title="Put Researchers First"></a>Put Researchers First</h3><p>框架应方便研究人员实现新想法、修改模型结构并进行实验。模型代码不应被固定的图结构或复杂的框架约束。</p>
+<h3 id="Provide-Pragmatic-Performance"><a href="#Provide-Pragmatic-Performance" class="headerlink" title="Provide Pragmatic Performance"></a>Provide Pragmatic Performance</h3><p>性能很重要，但框架不应为了理论上的最高性能而让常见使用变得困难。PyTorch 追求在易用性、灵活性和实际运行性能之间取得平衡。</p>
+<h3 id="Worse-Is-Better"><a href="#Worse-Is-Better" class="headerlink" title="Worse Is Better"></a>Worse Is Better</h3><p>设计应优先考虑简单、易理解、易实现和易扩展。一个实用而简洁的方案，往往比一开始追求完美但复杂的方案更容易被采用和持续改进。</p>
+<h2 id="4-Usability-Centric-Design"><a href="#4-Usability-Centric-Design" class="headerlink" title="4. Usability-Centric Design"></a>4. Usability-Centric Design</h2><h3 id="4-1-Deep-Learning-Models-Are-Just-Python-Programs"><a href="#4-1-Deep-Learning-Models-Are-Just-Python-Programs" class="headerlink" title="4.1 Deep Learning Models Are Just Python Programs"></a>4.1 Deep Learning Models Are Just Python Programs</h3><p>PyTorch 保留 Python 的命令式执行模型。程序运行到某个张量操作时，该操作通常会立即执行。</p>
+<p>这与先完整构建计算图、再统一执行的图元编程方式不同。命令式模型带来几个好处：</p>
+<ul>
+<li>新的神经网络架构可以直接用 Python 控制流表达。</li>
+<li>可以使用普通的 Python 调试方式检查程序状态。</li>
+<li>常用的 Python 可视化和分析工具更容易配合使用。</li>
+<li>动态结构和依赖输入变化的模型更容易实现。</li>
+</ul>
+<p>这项设计会减少某些全局图优化机会，因为框架未必能提前看到整个程序。不过，PyTorch 通过高效的运行时和底层实现来弥补一部分性能差距。</p>
+<h3 id="4-2-Interoperability-and-Extensibility"><a href="#4-2-Interoperability-and-Extensibility" class="headerlink" title="4.2 Interoperability and Extensibility"></a>4.2 Interoperability and Extensibility</h3><p>**互操作性（interoperability）**是指 PyTorch 能与 Python 及其他科学计算工具协同工作；**可扩展性（extensibility）**是指用户能够添加自定义操作或扩展底层功能。</p>
+<p>PyTorch 通过贴近 Python 的接口降低了使用和集成成本，也让研究人员更容易扩展框架。这种设计有助于快速尝试新操作和新模型。</p>
+<h3 id="4-3-Operator-Overloading"><a href="#4-3-Operator-Overloading" class="headerlink" title="4.3 Operator Overloading"></a>4.3 Operator Overloading</h3><p>PyTorch 使用<strong>运算符重载（operator overloading）</strong>，让张量可以像普通数值一样参与表达式。例如，用户可以直接写张量加法和矩阵乘法。</p>
+<p>当执行张量操作时，PyTorch 会记录相关运算，以便在需要时追踪计算关系并执行自动微分。用户可以用自然的 Python 表达式描述计算，而不必手动构造完整的图表示。</p>
+<h2 id="5-Performance-Focused-Implementation"><a href="#5-Performance-Focused-Implementation" class="headerlink" title="5. Performance-Focused Implementation"></a>5. Performance-Focused Implementation</h2><p>PyTorch 的易用接口建立在多个协同工作的底层组件之上。运行时负责调度张量操作；底层算子则利用 CPU、GPU 和专门的数学库执行实际计算。</p>
+<p>论文强调，性能并非只来自某一个单独部件，而是依赖关键运行时组件的务实实现与协同工作。</p>
+<p>需要注意，命令式接口本身并不保证每段程序都达到最佳性能。实际性能还取决于算子实现、张量大小、内存访问、设备同步和 Python 侧开销等因素。</p>
+<h2 id="6-Evaluation"><a href="#6-Evaluation" class="headerlink" title="6. Evaluation"></a>6. Evaluation</h2><p>论文通过评估单个子系统和常见机器学习基准来研究 PyTorch 的效率。评估的目的，是说明 PyTorch 在保持命令式和 Pythonic 使用方式的同时，仍能提供有竞争力的性能。</p>
+<p>阅读论文的评估部分时，可以重点关注：</p>
+<ul>
+<li>使用了哪些模型和工作负载？</li>
+<li>对比了哪些框架或实现？</li>
+<li>测量的是端到端训练时间，还是某个单独组件？</li>
+<li>性能结果是否覆盖不同硬件和任务？</li>
+<li>结果支持了论文的哪些主张，又有哪些局限？</li>
+</ul>
+<h2 id="7-Conclusion-and-Future-Work"><a href="#7-Conclusion-and-Future-Work" class="headerlink" title="7. Conclusion and Future Work"></a>7. Conclusion and Future Work</h2><p>论文展示了命令式、Pythonic 的编程方式可以与高性能深度学习执行并存。PyTorch 的关键设计取向是让用户保持对 Python 程序的控制，同时利用高效的运行时和底层实现支持 GPU 加速与自动微分。</p>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><blockquote>
+<p>PyTorch 把深度学习模型作为普通 Python 程序来表达，以灵活性和易调试性服务研究工作，并通过底层运行时实现实际性能。</p>
+</blockquote>
+<hr>
+<h1 id="PyTorch-学习方案"><a href="#PyTorch-学习方案" class="headerlink" title="PyTorch 学习方案"></a>PyTorch 学习方案</h1><p>以下内容由Chat GPT生成：</p>
+<h2 id="学习目标"><a href="#学习目标" class="headerlink" title="学习目标"></a>学习目标</h2><p>学完后，你应该能够：</p>
+<ol>
+<li>用张量表示数据并完成常见计算。</li>
+<li>理解自动微分如何计算梯度。</li>
+<li>自己编写完整的模型训练与评估流程。</li>
+<li>使用 GPU 训练一个小型模型。</li>
+<li>诊断常见的形状、设备、梯度和过拟合问题。</li>
+<li>阅读并修改一个基于 PyTorch 的简单项目。</li>
+</ol>
+<h2 id="阶段一：张量与基础运算"><a href="#阶段一：张量与基础运算" class="headerlink" title="阶段一：张量与基础运算"></a>阶段一：张量与基础运算</h2><p><strong>学习内容</strong></p>
+<ul>
+<li>张量的创建、形状、数据类型和设备。</li>
+<li>索引、切片、变形、拼接和广播。</li>
+<li>矩阵乘法与常见逐元素运算。</li>
+<li>CPU 与 GPU 之间的数据移动。</li>
+</ul>
+<p><strong>动手练习</strong></p>
+<ul>
+<li>创建一个二维张量，完成转置、切片和矩阵乘法。</li>
+<li>对照 NumPy 完成相同计算。</li>
+<li>每次操作后查看 <code>shape</code>、<code>dtype</code> 和 <code>device</code>。</li>
+</ul>
+<p><strong>掌握标准</strong></p>
+<p>能解释一个张量的每个维度代表什么，并能定位常见的维度不匹配问题。</p>
+<h2 id="阶段二：自动微分"><a href="#阶段二：自动微分" class="headerlink" title="阶段二：自动微分"></a>阶段二：自动微分</h2><p><strong>学习内容</strong></p>
+<ul>
+<li><code>requires_grad</code></li>
+<li>计算图和梯度</li>
+<li><code>backward()</code></li>
+<li><code>.grad</code></li>
+<li>梯度累积与清零</li>
+</ul>
+<p><strong>动手练习</strong></p>
+<p>写一个简单函数，计算它的导数；再用梯度下降优化一个简单的二次函数。</p>
+<p><strong>掌握标准</strong></p>
+<p>能说明 PyTorch 如何追踪张量运算、如何计算梯度，以及为什么训练时要清零梯度。</p>
+<h2 id="阶段三：构建模型与训练循环"><a href="#阶段三：构建模型与训练循环" class="headerlink" title="阶段三：构建模型与训练循环"></a>阶段三：构建模型与训练循环</h2><p><strong>学习内容</strong></p>
+<ul>
+<li><code>torch.nn.Module</code></li>
+<li><code>forward()</code></li>
+<li><code>nn.Linear</code> 和常用激活函数</li>
+<li>损失函数</li>
+<li><code>torch.optim</code></li>
+<li><code>Dataset</code> 和 <code>DataLoader</code></li>
+</ul>
+<p><strong>动手练习</strong></p>
+<p>用合成数据完成线性回归，然后实现一个小型分类器。</p>
+<p><strong>训练循环的基本结构</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> x, y <span class="keyword">in</span> loader:</span><br><span class="line">    optimizer.zero_grad()</span><br><span class="line">    prediction = model(x)</span><br><span class="line">    loss = loss_fn(prediction, y)</span><br><span class="line">    loss.backward()</span><br><span class="line">    optimizer.step()</span><br></pre></td></tr></table></figure>
+
+<p>能解释每一步的作用，比单纯记住代码更重要：</p>
+<ul>
+<li><code>zero_grad()</code>：清除上一步留下的梯度。</li>
+<li><code>model(x)</code>：执行前向计算。</li>
+<li><code>loss_fn(...)</code>：计算预测误差。</li>
+<li><code>backward()</code>：计算参数梯度。</li>
+<li><code>step()</code>：根据梯度更新参数。</li>
+</ul>
+<h2 id="阶段四：训练与评估一个真实数据集"><a href="#阶段四：训练与评估一个真实数据集" class="headerlink" title="阶段四：训练与评估一个真实数据集"></a>阶段四：训练与评估一个真实数据集</h2><p>选择 MNIST 或 Fashion-MNIST，完成：</p>
+<ol>
+<li>加载并检查数据。</li>
+<li>划分训练集和验证集。</li>
+<li>训练一个多层感知机。</li>
+<li>绘制训练和验证损失。</li>
+<li>计算准确率并检查错误预测。</li>
+</ol>
+<p><strong>掌握标准</strong></p>
+<p>能判断模型是否在训练、是否过拟合，以及验证集表现是否随着训练改善。</p>
+<h2 id="阶段五：CNN-与-GPU"><a href="#阶段五：CNN-与-GPU" class="headerlink" title="阶段五：CNN 与 GPU"></a>阶段五：CNN 与 GPU</h2><p><strong>学习内容</strong></p>
+<ul>
+<li>卷积层、池化层和图像张量布局。</li>
+<li>将模型和数据移动到 GPU。</li>
+<li>检查设备是否一致。</li>
+<li>训练模式与评估模式：<code>model.train()</code> 和 <code>model.eval()</code>。</li>
+<li>禁用推理梯度：<code>torch.no_grad()</code>。</li>
+</ul>
+<p><strong>动手练习</strong></p>
+<p>用 CNN 完成 MNIST 或 Fashion-MNIST 分类，并比较 CPU 与 GPU 的训练时间。</p>
+<h2 id="阶段六：可靠训练与模型保存"><a href="#阶段六：可靠训练与模型保存" class="headerlink" title="阶段六：可靠训练与模型保存"></a>阶段六：可靠训练与模型保存</h2><p><strong>学习内容</strong></p>
+<ul>
+<li>保存和加载 <code>state_dict</code>。</li>
+<li>随机种子与实验可复现性。</li>
+<li>检查点（checkpoint）。</li>
+<li>学习率调整。</li>
+<li>数据增强。</li>
+<li>训练集、验证集和测试集的区别。</li>
+</ul>
+<p><strong>动手练习</strong></p>
+<p>保存训练中的模型，在新程序中加载权重并进行预测。</p>
+<h2 id="阶段七：独立小项目"><a href="#阶段七：独立小项目" class="headerlink" title="阶段七：独立小项目"></a>阶段七：独立小项目</h2><p>选择一个兴趣方向，完成一个端到端项目，例如：</p>
+<ul>
+<li>图片分类。</li>
+<li>简单文本分类。</li>
+<li>小型时间序列预测。</li>
+<li>对预训练模型进行微调。</li>
+</ul>
+<p>项目应包含数据处理、模型、训练、验证、结果分析和简短说明。</p>
+<h2 id="建议节奏"><a href="#建议节奏" class="headerlink" title="建议节奏"></a>建议节奏</h2><p>每周安排 4–6 小时，可按以下节奏推进：</p>
+<ul>
+<li><strong>第 1 周：</strong> 张量、基础运算、自动微分。</li>
+<li><strong>第 2 周：</strong> <code>nn.Module</code>、损失函数、优化器和训练循环。</li>
+<li><strong>第 3 周：</strong> 数据集、验证流程、MNIST 分类。</li>
+<li><strong>第 4 周：</strong> CNN、GPU、模型保存和一个小项目。</li>
+</ul>
+<p>每个阶段都采用同一套练习方法：**先跑通，再修改一个变量，观察结果，最后用自己的话解释原因。**例如，改变学习率、批次大小或隐藏层宽度，记录训练损失和验证准确率的变化。</p>
+<h2 id="常见排错检查"><a href="#常见排错检查" class="headerlink" title="常见排错检查"></a>常见排错检查</h2><p>遇到错误或训练结果异常时，优先检查：</p>
+<ul>
+<li>输入、输出和标签的 <code>shape</code> 是否匹配。</li>
+<li>标签格式是否符合损失函数要求。</li>
+<li>模型与数据是否位于同一设备。</li>
+<li>是否在每个训练步骤开始时清除梯度。</li>
+<li>评估前是否切换到 <code>eval()</code> 模式。</li>
+<li>是否误把训练集表现当成模型的泛化表现。</li>
+<li>学习率是否过大或过小。</li>
+</ul>
+<h2 id="学习资源"><a href="#学习资源" class="headerlink" title="学习资源"></a>学习资源</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/tutorials/">PyTorch 官方 Tutorials</a></li>
+<li><a target="_blank" rel="noopener" href="https://pytorch.org/docs/stable/">PyTorch 官方文档</a></li>
+<li><a target="_blank" rel="noopener" href="https://arxiv.org/abs/1912.01703">指定论文：PyTorch: An Imperative Style, High-Performance Deep Learning Library</a></li>
+</ul>
+<h3 id="最终自测"><a href="#最终自测" class="headerlink" title="最终自测"></a>最终自测</h3><p>不看教程，尝试独立完成一个小型图像分类项目，并回答：</p>
+<ol>
+<li>数据经过模型时，每一层的张量形状如何变化？</li>
+<li>损失函数如何影响梯度？</li>
+<li>优化器如何使用梯度更新参数？</li>
+<li>训练集表现好但验证集表现差，可能是什么原因？</li>
+<li>如何保存模型并在另一个脚本中加载预测？</li>
+</ol>
+<p>如果这些问题都能结合自己的代码解释清楚，你就已经掌握了 PyTorch 的核心训练工作流。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/10/18/PyTorch/" data-id="cuidp0gKUCyRbp9OM7Q6EoBce" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/10/19/CMU-15-779/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          CMU 15-779
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/10/17/CS50AI/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">CS50AI</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM-CUDA-Machine-Learning-ML-Systems/" rel="tag">LLM, CUDA, Machine Learning, ML Systems</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/LLM-CUDA-Machine-Learning-ML-Systems/" style="font-size: 10px;">LLM, CUDA, Machine Learning, ML Systems</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/10/">October 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/10/19/CMU-15-779/">CMU 15-779</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/18/PyTorch/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/17/CS50AI/">CS50AI</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/17/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 CAI<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

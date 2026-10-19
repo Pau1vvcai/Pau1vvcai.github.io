@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>CMU 15-779 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Week 1: IntroductionWhat Are ML Systems?Machine Learning Systems (ML Systems) studies how to train, run, and deploy machine learning models efficiently on real hardware and software systems. It consid">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CMU 15-779">
+<meta property="og:url" content="http://example.com/2026/10/19/CMU-15-779/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Week 1: IntroductionWhat Are ML Systems?Machine Learning Systems (ML Systems) studies how to train, run, and deploy machine learning models efficiently on real hardware and software systems. It consid">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-19T04:02:05.000Z">
+<meta property="article:modified_time" content="2026-10-19T06:52:56.397Z">
+<meta property="article:author" content="CAI">
+<meta property="article:tag" content="LLM, CUDA, Machine Learning, ML Systems">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-CMU-15-779" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/10/19/CMU-15-779/" class="article-date">
+  <time class="dt-published" datetime="2026-10-19T04:02:05.000Z" itemprop="datePublished">2026-10-19</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      CMU 15-779
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="Week-1-Introduction"><a href="#Week-1-Introduction" class="headerlink" title="Week 1: Introduction"></a>Week 1: Introduction</h2><h3 id="What-Are-ML-Systems"><a href="#What-Are-ML-Systems" class="headerlink" title="What Are ML Systems?"></a>What Are ML Systems?</h3><p><strong>Machine Learning Systems (ML Systems)</strong> studies how to train, run, and deploy machine learning models efficiently on real hardware and software systems. It considers more than the model itself: algorithms, compilers, GPUs, memory, communication, and networks all affect performance.</p>
+<p>A model that is mathematically valid may still be inefficient to run. The central challenge in ML Systems is to make models run faster and use fewer resources under limited compute, memory, and communication capacity.</p>
+<h3 id="Major-Areas-of-ML-Systems"><a href="#Major-Areas-of-ML-Systems" class="headerlink" title="Major Areas of ML Systems"></a>Major Areas of ML Systems</h3><ul>
+<li><strong>ML Models:</strong> Model architectures, parameters, and training methods.</li>
+<li><strong>Algorithmic Optimization:</strong> Changes to a model or algorithm that reduce cost while preserving as much model quality as possible.<ul>
+<li><strong>Pruning:</strong> Removes unimportant weights, neurons, or modules.</li>
+<li><strong>Quantization:</strong> Uses lower-precision representations for weights or computations to reduce memory use and computation.</li>
+<li><strong>Sparsity:</strong> Increases the number of zero-valued parameters or intermediate values. Whether hardware can exploit sparsity efficiently depends on the implementation.</li>
+<li><strong>Low-rank approximation:</strong> Approximates a matrix with smaller matrices or factors to reduce computation and storage.</li>
+<li><strong>Fine-tuning:</strong> Continues training a pretrained model so it can adapt to a new task or dataset.</li>
+<li><strong>Mixture of Experts (MoE):</strong> Uses a routing mechanism to select a subset of experts for each input. The model can have many parameters overall while activating only some of them for each input.</li>
+<li><strong>Retrieval-Augmented Generation (RAG):</strong> Retrieves external information before generating a response and provides the retrieved material as context to the model.</li>
+</ul>
+</li>
+<li><strong>Graph-Level Optimization:</strong> Transforms operations and dependencies in a computation graph, for example through algebraic simplification, fusion, or reordering.<ul>
+<li><strong>Algebraic transformations:</strong> Rewrite computations using mathematical identities.</li>
+<li><strong>Partially equivalent transformations:</strong> Are equivalent only when certain conditions hold; those conditions must be checked.</li>
+<li><strong>Superoptimization:</strong> Searches for a more efficient implementation among equivalent alternatives.</li>
+</ul>
+</li>
+<li><strong>Parallelization and Distributed Training:</strong> Distributes computation across multiple GPUs or machines.<ul>
+<li>Includes data parallelism, model parallelism, pipeline parallelism, and automated parallelization.</li>
+</ul>
+</li>
+<li><strong>ML Compilation:</strong> Converts model computations into programs suited to the target hardware.<ul>
+<li><strong>Tile-based ML compilers:</strong> Divide computations into hardware-friendly blocks, or tiles.</li>
+<li><strong>Learning- or search-based optimization:</strong> Uses search or learning to find more efficient implementation configurations.</li>
+</ul>
+</li>
+<li><strong>Memory Optimization:</strong> Reduces memory usage during training or inference.<ul>
+<li><strong>Rematerialization (activation recomputation):</strong> Recomputes intermediate results when needed instead of saving them, trading extra computation for lower memory use.</li>
+<li><strong>Zero redundancy:</strong> Shards training state that would otherwise be redundantly stored across devices.</li>
+</ul>
+</li>
+<li><strong>Kernel Programming:</strong> Writes low-level, efficient GPU programs.<ul>
+<li>Includes modern GPU architectures, CUDA, warp specialization, and persistent kernels.</li>
+</ul>
+</li>
+<li><strong>Network:</strong> Multi-GPU and multi-machine training relies on networks to transfer parameters, gradients, and activations. Network performance affects end-to-end efficiency.</li>
+</ul>
+<h3 id="Course-Goals"><a href="#Course-Goals" class="headerlink" title="Course Goals"></a>Course Goals</h3><p>The course aims to help students:</p>
+<ol>
+<li>Understand the major components of modern machine learning frameworks.</li>
+<li>Learn ML Systems techniques for generative AI applications, especially LLMs.</li>
+<li>Design and implement their own ML Systems projects.</li>
+</ol>
+<hr>
+<h2 id="Week-1-How-to-Read-a-Paper"><a href="#Week-1-How-to-Read-a-Paper" class="headerlink" title="Week 1: How to Read a Paper"></a>Week 1: How to Read a Paper</h2><p>Assigned reading: <a target="_blank" rel="noopener" href="https://www.cs.cmu.edu/~zhihaoj2/papers/HowtoReadPaper.pdf">How to Read a Paper</a></p>
+<h3 id="The-Three-Pass-Approach"><a href="#The-Three-Pass-Approach" class="headerlink" title="The Three-Pass Approach"></a>The Three-Pass Approach</h3><h4 id="Pass-1-Build-a-high-level-understanding"><a href="#Pass-1-Build-a-high-level-understanding" class="headerlink" title="Pass 1: Build a high-level understanding"></a>Pass 1: Build a high-level understanding</h4><p>The goal is to understand what the paper is about and whether it merits closer reading. Try to answer:</p>
+<ol>
+<li><strong>Category:</strong> What kind of paper is it? For example, is it a measurement paper, an analysis of an existing system, or a description of a research prototype?</li>
+<li><strong>Context:</strong> Which papers is it related to? What theoretical foundations or prior methods does it use?</li>
+<li><strong>Correctness:</strong> Do the assumptions appear reasonable? Does the evidence support the claims?</li>
+<li><strong>Contributions:</strong> What are the paper’s main contributions?</li>
+<li><strong>Clarity:</strong> Is the paper clearly written?</li>
+</ol>
+<h4 id="Pass-2-Examine-the-important-details"><a href="#Pass-2-Examine-the-important-details" class="headerlink" title="Pass 2: Examine the important details"></a>Pass 2: Examine the important details</h4><ol>
+<li>Study the figures, diagrams, and other illustrations carefully to understand the system components and how they relate.</li>
+<li>Mark related papers and references that may be worth reading.</li>
+<li>Note key terminology, experimental settings, baselines, and main results.</li>
+</ol>
+<h4 id="Pass-3-Develop-a-deep-understanding-and-consider-reproduction"><a href="#Pass-3-Develop-a-deep-understanding-and-consider-reproduction" class="headerlink" title="Pass 3: Develop a deep understanding and consider reproduction"></a>Pass 3: Develop a deep understanding and consider reproduction</h4><ol>
+<li>Try to “virtually reimplement” the paper: What are the inputs, what is the processing pipeline, and what is the key algorithm?</li>
+<li>Identify the assumptions, parameters, and hardware needed to reproduce the results.</li>
+<li>Think about how you would explain the paper’s central idea to someone else.</li>
+<li>Note the paper’s limitations and possible directions for future work.</li>
+</ol>
+<h3 id="What-to-Take-Away-from-a-Paper"><a href="#What-to-Take-Away-from-a-Paper" class="headerlink" title="What to Take Away from a Paper"></a>What to Take Away from a Paper</h3><p>After reading a paper, you should be able to explain in a few sentences:</p>
+<ul>
+<li>What problem does it address?</li>
+<li>Why are existing methods insufficient?</li>
+<li>What is its core method or system design?</li>
+<li>How do the experiments validate it?</li>
+<li>What are its costs, limitations, and intended use cases?</li>
+</ul>
+<hr>
+<h2 id="Week-2-Introduction-to-ML-Systems"><a href="#Week-2-Introduction-to-ML-Systems" class="headerlink" title="Week 2: Introduction to ML Systems"></a>Week 2: Introduction to ML Systems</h2><h3 id="Deep-Neural-Networks"><a href="#Deep-Neural-Networks" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h3><p>A <strong>Deep Neural Network (DNN)</strong> consists of many trainable mathematical units that work together to learn complex input-output mappings.</p>
+<p>Training a DNN typically requires many matrix operations, storage for intermediate activations, and updates to model parameters. As a result, training performance depends not only on the algorithm but also on GPU compute, memory capacity, and communication between devices.</p>
+<h3 id="Stochastic-Gradient-Descent-SGD"><a href="#Stochastic-Gradient-Descent-SGD" class="headerlink" title="Stochastic Gradient Descent (SGD)"></a>Stochastic Gradient Descent (SGD)</h3><p>Model training typically repeats the following steps:</p>
+<ol>
+<li><strong>Forward propagation:</strong> Feed a batch of input samples through the model and compute predictions.</li>
+<li><strong>Loss computation:</strong> Compare predictions with the target values to measure error.</li>
+<li><strong>Backward propagation:</strong> Use the chain rule to compute gradients of the loss with respect to the model parameters.</li>
+<li><strong>Weight update:</strong> Use an optimizer to update the parameters based on the gradients.</li>
+</ol>
+<blockquote>
+<p>Your original notes summarize training in three stages. Loss computation is listed separately here to make its role between forward and backward propagation explicit.</p>
+</blockquote>
+<p>A training step can be summarized as:</p>
+<p><code>Input → Forward computation → Loss → Gradients → Parameter update</code></p>
+<hr>
+<h2 id="Parallel-Training"><a href="#Parallel-Training" class="headerlink" title="Parallel Training"></a>Parallel Training</h2><h3 id="Data-Parallelism"><a href="#Data-Parallelism" class="headerlink" title="Data Parallelism"></a>Data Parallelism</h3><p>In data parallelism, each device holds a copy of the model and processes a different portion of the data.</p>
+<p>A typical workflow is:</p>
+<ol>
+<li>Split the training data into batches or sub-batches.</li>
+<li>Each GPU runs the same model on its own data.</li>
+<li>Each GPU performs forward and backward propagation.</li>
+<li>Aggregate gradients across GPUs, then synchronize the model parameters.</li>
+</ol>
+<p><strong>Advantage:</strong> Multiple GPUs can increase training throughput when the model fits on one GPU.<br><strong>Cost:</strong> Each GPU stores a model copy, and gradient synchronization requires communication.</p>
+<h3 id="Model-Parallelism"><a href="#Model-Parallelism" class="headerlink" title="Model Parallelism"></a>Model Parallelism</h3><p>Model parallelism splits a model into parts and places those parts on different devices. It is useful when a model does not fit on one GPU or when computation needs to be distributed.</p>
+<h3 id="Pipeline-Parallelism"><a href="#Pipeline-Parallelism" class="headerlink" title="Pipeline Parallelism"></a>Pipeline Parallelism</h3><p>Pipeline parallelism assigns different model layers to different GPUs and divides a batch into microbatches. Ideally, different GPUs process different microbatches at the same time.</p>
+<p><strong>Main challenge:</strong> Some devices may be idle while the pipeline starts up or drains. These idle periods are called <strong>pipeline bubbles</strong>. Microbatch scheduling affects both bubble overhead and memory use.</p>
+<h3 id="Tensor-Parallelism"><a href="#Tensor-Parallelism" class="headerlink" title="Tensor Parallelism"></a>Tensor Parallelism</h3><p>Tensor parallelism splits a large tensor operation—such as a matrix multiplication in a linear layer—across multiple GPUs. In a Transformer, tensor parallelism can be applied to attention and feed-forward layers.</p>
+<p><strong>Main challenge:</strong> Devices need to exchange partial results within a layer. Tensor parallelism is therefore sensitive to communication bandwidth and latency between GPUs.</p>
+<h3 id="3D-Parallelism"><a href="#3D-Parallelism" class="headerlink" title="3D Parallelism"></a>3D Parallelism</h3><p>LLM training often combines three forms of parallelism:</p>
+<ul>
+<li><strong>Data parallelism:</strong> Different devices process different data.</li>
+<li><strong>Tensor parallelism:</strong> Large matrix operations within a layer are split across devices.</li>
+<li><strong>Pipeline parallelism:</strong> Different model layers are placed on different devices.</li>
+</ul>
+<p>This combination is commonly called <strong>3D parallelism</strong>. Real systems may also use sequence parallelism, expert parallelism, and other methods.</p>
+<hr>
+<h2 id="Machine-Learning-Compilation"><a href="#Machine-Learning-Compilation" class="headerlink" title="Machine Learning Compilation"></a>Machine Learning Compilation</h2><h3 id="Core-Concepts"><a href="#Core-Concepts" class="headerlink" title="Core Concepts"></a>Core Concepts</h3><ul>
+<li><strong>Tensor:</strong> A multidimensional array that stores model inputs, outputs, parameters, and intermediate results.</li>
+<li><strong>Tensor function:</strong> Defines computations over tensors. A single tensor function can contain multiple operations.</li>
+<li><strong>Computation graph:</strong> A graph whose nodes represent operations and whose edges represent data dependencies.</li>
+</ul>
+<h3 id="Goals-of-ML-Compilation"><a href="#Goals-of-ML-Compilation" class="headerlink" title="Goals of ML Compilation"></a>Goals of ML Compilation</h3><p>A machine learning computation can often be implemented in several equivalent ways. A compiler tries to find an implementation better suited to the target hardware. Common goals include:</p>
+<ol>
+<li>Reducing memory use.</li>
+<li>Reducing execution time.</li>
+<li>Increasing hardware utilization.</li>
+</ol>
+<p>These goals can conflict. For example, rematerialization reduces memory use but increases computation. Operator fusion may reduce memory traffic but increase register pressure.</p>
+<h3 id="Graph-Level-Optimizations"><a href="#Graph-Level-Optimizations" class="headerlink" title="Graph-Level Optimizations"></a>Graph-Level Optimizations</h3><p>Graph-level optimization uses information about a wider region of computation to rewrite a program. Examples include:</p>
+<ul>
+<li>Fusing adjacent operations to reduce intermediate tensors and memory traffic.</li>
+<li>Eliminating redundant or unnecessary computations.</li>
+<li>Reordering or reformulating computations.</li>
+<li>Automatically searching for semantically equivalent implementations that run faster.</li>
+</ul>
+<p><strong>Automated discovery of graph optimizations</strong> uses search or other automated methods to explore possible graph transformations and evaluate their correctness and performance.</p>
+<hr>
+<h2 id="Memory-Bottlenecks-in-Training"><a href="#Memory-Bottlenecks-in-Training" class="headerlink" title="Memory Bottlenecks in Training"></a>Memory Bottlenecks in Training</h2><p>During training, GPU memory may need to store:</p>
+<ul>
+<li><strong>Model parameters:</strong> The trainable weights.</li>
+<li><strong>Gradients:</strong> A gradient for each parameter.</li>
+<li><strong>Optimizer state:</strong> For example, Adam stores momentum and second-moment estimates for each parameter.</li>
+<li><strong>Activations:</strong> Intermediate results from the forward pass that may be needed during backpropagation.</li>
+<li><strong>Temporary workspace:</strong> Buffers and temporary tensors used by operators.</li>
+</ul>
+<p>The maximum model size that can be trained is therefore often limited by GPU memory. Larger models may improve predictive performance, but they also require more memory for parameters, activations, and optimizer state, as well as more communication.</p>
+<h3 id="Tensor-Rematerialization"><a href="#Tensor-Rematerialization" class="headerlink" title="Tensor Rematerialization"></a>Tensor Rematerialization</h3><p>Saving every intermediate activation during training can consume a large amount of memory. Rematerialization saves only selected activations and recomputes others during backpropagation.</p>
+<ul>
+<li><strong>Benefit:</strong> Reduces activation memory.</li>
+<li><strong>Cost:</strong> Repeats some forward computation, increasing compute time.</li>
+</ul>
+<h3 id="Zero-Redundancy"><a href="#Zero-Redundancy" class="headerlink" title="Zero Redundancy"></a>Zero Redundancy</h3><p>Parallel training can lead to redundant storage of state across GPUs:</p>
+<ul>
+<li>Data parallelism typically replicates model parameters, gradients, and optimizer state on every GPU.</li>
+<li>Model or pipeline parallelism may also replicate data needed for boundary or intermediate computations.</li>
+</ul>
+<p>The core idea of zero redundancy is to shard parameters, gradients, and optimizer state across GPUs, then communicate or gather the required data when needed.</p>
+<ul>
+<li><strong>Benefit:</strong> Reduces the training state stored on each GPU.</li>
+<li><strong>Cost:</strong> Adds communication, synchronization, and data-gathering overhead.</li>
+</ul>
+<h3 id="Balancing-Compute-Memory-and-Communication"><a href="#Balancing-Compute-Memory-and-Communication" class="headerlink" title="Balancing Compute, Memory, and Communication"></a>Balancing Compute, Memory, and Communication</h3><p>Training system design must consider three costs:</p>
+<ul>
+<li><strong>Compute cost:</strong> The amount and time of computation.</li>
+<li><strong>Memory cost:</strong> Space used by parameters, activations, and optimizer state.</li>
+<li><strong>Communication cost:</strong> Time and bandwidth required to transfer data between devices.</li>
+</ul>
+<p>For example:</p>
+<ul>
+<li>Rematerialization trades more computation for lower memory use.</li>
+<li>Zero redundancy trades more communication for less redundant storage.</li>
+<li>More aggressive parallelization may increase compute throughput but also add synchronization overhead.</li>
+</ul>
+<hr>
+<h2 id="PyTorch-and-TensorFlow"><a href="#PyTorch-and-TensorFlow" class="headerlink" title="PyTorch and TensorFlow"></a>PyTorch and TensorFlow</h2><p>Both frameworks can be used to build and train machine learning models. Historically, they have emphasized different programming and execution models.</p>
+<h3 id="TensorFlow’s-Graph-Execution-Model"><a href="#TensorFlow’s-Graph-Execution-Model" class="headerlink" title="TensorFlow’s Graph Execution Model"></a>TensorFlow’s Graph Execution Model</h3><p>Traditional TensorFlow workflows often build a computation graph first and execute it afterward.</p>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>The graph can be analyzed globally for graph-level optimizations.</li>
+<li>Deferred execution gives the framework an opportunity to inspect a larger region of computation before running it.</li>
+<li>Separating graph construction from execution can make debugging more difficult.</li>
+</ul>
+<h3 id="PyTorch’s-Imperative-Programming-Model"><a href="#PyTorch’s-Imperative-Programming-Model" class="headerlink" title="PyTorch’s Imperative Programming Model"></a>PyTorch’s Imperative Programming Model</h3><p>PyTorch traditionally uses <strong>eager execution</strong>, which behaves more like ordinary Python: tensor operations run as the code reaches them.</p>
+<p><strong>Characteristics:</strong></p>
+<ul>
+<li>Code is intuitive to write, debug, and prototype.</li>
+<li>Earlier execution models provided less global information, making some whole-program optimizations harder to apply.</li>
+</ul>
+<h3 id="PyTorch-2-x"><a href="#PyTorch-2-x" class="headerlink" title="PyTorch 2.x"></a>PyTorch 2.x</h3><p>PyTorch 2.x introduced graph capture and compilation capabilities. These allow graph-level optimization while preserving a familiar eager programming experience.</p>
+<p>The goal is to combine:</p>
+<ul>
+<li>The usability of imperative programming.</li>
+<li>The performance potential of graph-level optimization.</li>
+</ul>
+<blockquote>
+<p>The actual speedup depends on the model, operators, hardware, and compilation settings. Compilation does not guarantee that every workload will run faster.</p>
+</blockquote>
+<hr>
+<h2 id="Key-Concepts-at-a-Glance"><a href="#Key-Concepts-at-a-Glance" class="headerlink" title="Key Concepts at a Glance"></a>Key Concepts at a Glance</h2><table>
+<thead>
+<tr>
+<th>Technique</th>
+<th>Problem it addresses</th>
+<th>Main cost</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Data parallelism</td>
+<td>Processing more data with multiple GPUs</td>
+<td>Model replication and gradient communication</td>
+</tr>
+<tr>
+<td>Tensor parallelism</td>
+<td>Splitting large tensor operations within a layer</td>
+<td>Frequent communication within the layer</td>
+</tr>
+<tr>
+<td>Pipeline parallelism</td>
+<td>Assigning different model layers to different GPUs</td>
+<td>Pipeline bubbles and scheduling complexity</td>
+</tr>
+<tr>
+<td>Activation rematerialization</td>
+<td>Reducing activation memory</td>
+<td>Repeated computation</td>
+</tr>
+<tr>
+<td>Zero redundancy</td>
+<td>Reducing duplicated training state</td>
+<td>Additional communication and data gathering</td>
+</tr>
+<tr>
+<td>Computation graph optimization</td>
+<td>Improving execution efficiency through rewrites</td>
+<td>Transformations must be correct and suited to the hardware</td>
+</tr>
+</tbody></table>
+<hr>
+<h3 id="One-Sentence-Summary"><a href="#One-Sentence-Summary" class="headerlink" title="One-Sentence Summary"></a>One-Sentence Summary</h3><p><strong>ML Systems is about making system-level tradeoffs among model quality, computation time, memory use, and communication between devices.</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/10/19/CMU-15-779/" data-id="cuidMXx-BxyZppouXty4N8YKF" data-title="CMU 15-779" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/LLM-CUDA-Machine-Learning-ML-Systems/" rel="tag">LLM, CUDA, Machine Learning, ML Systems</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/10/18/PyTorch/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM-CUDA-Machine-Learning-ML-Systems/" rel="tag">LLM, CUDA, Machine Learning, ML Systems</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/LLM-CUDA-Machine-Learning-ML-Systems/" style="font-size: 10px;">LLM, CUDA, Machine Learning, ML Systems</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/10/">October 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/10/19/CMU-15-779/">CMU 15-779</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/18/PyTorch/">(no title)</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/17/CS50AI/">CS50AI</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/17/hello-world/">Hello World</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 CAI<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
