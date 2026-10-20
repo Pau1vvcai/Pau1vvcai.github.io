@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Swift Basics | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="本笔记整理自 Swift 官方语言指南的 The Basics 章节。参考：The Swift Programming Language — The Basics  1. Swift 基础特点Swift 提供常见的基础类型，例如 Int、Double、Bool 和 String，也提供数组、集合、字典、元组和可选类型等数据结构。 Swift 是**类型安全（type-safe）**的语言：如果某">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Swift Basics">
+<meta property="og:url" content="http://example.com/2026/10/20/Swift%20Basic/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="本笔记整理自 Swift 官方语言指南的 The Basics 章节。参考：The Swift Programming Language — The Basics  1. Swift 基础特点Swift 提供常见的基础类型，例如 Int、Double、Bool 和 String，也提供数组、集合、字典、元组和可选类型等数据结构。 Swift 是**类型安全（type-safe）**的语言：如果某">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-20T02:22:02.000Z">
+<meta property="article:modified_time" content="2026-10-20T05:30:01.199Z">
+<meta property="article:author" content="CAI">
+<meta property="article:tag" content="Apple">
+<meta property="article:tag" content="Programming Language">
+<meta property="article:tag" content="Software Engineering">
+<meta property="article:tag" content="Swift">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-Swift Basic" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/10/20/Swift%20Basic/" class="article-date">
+  <time class="dt-published" datetime="2026-10-20T02:22:02.000Z" itemprop="datePublished">2026-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Swift Basics
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>本笔记整理自 Swift 官方语言指南的 <strong>The Basics</strong> 章节。<br>参考：<a target="_blank" rel="noopener" href="https://docs.swift.org/swift-book/LanguageGuide/TheBasics.html">The Swift Programming Language — The Basics</a></p>
+</blockquote>
+<h2 id="1-Swift-基础特点"><a href="#1-Swift-基础特点" class="headerlink" title="1. Swift 基础特点"></a>1. Swift 基础特点</h2><p>Swift 提供常见的基础类型，例如 <code>Int</code>、<code>Double</code>、<code>Bool</code> 和 <code>String</code>，也提供数组、集合、字典、元组和可选类型等数据结构。</p>
+<p>Swift 是**类型安全（type-safe）**的语言：如果某段代码需要 <code>String</code>，编译器会阻止你误传 <code>Int</code>。Swift 会尽可能在编译时发现类型不匹配，数值类型之间也不会自动隐式转换，通常需要明确转换。</p>
+<p>Swift 也强调<strong>内存安全（memory safety）</strong>：代码只能以受语言规则约束的方式访问有效数据。大多数安全检查由编译器完成，某些检查则在运行时进行。Swift 仍提供 <code>unsafe</code> 等接口，但使用它们时，安全责任更多地由程序员承担。</p>
+<h2 id="2-常量与变量（Constants-and-Variables）"><a href="#2-常量与变量（Constants-and-Variables）" class="headerlink" title="2. 常量与变量（Constants and Variables）"></a>2. 常量与变量（Constants and Variables）</h2><p>常量和变量用于给值命名：</p>
+<ul>
+<li><code>let</code> 声明<strong>常量</strong>，赋值后不能再改变。</li>
+<li><code>var</code> 声明<strong>变量</strong>，之后可以重新赋值。</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> environment <span class="operator">=</span> <span class="string">&quot;development&quot;</span></span><br><span class="line">environment <span class="operator">=</span> <span class="string">&quot;production&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> maximumNumberOfLoginAttempts: <span class="type">Int</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> environment <span class="operator">==</span> <span class="string">&quot;development&quot;</span> &#123;</span><br><span class="line">    maximumNumberOfLoginAttempts <span class="operator">=</span> <span class="number">100</span></span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    maximumNumberOfLoginAttempts <span class="operator">=</span> <span class="number">10</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 常量在每条可能的执行路径中都被赋值后，才能读取。</span></span><br><span class="line"><span class="built_in">print</span>(maximumNumberOfLoginAttempts)</span><br></pre></td></tr></table></figure>
+
+<p>常量可以先声明、之后再赋值，但必须保证在读取前被赋值，而且不能重复赋值。</p>
+<h3 id="多个变量的声明"><a href="#多个变量的声明" class="headerlink" title="多个变量的声明"></a>多个变量的声明</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> x <span class="operator">=</span> <span class="number">0.0</span>, y <span class="operator">=</span> <span class="number">0.0</span>, z <span class="operator">=</span> <span class="number">0.0</span></span><br></pre></td></tr></table></figure>
+
+<p>同一行声明的变量可以有不同类型，但每个变量都要满足自身类型规则。</p>
+<h3 id="类型标注与类型推断"><a href="#类型标注与类型推断" class="headerlink" title="类型标注与类型推断"></a>类型标注与类型推断</h3><p>类型可以显式写出，也可以由 Swift 根据初始值推断：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> welcomeMessage: <span class="type">String</span></span><br><span class="line">welcomeMessage <span class="operator">=</span> <span class="string">&quot;Hello&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> language <span class="operator">=</span> <span class="string">&quot;Swift&quot;</span>  <span class="comment">// 推断为 String</span></span><br><span class="line"><span class="keyword">let</span> year <span class="operator">=</span> <span class="number">2026</span>         <span class="comment">// 推断为 Int</span></span><br></pre></td></tr></table></figure>
+
+<p>当初始值不足以表达类型意图，或需要明确接口类型时，可以添加类型标注。</p>
+<h3 id="命名"><a href="#命名" class="headerlink" title="命名"></a>命名</h3><p>变量和常量名可以包含大多数 Unicode 字符，通常采用 <code>lowerCamelCase</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> maximumNumberOfLoginAttempts <span class="operator">=</span> <span class="number">10</span></span><br></pre></td></tr></table></figure>
+
+<p>Swift 关键字通常不能直接作为名字，除非使用反引号括起来。</p>
+<h3 id="分号"><a href="#分号" class="headerlink" title="分号"></a>分号</h3><p>Swift 通常不要求每条语句末尾写分号。若在同一行写多条语句，需要用分号分隔：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> cat <span class="operator">=</span> <span class="string">&quot;🐱&quot;</span>; <span class="built_in">print</span>(cat)</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="3-整数（Integers）"><a href="#3-整数（Integers）" class="headerlink" title="3. 整数（Integers）"></a>3. 整数（Integers）</h2><p>整数是没有小数部分的数，例如 <code>42</code>、<code>-23</code> 和 <code>0</code>。Swift 提供有符号和无符号整数，并支持不同位宽，例如 <code>Int8</code>、<code>UInt8</code>、<code>Int32</code>。</p>
+<p>一般用途优先使用 <code>Int</code>。它的位宽与当前平台的原生字长相同。只有在外部数据格式、内存需求或明确的数值范围要求下，才通常需要选择 <code>Int8</code>、<code>UInt32</code> 等固定宽度类型。</p>
+<h3 id="整数边界"><a href="#整数边界" class="headerlink" title="整数边界"></a>整数边界</h3><p>可以通过 <code>.min</code> 和 <code>.max</code> 查看某个整数类型的取值范围：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> minValue <span class="operator">=</span> <span class="type">UInt8</span>.min  <span class="comment">// 0</span></span><br><span class="line"><span class="keyword">let</span> maxValue <span class="operator">=</span> <span class="type">UInt8</span>.max  <span class="comment">// 255</span></span><br></pre></td></tr></table></figure>
+
+<p>默认整数运算若产生超出类型范围的结果，会触发运行时错误；Swift 也提供显式的溢出运算符，用于有意进行溢出计算。</p>
+<h3 id="固定小数表示（Fixed-Point-Representation）"><a href="#固定小数表示（Fixed-Point-Representation）" class="headerlink" title="固定小数表示（Fixed-Point Representation）"></a>固定小数表示（Fixed-Point Representation）</h3><p>整数可以用来表示具有固定小数位数的量。例如，以“分”为单位保存金额：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> priceInCents <span class="operator">=</span> <span class="number">123</span>  <span class="comment">// 表示 $1.23</span></span><br></pre></td></tr></table></figure>
+
+<p>这里的小数点位置由约定固定，因此称为定点表示。金额等需要精确表示的场景，使用整数最小单位通常比 <code>Double</code> 更合适；实际金融业务还应明确舍入规则和所需精度。</p>
+<h3 id="整数字面量"><a href="#整数字面量" class="headerlink" title="整数字面量"></a>整数字面量</h3><p>整数可以使用十进制、二进制、八进制或十六进制形式：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> decimalInteger <span class="operator">=</span> <span class="number">17</span></span><br><span class="line"><span class="keyword">let</span> binaryInteger <span class="operator">=</span> <span class="number">0b10001</span></span><br><span class="line"><span class="keyword">let</span> octalInteger <span class="operator">=</span> <span class="number">0o21</span></span><br><span class="line"><span class="keyword">let</span> hexadecimalInteger <span class="operator">=</span> <span class="number">0x11</span></span><br></pre></td></tr></table></figure>
+
+<p>数字中可以使用下划线提高可读性：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> oneMillion <span class="operator">=</span> <span class="number">1_000_000</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="4-浮点数（Floating-Point-Numbers）"><a href="#4-浮点数（Floating-Point-Numbers）" class="headerlink" title="4. 浮点数（Floating-Point Numbers）"></a>4. 浮点数（Floating-Point Numbers）</h2><p>浮点数可以表示带有小数部分的数，例如 <code>3.14159</code> 和 <code>-273.15</code>。</p>
+<p>常见类型：</p>
+<ul>
+<li><code>Float</code>：通常为 32 位。</li>
+<li><code>Double</code>：通常为 64 位，常规浮点运算一般优先使用它。</li>
+</ul>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pi <span class="operator">=</span> <span class="number">3.14159</span>       <span class="comment">// 通常推断为 Double</span></span><br><span class="line"><span class="keyword">let</span> temperature: <span class="type">Float</span> <span class="operator">=</span> <span class="number">21.5</span></span><br></pre></td></tr></table></figure>
+
+<p>浮点数能够表示非常大、非常小的数，但不能精确表示范围内的所有数值。运算结果通常会舍入到最接近的可表示值，因此不要默认用 <code>==</code> 比较两个经过计算的浮点数。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> result <span class="operator">=</span> <span class="number">0.1</span> <span class="operator">+</span> <span class="number">0.2</span></span><br><span class="line"><span class="comment">// result 不一定精确等于数学上的 0.3</span></span><br></pre></td></tr></table></figure>
+
+<p>需要精确金额或固定小数位的场景，可以考虑以整数最小单位存储，或使用符合业务舍入规则的专用数值类型。</p>
+<h3 id="浮点字面量"><a href="#浮点字面量" class="headerlink" title="浮点字面量"></a>浮点字面量</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> decimalDouble <span class="operator">=</span> <span class="number">12.1875</span></span><br><span class="line"><span class="keyword">let</span> exponentDouble <span class="operator">=</span> <span class="number">1.21875e1</span>  <span class="comment">// 12.1875</span></span><br></pre></td></tr></table></figure>
+
+<p>也可以在数字中使用下划线：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> value <span class="operator">=</span> <span class="number">1_000_000.000_000_1</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="5-数值类型转换（Numeric-Type-Conversion）"><a href="#5-数值类型转换（Numeric-Type-Conversion）" class="headerlink" title="5. 数值类型转换（Numeric Type Conversion）"></a>5. 数值类型转换（Numeric Type Conversion）</h2><p>Swift 不会自动把一个变量从数值类型转换为另一个数值类型。这可以避免范围变化或精度损失被悄悄忽略。</p>
+<h3 id="整数之间的转换"><a href="#整数之间的转换" class="headerlink" title="整数之间的转换"></a>整数之间的转换</h3><p>转换时应确认目标类型能够表示该值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> smallValue: <span class="type">UInt8</span> <span class="operator">=</span> <span class="number">10</span></span><br><span class="line"><span class="keyword">let</span> largerValue <span class="operator">=</span> <span class="type">UInt16</span>(smallValue)</span><br></pre></td></tr></table></figure>
+
+<p>如果值超出目标类型范围，普通初始化可能无法安全完成。需要处理外部输入时，应先检查范围或使用能表达转换失败的方式。</p>
+<h3 id="整数与浮点数之间的转换"><a href="#整数与浮点数之间的转换" class="headerlink" title="整数与浮点数之间的转换"></a>整数与浮点数之间的转换</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> three <span class="operator">=</span> <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> fraction <span class="operator">=</span> <span class="number">0.14159</span></span><br><span class="line"><span class="keyword">let</span> sum <span class="operator">=</span> <span class="type">Double</span>(three) <span class="operator">+</span> fraction</span><br></pre></td></tr></table></figure>
+
+<p>浮点数转整数时会<strong>向零截断</strong>，不是四舍五入：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> positive <span class="operator">=</span> <span class="type">Int</span>(<span class="number">4.75</span>)  <span class="comment">// 4</span></span><br><span class="line"><span class="keyword">let</span> negative <span class="operator">=</span> <span class="type">Int</span>(<span class="operator">-</span><span class="number">3.9</span>)  <span class="comment">// -3</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="字面量与变量的区别"><a href="#字面量与变量的区别" class="headerlink" title="字面量与变量的区别"></a>字面量与变量的区别</h3><p>数值字面量可以根据上下文推断类型，因此下面的比较可以成立：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> i <span class="operator">=</span> <span class="number">1</span>  <span class="comment">// Int</span></span><br><span class="line"><span class="keyword">if</span> i <span class="operator">==</span> <span class="number">1</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;equal&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>但已声明的 <code>Int</code> 变量不能直接与 <code>Double</code> 变量相加：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> count <span class="operator">=</span> <span class="number">3</span></span><br><span class="line"><span class="keyword">let</span> ratio <span class="operator">=</span> <span class="number">0.5</span></span><br><span class="line"><span class="keyword">let</span> result <span class="operator">=</span> <span class="type">Double</span>(count) <span class="operator">+</span> ratio</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h2 id="6-元组（Tuples）"><a href="#6-元组（Tuples）" class="headerlink" title="6. 元组（Tuples）"></a>6. 元组（Tuples）</h2><p>元组把多个值组合成一个复合值。每个元素可以是不同类型。元组适合临时组合相关数据，也可以作为函数返回多个值的方式。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> http404Error <span class="operator">=</span> (<span class="number">404</span>, <span class="string">&quot;Not Found&quot;</span>)</span><br><span class="line"><span class="comment">// 类型为 (Int, String)</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="拆分元组"><a href="#拆分元组" class="headerlink" title="拆分元组"></a>拆分元组</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> (statusCode, statusMessage) <span class="operator">=</span> http404Error</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(statusCode)     <span class="comment">// 404</span></span><br><span class="line"><span class="built_in">print</span>(statusMessage)  <span class="comment">// Not Found</span></span><br></pre></td></tr></table></figure>
+
+<p>若只需要部分元素，可以用 <code>_</code> 忽略其他值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> (justTheStatusCode, <span class="keyword">_</span>) <span class="operator">=</span> http404Error</span><br></pre></td></tr></table></figure>
+
+<h3 id="通过索引访问"><a href="#通过索引访问" class="headerlink" title="通过索引访问"></a>通过索引访问</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">print</span>(http404Error.<span class="number">0</span>)  <span class="comment">// 404</span></span><br><span class="line"><span class="built_in">print</span>(http404Error.<span class="number">1</span>)  <span class="comment">// Not Found</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="命名元素"><a href="#命名元素" class="headerlink" title="命名元素"></a>命名元素</h3><p>给元素命名可以提高可读性：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> http200Status <span class="operator">=</span> (code: <span class="number">200</span>, message: <span class="string">&quot;OK&quot;</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(http200Status.code)</span><br><span class="line"><span class="built_in">print</span>(http200Status.message)</span><br></pre></td></tr></table></figure>
+
+<p>当数据需要长期保存、承载业务规则或拥有明确语义时，通常应考虑定义结构体，而不是长期依赖较大的元组。</p>
+<hr>
+<h2 id="7-可选类型（Optionals）"><a href="#7-可选类型（Optionals）" class="headerlink" title="7. 可选类型（Optionals）"></a>7. 可选类型（Optionals）</h2><p>可选类型表示一个值可能存在，也可能不存在。它的类型写作 <code>Type?</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> optionalName: <span class="type">String</span>? <span class="operator">=</span> <span class="string">&quot;Taylor&quot;</span></span><br><span class="line">optionalName <span class="operator">=</span> <span class="literal">nil</span></span><br></pre></td></tr></table></figure>
+
+<p>非可选的 <code>String</code> 必须始终有一个字符串值；<code>String?</code> 则可以没有值。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> name: <span class="type">String</span> <span class="operator">=</span> <span class="string">&quot;Taylor&quot;</span></span><br><span class="line"><span class="comment">// name = nil  // 编译错误</span></span><br></pre></td></tr></table></figure>
+
+<p>访问可选值之前需要安全地处理 <code>nil</code>，常见方式包括 <code>if let</code>、<code>guard let</code>、可选链和 <code>??</code>。不应在没有充分保证时使用强制解包 <code>!</code>。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> input <span class="operator">=</span> <span class="string">&quot;42&quot;</span></span><br><span class="line"><span class="keyword">let</span> number <span class="operator">=</span> <span class="type">Int</span>(input)  <span class="comment">// Int?</span></span><br></pre></td></tr></table></figure>
+
+<p><code>Int(input)</code> 可能失败，因此返回可选的 <code>Int?</code>，而不是假设输入一定有效。</p>
+<hr>
+<h2 id="8-错误处理（Error-Handling）"><a href="#8-错误处理（Error-Handling）" class="headerlink" title="8. 错误处理（Error Handling）"></a>8. 错误处理（Error Handling）</h2><p>可恢复或预期中的失败通常使用错误处理表达。函数可以通过 <code>throws</code> 声明自己可能抛出错误；调用时使用 <code>try</code>。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> <span class="title function_">makeASandwich</span>() <span class="keyword">throws</span> &#123;</span><br><span class="line">    <span class="comment">// 可能抛出错误</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> makeASandwich()</span><br><span class="line">    eatASandwich()</span><br><span class="line">&#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;Could not make the sandwich: <span class="subst">\(error)</span>&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>可以根据不同错误类型分别处理：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">do</span> &#123;</span><br><span class="line">    <span class="keyword">try</span> makeASandwich()</span><br><span class="line">    eatASandwich()</span><br><span class="line">&#125; <span class="keyword">catch</span> <span class="type">SandwichError</span>.outOfCleanDishes &#123;</span><br><span class="line">    washDishes()</span><br><span class="line">&#125; <span class="keyword">catch</span> <span class="type">SandwichError</span>.missingIngredients(<span class="keyword">let</span> ingredients) &#123;</span><br><span class="line">    buyGroceries(ingredients)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>throws</code>：声明函数可能抛出错误。</li>
+<li><code>try</code>：标记可能抛错的调用。</li>
+<li><code>do</code>：建立错误处理作用域。</li>
+<li><code>catch</code>：捕获并处理匹配的错误。</li>
+</ul>
+<p>错误可以继续向调用者传播。错误处理适用于可预期、可恢复或需要说明原因的失败；断言和前置条件用于程序逻辑必须成立的假设，不能替代错误处理。</p>
+<hr>
+<h2 id="9-断言与前置条件（Assertions-and-Preconditions）"><a href="#9-断言与前置条件（Assertions-and-Preconditions）" class="headerlink" title="9. 断言与前置条件（Assertions and Preconditions）"></a>9. 断言与前置条件（Assertions and Preconditions）</h2><p>断言与前置条件用于表达程序运行时必须满足的条件。条件为假时，程序会停止执行；它们不是用于处理普通、可恢复错误的机制。</p>
+<h3 id="断言（Assertion）"><a href="#断言（Assertion）" class="headerlink" title="断言（Assertion）"></a>断言（Assertion）</h3><p><code>assert</code> 常用于开发阶段检查假设，帮助尽早发现程序逻辑错误。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> age <span class="operator">=</span> <span class="operator">-</span><span class="number">3</span></span><br><span class="line"><span class="built_in">assert</span>(age <span class="operator">&gt;=</span> <span class="number">0</span>, <span class="string">&quot;A person&#x27;s age can&#x27;t be less than zero.&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>如果条件失败，程序终止。断言也可以用来记录代码中的预期条件。</p>
+<p>当前面的分支已经检查过条件，但需要标记不可能到达的情况时，可以使用 <code>assertionFailure</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> age <span class="operator">&gt;</span> <span class="number">10</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You can ride the roller-coaster or the ferris wheel.&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> <span class="keyword">if</span> age <span class="operator">&gt;=</span> <span class="number">0</span> &#123;</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;You can ride the ferris wheel.&quot;</span>)</span><br><span class="line">&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="built_in">assertionFailure</span>(<span class="string">&quot;A person&#x27;s age can&#x27;t be less than zero.&quot;</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="前置条件（Precondition）"><a href="#前置条件（Precondition）" class="headerlink" title="前置条件（Precondition）"></a>前置条件（Precondition）</h3><p><code>precondition</code> 用于检查继续执行所必需的条件，例如函数参数或下标必须满足的约束：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> <span class="title function_">value</span>(<span class="params">at</span> <span class="params">index</span>: <span class="type">Int</span>, <span class="params">in</span> <span class="params">values</span>: [<span class="type">Int</span>]) -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="built_in">precondition</span>(index <span class="operator">&gt;=</span> <span class="number">0</span> <span class="operator">&amp;&amp;</span> index <span class="operator">&lt;</span> values.count,</span><br><span class="line">                 <span class="string">&quot;Index is out of bounds.&quot;</span>)</span><br><span class="line">    <span class="keyword">return</span> values[index]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>与断言相比，前置条件更适合表达在发布版本中也必须成立的条件。不过，使用 <code>-Ounchecked</code> 编译时，前置条件检查可能被省略；不应把它当作处理不可信输入的唯一防线。</p>
+<h3 id="选择哪一种？"><a href="#选择哪一种？" class="headerlink" title="选择哪一种？"></a>选择哪一种？</h3><ul>
+<li><strong>可预期、可恢复的失败</strong>：使用返回值、可选类型或 <code>throws</code>。</li>
+<li><strong>开发阶段的逻辑假设</strong>：使用 <code>assert</code>。</li>
+<li><strong>继续执行必须成立的条件</strong>：使用 <code>precondition</code>。</li>
+<li><strong>开发阶段尚未实现的代码占位</strong>：可使用 <code>fatalError</code>，但应在交付前完成实现。</li>
+</ul>
+<blockquote>
+<p><code>precondition(index &gt; 0, ...)</code> 只适用于索引必须大于 0 的特定设计。普通数组下标通常从 0 开始，应按实际有效范围检查。</p>
+</blockquote>
+<hr>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/10/20/Swift%20Basic/" data-id="cuidwxXil8e7GZh8qmLBdTcJh" data-title="Swift Basics" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Programming-Language/" rel="tag">Programming Language</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          数据结构与算法
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/10/19/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">程序设计模式</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithms/" rel="tag">Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-Systems/" rel="tag">ML Systems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Programming-Language/" rel="tag">Programming Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/LLM/" style="font-size: 10px;">LLM</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/ML-Systems/" style="font-size: 10px;">ML Systems</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Programming-Language/" style="font-size: 10px;">Programming Language</a> <a href="/tags/Software-Engineering/" style="font-size: 20px;">Software Engineering</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/10/">October 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/10/20/edhita%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/">Edhita 项目学习</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/20/Leetcode/">Leetcode</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/20/Swift%20Basic/">Swift Basics</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/19/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">程序设计模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 CAI<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>

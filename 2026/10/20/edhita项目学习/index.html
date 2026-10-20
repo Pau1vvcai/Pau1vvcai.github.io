@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>Edhita 项目学习 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="Edhita 项目学习仓库：tnantoka&#x2F;edhita Edhita 是一个使用 SwiftUI 编写的 iOS 文本编辑器。本笔记通过阅读项目代码，梳理应用启动、文件浏览、文本编辑、预览、设置保存及 SwiftUI 与 UIKit 的协作方式。 一、应用核心流程123456应用启动  → 首次启动时创建示例文件  → 显示文件浏览器  → 选择文件或文件夹  → 编辑文件并写回磁盘">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Edhita 项目学习">
+<meta property="og:url" content="http://example.com/2026/10/20/edhita%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="Edhita 项目学习仓库：tnantoka&#x2F;edhita Edhita 是一个使用 SwiftUI 编写的 iOS 文本编辑器。本笔记通过阅读项目代码，梳理应用启动、文件浏览、文本编辑、预览、设置保存及 SwiftUI 与 UIKit 的协作方式。 一、应用核心流程123456应用启动  → 首次启动时创建示例文件  → 显示文件浏览器  → 选择文件或文件夹  → 编辑文件并写回磁盘">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-20T05:41:39.000Z">
+<meta property="article:modified_time" content="2026-10-20T06:36:06.837Z">
+<meta property="article:author" content="CAI">
+<meta property="article:tag" content="Software Engineering">
+<meta property="article:tag" content="Swift">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-edhita项目学习" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/10/20/edhita%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/" class="article-date">
+  <time class="dt-published" datetime="2026-10-20T05:41:39.000Z" itemprop="datePublished">2026-10-20</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      Edhita 项目学习
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h1 id="Edhita-项目学习"><a href="#Edhita-项目学习" class="headerlink" title="Edhita 项目学习"></a>Edhita 项目学习</h1><p>仓库：<a target="_blank" rel="noopener" href="https://github.com/tnantoka/edhita">tnantoka&#x2F;edhita</a></p>
+<p>Edhita 是一个使用 SwiftUI 编写的 iOS 文本编辑器。本笔记通过阅读项目代码，梳理应用启动、文件浏览、文本编辑、预览、设置保存及 SwiftUI 与 UIKit 的协作方式。</p>
+<h2 id="一、应用核心流程"><a href="#一、应用核心流程" class="headerlink" title="一、应用核心流程"></a>一、应用核心流程</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">应用启动</span><br><span class="line">  → 首次启动时创建示例文件</span><br><span class="line">  → 显示文件浏览器</span><br><span class="line">  → 选择文件或文件夹</span><br><span class="line">  → 编辑文件并写回磁盘</span><br><span class="line">  → 使用 WebKit 预览 Markdown 或网页</span><br></pre></td></tr></table></figure>
+
+<h2 id="二、代码职责概览"><a href="#二、代码职责概览" class="headerlink" title="二、代码职责概览"></a>二、代码职责概览</h2><table>
+<thead>
+<tr>
+<th>职责</th>
+<th>主要文件</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>启动与应用外壳</td>
+<td><code>EdhitaApp.swift</code>、<code>AppDelegate.swift</code></td>
+<td>创建根界面；处理首次启动初始化</td>
+</tr>
+<tr>
+<td>数据与业务逻辑</td>
+<td><code>FinderItem.swift</code>、<code>FinderList.swift</code>、<code>Settings.swift</code></td>
+<td>管理文件条目、读写文件和保存偏好</td>
+</tr>
+<tr>
+<td>SwiftUI 界面与系统桥接</td>
+<td><code>Views/</code> 下的视图文件</td>
+<td>展示文件列表、编辑器、设置、预览和分享界面</td>
+</tr>
+</tbody></table>
+<h2 id="三、应用启动与首次运行"><a href="#三、应用启动与首次运行" class="headerlink" title="三、应用启动与首次运行"></a>三、应用启动与首次运行</h2><p>应用入口是 <code>@main struct EdhitaApp: App</code>。它创建应用的根界面，并根据设备类型选择相应的导航布局。<code>@UIApplicationDelegateAdaptor(AppDelegate.self)</code> 则让 SwiftUI 应用接入 UIKit 的 <code>AppDelegate</code> 生命周期。</p>
+<p>首次启动时，<code>AppDelegate</code> 检查 <code>Settings.shared.firstLaunch</code>。如果这是首次运行，就调用 <code>FinderList.createExamples()</code> 创建示例目录和文件，然后更新首次启动标记。</p>
+<p>这展示了 SwiftUI 应用与 UIKit 生命周期代码协作的一种方式。</p>
+<h2 id="四、文件浏览"><a href="#四、文件浏览" class="headerlink" title="四、文件浏览"></a>四、文件浏览</h2><h3 id="FinderList：管理目录内容"><a href="#FinderList：管理目录内容" class="headerlink" title="FinderList：管理目录内容"></a><code>FinderList</code>：管理目录内容</h3><p><code>FinderList</code> 保存某个目录的 URL 和该目录下的 <code>[FinderItem]</code>。它使用 <code>FileManager</code> 读取目录内容，并按修改时间排序。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">FinderList</span>: <span class="title class_ inherited__">ObservableObject</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> url: <span class="type">URL</span></span><br><span class="line">    <span class="meta">@Published</span> <span class="keyword">var</span> items: [<span class="type">FinderItem</span>] <span class="operator">=</span> []</span><br><span class="line"></span><br><span class="line">    <span class="keyword">init</span>(<span class="params">url</span>: <span class="type">URL</span>) &#123;</span><br><span class="line">        <span class="keyword">self</span>.url <span class="operator">=</span> url</span><br><span class="line">        refresh()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">func</span> <span class="title function_">refresh</span>() &#123;</span><br><span class="line">        items <span class="operator">=</span> <span class="type">FinderList</span>.items(for: url)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>@Published</code> 标记的属性发生变化时，会向观察者发出变更通知。<code>FinderListView</code> 使用 <code>@ObservedObject</code> 观察 <code>FinderList</code>，因此列表可以随 <code>items</code> 更新。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">refresh()</span><br><span class="line">  → 读取目录</span><br><span class="line">  → 给 items 赋新数组</span><br><span class="line">  → @Published 发出通知</span><br><span class="line">  → SwiftUI 更新依赖 items 的界面</span><br></pre></td></tr></table></figure>
+
+<h3 id="文件列表与导航"><a href="#文件列表与导航" class="headerlink" title="文件列表与导航"></a>文件列表与导航</h3><p><code>FinderListView</code> 使用 <code>List</code> 和 <code>ForEach</code> 显示文件条目。它根据 <code>item.isDirectory</code> 决定导航目标：</p>
+<ul>
+<li>文件夹：进入新的 <code>FinderListView</code>。</li>
+<li>文件：打开 <code>EditorView</code>。</li>
+</ul>
+<p>行内容由 <code>FinderItemView</code> 绘制，例如显示文件或文件夹图标、文件名和修改时间。</p>
+<h2 id="五、文件条目：FinderItem"><a href="#五、文件条目：FinderItem" class="headerlink" title="五、文件条目：FinderItem"></a>五、文件条目：<code>FinderItem</code></h2><p><code>FinderItem</code> 表示一个文件或文件夹：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">FinderItem</span>: <span class="title class_ inherited__">Identifiable</span>, <span class="title class_ inherited__">Hashable</span> &#123;</span><br><span class="line">    <span class="keyword">var</span> url: <span class="type">URL</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> id: <span class="type">String</span> &#123;</span><br><span class="line">        url.path</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> filename: <span class="type">String</span> &#123;</span><br><span class="line">        url.lastPathComponent</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>Identifiable</code> 要求提供 <code>id</code>，供列表等界面稳定识别条目。</li>
+<li><code>Hashable</code> 让条目可用于需要哈希能力的场景，例如以 <code>\.self</code> 作为 <code>ForEach</code> 的标识。</li>
+<li><code>id</code> 和 <code>filename</code> 是计算属性：每次访问时根据 <code>url</code> 计算。</li>
+<li><code>url.path</code> 是完整路径；<code>url.lastPathComponent</code> 是路径中的最后一部分，通常是文件名。</li>
+</ul>
+<h3 id="可选值与文件读取"><a href="#可选值与文件读取" class="headerlink" title="可选值与文件读取"></a>可选值与文件读取</h3><p>项目中的文件读取逻辑可以用以下模式概括：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> _content: <span class="type">String</span>? &#123;</span><br><span class="line">    <span class="keyword">try?</span> <span class="type">String</span>(contentsOf: url)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> content: <span class="type">String</span> &#123;</span><br><span class="line">    _content <span class="operator">??</span> <span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>String?</code> 表示字符串可能不存在。</li>
+<li><code>try?</code> 把抛出的错误转换成 <code>nil</code>。</li>
+<li><code>?? &quot;&quot;</code> 在读取失败或没有内容时提供空字符串作为默认值。</li>
+</ul>
+<p>这种写法简单，但会隐藏错误原因。若需要向用户显示“权限不足”或“文件已损坏”等具体信息，应保留并处理原始错误。</p>
+<h2 id="六、编辑器的数据流"><a href="#六、编辑器的数据流" class="headerlink" title="六、编辑器的数据流"></a>六、编辑器的数据流</h2><p>编辑器使用 <code>@State</code> 保存当前正在编辑的文本，并把绑定传给 <code>TextEditor</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> content <span class="operator">=</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="type">TextEditor</span>(text: <span class="variable">$content</span>)</span><br><span class="line">    .onChange(of: content) &#123; content <span class="keyword">in</span></span><br><span class="line">        item.update(content: content)</span><br><span class="line">        reloader.toggle()</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>数据流可以理解为：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">用户输入</span><br><span class="line">  → TextEditor 通过 $content 更新状态</span><br><span class="line">  → content 改变，SwiftUI 更新依赖它的界面</span><br><span class="line">  → onChange 收到新内容</span><br><span class="line">  → item.update(content:) 写入文件</span><br><span class="line">  → reloader 改变，触发预览更新</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>@State</code>：表示 <code>EditorView</code> 拥有并维护 <code>content</code>。</li>
+<li><code>content</code>：状态的当前值。</li>
+<li><code>$content</code>：<code>Binding&lt;String&gt;</code>，允许 <code>TextEditor</code> 读取和修改该状态。</li>
+<li><code>onChange</code>：监听状态变化并执行副作用，例如写文件或刷新预览。</li>
+</ul>
+<p><code>@State</code> 只负责界面状态管理，并不会自动把内容保存到磁盘。文件写入是由 <code>item.update(content:)</code> 显式完成的。</p>
+<p>编辑器的预览、编辑和分屏模式由 <code>Mode</code> 枚举表示。<code>CaseIterable</code> 可以用于遍历所有枚举值，<code>Identifiable</code> 则方便在 SwiftUI 控件中识别各个选项。</p>
+<h2 id="七、SwiftUI-状态包装器"><a href="#七、SwiftUI-状态包装器" class="headerlink" title="七、SwiftUI 状态包装器"></a>七、SwiftUI 状态包装器</h2><table>
+<thead>
+<tr>
+<th>写法</th>
+<th>状态归属</th>
+<th>常见用途</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>@State</code></td>
+<td>当前 SwiftUI 视图</td>
+<td>局部界面状态，如编辑文本或弹窗开关</td>
+</tr>
+<tr>
+<td><code>@Binding</code></td>
+<td>由父视图或其他对象拥有</td>
+<td>子视图需要读写父视图状态</td>
+</tr>
+<tr>
+<td><code>@Published</code></td>
+<td><code>ObservableObject</code> 模型对象</td>
+<td>发布模型属性的变化</td>
+</tr>
+<tr>
+<td><code>@ObservedObject</code></td>
+<td>不拥有对象的视图</td>
+<td>观察外部传入的 <code>ObservableObject</code></td>
+</tr>
+<tr>
+<td><code>@StateObject</code></td>
+<td>当前视图拥有的 <code>ObservableObject</code></td>
+<td>在视图生命周期内创建并持有模型</td>
+</tr>
+</tbody></table>
+<p>父视图可以把自己的状态以绑定形式传给子视图：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">ParentView</span>: <span class="title class_ inherited__">View</span> &#123;</span><br><span class="line">    <span class="meta">@State</span> <span class="keyword">private</span> <span class="keyword">var</span> name <span class="operator">=</span> <span class="string">&quot;&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">var</span> body: <span class="keyword">some</span> <span class="type">View</span> &#123;</span><br><span class="line">        <span class="type">ChildView</span>(name: <span class="variable">$name</span>)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> <span class="title class_">ChildView</span>: <span class="title class_ inherited__">View</span> &#123;</span><br><span class="line">    <span class="meta">@Binding</span> <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>子视图修改 <code>name</code> 时，实际更新的是父视图拥有的状态。</p>
+<p>读 SwiftUI 属性时可以先问两个问题：</p>
+<ol>
+<li><strong>谁拥有状态？</strong> 是视图、模型，还是上层对象？</li>
+<li><strong>谁需要读写状态？</strong> 子视图是否需要通过绑定共享修改？</li>
+</ol>
+<h2 id="八、SwiftUI-与-UIKit-桥接"><a href="#八、SwiftUI-与-UIKit-桥接" class="headerlink" title="八、SwiftUI 与 UIKit 桥接"></a>八、SwiftUI 与 UIKit 桥接</h2><p>SwiftUI 用声明式方式描述界面，UIKit 和 WebKit 则提供许多现成的视图与控制器。通过 Representable 协议，可以将 UIKit 组件放入 SwiftUI 界面树中。</p>
+<ul>
+<li><code>UIViewRepresentable</code>：包装 UIKit 的 <code>UIView</code>，例如 <code>WKWebView</code>。</li>
+<li><code>UIViewControllerRepresentable</code>：包装 UIKit 的 <code>UIViewController</code>，例如系统分享面板。</li>
+</ul>
+<h3 id="使用-UIViewRepresentable-包装-WKWebView"><a href="#使用-UIViewRepresentable-包装-WKWebView" class="headerlink" title="使用 UIViewRepresentable 包装 WKWebView"></a>使用 <code>UIViewRepresentable</code> 包装 <code>WKWebView</code></h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">PreviewWebView</span>: <span class="title class_ inherited__">UIViewRepresentable</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> url: <span class="type">URL</span></span><br><span class="line">    <span class="keyword">let</span> reloader: <span class="type">Bool</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">func</span> <span class="title function_">makeUIView</span>(<span class="params">context</span>: <span class="type">Context</span>) -&gt; <span class="type">WKWebView</span> &#123;</span><br><span class="line">        <span class="type">WKWebView</span>(frame: .zero)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">func</span> <span class="title function_">updateUIView</span>(<span class="keyword">_</span> <span class="params">uiView</span>: <span class="type">WKWebView</span>, <span class="params">context</span>: <span class="type">Context</span>) &#123;</span><br><span class="line">        <span class="comment">// 根据 url 读取并展示内容</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>两个方法的职责不同：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">makeUIView：创建 UIKit 视图</span><br><span class="line">updateUIView：根据最新输入更新已有视图</span><br></pre></td></tr></table></figure>
+
+<p>项目按文件类型处理预览：</p>
+<ul>
+<li>Markdown 文件：读取文本 → 使用 Ink 转为 HTML → 调用 <code>loadHTMLString</code>。</li>
+<li>其他 URL：创建 <code>URLRequest</code> → 调用 <code>load</code>。</li>
+</ul>
+<p>如果每次更新都重新创建 <code>WKWebView</code>，就失去了复用已有实例的机会。</p>
+<h3 id="包装-UIKit-控制器"><a href="#包装-UIKit-控制器" class="headerlink" title="包装 UIKit 控制器"></a>包装 UIKit 控制器</h3><p>分享面板由 <code>UIViewControllerRepresentable</code> 包装：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">struct</span> <span class="title class_">ActivityView</span>: <span class="title class_ inherited__">UIViewControllerRepresentable</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> activityItems: [<span class="keyword">Any</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">func</span> <span class="title function_">makeUIViewController</span>(</span><br><span class="line">        <span class="params">context</span>: <span class="type">Context</span></span><br><span class="line">    ) -&gt; <span class="type">UIActivityViewController</span> &#123;</span><br><span class="line">        <span class="type">UIActivityViewController</span>(</span><br><span class="line">            activityItems: activityItems,</span><br><span class="line">            applicationActivities: <span class="literal">nil</span></span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">func</span> <span class="title function_">updateUIViewController</span>(</span><br><span class="line">        <span class="keyword">_</span> <span class="params">viewController</span>: <span class="type">UIActivityViewController</span>,</span><br><span class="line">        <span class="params">context</span>: <span class="type">Context</span></span><br><span class="line">    ) &#123;</span><br><span class="line">        <span class="comment">// 如果没有需要同步的状态，可以留空</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>Safari 页面也可以用相同方式包装 <code>SFSafariViewController</code>。</p>
+<h3 id="从-SwiftUI-访问-UIKit-控件"><a href="#从-SwiftUI-访问-UIKit-控件" class="headerlink" title="从 SwiftUI 访问 UIKit 控件"></a>从 SwiftUI 访问 UIKit 控件</h3><p>项目使用 SwiftUI-Introspect 获取 <code>TextEditor</code> 底层的 <code>UITextView</code>，以调用键盘辅助栏、光标移动、撤销和重做等 UIKit 功能。</p>
+<p>这提高了与 UIKit 的互操作性，但也会依赖 SwiftUI 控件的底层实现。系统或依赖库升级时需要留意兼容性。</p>
+<h3 id="Context-的作用"><a href="#Context-的作用" class="headerlink" title="Context 的作用"></a><code>Context</code> 的作用</h3><p><code>makeUIView</code> 和 <code>updateUIView</code> 中的 <code>context</code> 提供桥接所需的上下文信息，例如协调器（Coordinator）。当 UIKit 事件需要回传给 SwiftUI 时，协调器可以负责连接两边。</p>
+<h2 id="九、Markdown-与网页预览"><a href="#九、Markdown-与网页预览" class="headerlink" title="九、Markdown 与网页预览"></a>九、Markdown 与网页预览</h2><p><code>PreviewWebView.swift</code> 使用 <code>UIViewRepresentable</code> 将 <code>WKWebView</code> 嵌入 SwiftUI：</p>
+<ul>
+<li>Markdown 文件通过 Ink 转换为 HTML，再交给 WebKit 显示。</li>
+<li>其他文件或 URL 则使用 <code>URLRequest</code> 加载。</li>
+</ul>
+<p><code>PreviewWebView</code> 接收了 <code>reloader</code> 属性。笔记中的代码显示 <code>updateUIView</code> 尚未使用它；如果这个值的目标是控制预览刷新，就需要检查更新逻辑是否根据它重新加载内容。</p>
+<h2 id="十、设置与持久化"><a href="#十、设置与持久化" class="headerlink" title="十、设置与持久化"></a>十、设置与持久化</h2><h3 id="单例：Settings-shared"><a href="#单例：Settings-shared" class="headerlink" title="单例：Settings.shared"></a>单例：<code>Settings.shared</code></h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> <span class="title class_">Settings</span> &#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">let</span> shared <span class="operator">=</span> <span class="type">Settings</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">init</span>() &#123;&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>static let shared</code> 提供一个共享实例；<code>private init()</code> 阻止其他代码随意创建新的 <code>Settings</code> 实例。</p>
+<h3 id="使用-UserDefaults"><a href="#使用-UserDefaults" class="headerlink" title="使用 UserDefaults"></a>使用 <code>UserDefaults</code></h3><p><code>Settings</code> 将字体、字号、颜色和键盘工具栏开关等轻量设置保存到 <code>UserDefaults</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> fontName: <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">get</span> &#123;</span><br><span class="line">        <span class="type">UserDefaults</span>.standard.string(forKey: <span class="type">Keys</span>.fontName)</span><br><span class="line">            <span class="operator">??</span> <span class="type">FontManager</span>.defaultFontName</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">set</span> &#123;</span><br><span class="line">        <span class="type">UserDefaults</span>.standard.set(newValue, forKey: <span class="type">Keys</span>.fontName)</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>UserDefaults</code> 适合保存偏好设置，不适合保存整份文档正文。Edhita 将文档保存为文件，将轻量设置保存在 <code>UserDefaults</code>。</p>
+<p>单例与持久化是两个不同概念：</p>
+<ul>
+<li>单例：提供同一个对象的共享访问方式。</li>
+<li>持久化：让数据在应用重启后仍然存在。</li>
+</ul>
+<p>项目中的 <code>Settings</code> 没有遵循 <code>ObservableObject</code>，设置属性也没有通过 <code>@Published</code> 发布变化，因此设置变化不会自动通知所有已显示的 SwiftUI 视图。</p>
+<h3 id="设置页的数据流"><a href="#设置页的数据流" class="headerlink" title="设置页的数据流"></a>设置页的数据流</h3><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">从 Settings.shared 读取当前值</span><br><span class="line">  → 设置页用 @State 保存控件状态</span><br><span class="line">  → Picker 通过 Binding 修改状态</span><br><span class="line">  → onChange 写回 Settings.shared</span><br><span class="line">  → Settings 的 setter 保存到 UserDefaults</span><br></pre></td></tr></table></figure>
+
+<p>字体、字号和颜色设置都可以采用类似流程。</p>
+<h2 id="十一、闭包与异步回调"><a href="#十一、闭包与异步回调" class="headerlink" title="十一、闭包与异步回调"></a>十一、闭包与异步回调</h2><p>广告初始化流程展示了闭包、<code>@escaping</code> 和弱引用捕获的用法。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">AdManager</span>.shared.start &#123;</span><br><span class="line">    onReady <span class="operator">=</span> <span class="literal">true</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="escaping"><a href="#escaping" class="headerlink" title="@escaping"></a><code>@escaping</code></h3><p>函数参数闭包默认不能在函数返回后继续使用。若闭包会被保存起来或交给异步操作，必须标记为 <code>@escaping</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> <span class="title function_">start</span>(<span class="params">callback</span>: <span class="keyword">@escaping</span> () -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">    <span class="comment">// 可能在函数返回后调用 callback</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>广告初始化是异步的：<code>start</code> 发起工作后先返回，SDK 准备完成后才调用回调。</p>
+<h3 id="weak-self"><a href="#weak-self" class="headerlink" title="[weak self]"></a><code>[weak self]</code></h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">MobileAds</span>.shared.start &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">_</span> <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">self</span><span class="operator">?</span>.isStarted <span class="operator">=</span> <span class="literal">true</span></span><br><span class="line">    callback()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>[weak self]</code> 避免异步闭包因为强引用 <code>self</code> 而延长对象生命周期，尤其是在对象与闭包之间可能形成引用环时。</p>
+<p>弱引用可能变成 <code>nil</code>，所以使用 <code>self?.property</code> 进行安全访问。</p>
+<h3 id="回调行为需要明确"><a href="#回调行为需要明确" class="headerlink" title="回调行为需要明确"></a>回调行为需要明确</h3><p>阅读异步代码时，除了看闭包何时执行，还要确认：</p>
+<ul>
+<li>成功、失败和取消时是否都会调用回调？</li>
+<li>回调会不会被调用多次？</li>
+<li>是否需要保证只执行一次？</li>
+<li>若持有闭包的对象已经释放，后续行为是什么？</li>
+</ul>
+<p>如果错误路径直接 <code>return</code>，但没有报告失败，调用方可能一直等待。若多个异步分支都能调用回调，还需要避免重复执行。</p>
+<h2 id="十二、外部依赖"><a href="#十二、外部依赖" class="headerlink" title="十二、外部依赖"></a>十二、外部依赖</h2><p>项目通过 Swift Package Manager 引入的主要依赖包括：</p>
+<ul>
+<li><strong>Ink</strong>：将 Markdown 转为 HTML。</li>
+<li><strong>SwiftUI-Introspect</strong>：从 SwiftUI 视图访问底层 UIKit 控件。</li>
+<li><strong>Google Mobile Ads</strong>：展示广告，并处理相关授权流程。</li>
+</ul>
+<h2 id="十三、文件操作代码阅读"><a href="#十三、文件操作代码阅读" class="headerlink" title="十三、文件操作代码阅读"></a>十三、文件操作代码阅读</h2><h3 id="读取目录并排序"><a href="#读取目录并排序" class="headerlink" title="读取目录并排序"></a>读取目录并排序</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">func</span> <span class="title function_">items</span>(<span class="params">for</span> <span class="params">url</span>: <span class="type">URL</span>) -&gt; [<span class="type">FinderItem</span>] &#123;</span><br><span class="line">    <span class="keyword">guard</span></span><br><span class="line">        <span class="keyword">let</span> urls <span class="operator">=</span> <span class="keyword">try?</span> <span class="type">FileManager</span>.default.contentsOfDirectory(</span><br><span class="line">            at: url,</span><br><span class="line">            includingPropertiesForKeys: [</span><br><span class="line">                .contentModificationDateKey,</span><br><span class="line">                .isDirectoryKey</span><br><span class="line">            ]</span><br><span class="line">        )</span><br><span class="line">    <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="built_in">fatalError</span>()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> urls</span><br><span class="line">        .map &#123; <span class="type">FinderItem</span>(url: <span class="variable">$0</span>) &#125;</span><br><span class="line">        .sorted &#123;</span><br><span class="line">            <span class="variable">$0</span>.contentModificationDate <span class="operator">&gt;</span> <span class="variable">$1</span>.contentModificationDate</span><br><span class="line">        &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>static</code> 表示该方法属于 <code>FinderList</code> 类型本身，可通过 <code>FinderList.items(for:)</code> 调用。</li>
+<li><code>contentsOfDirectory</code> 可能抛错；<code>try?</code> 会把错误转成 <code>nil</code>。</li>
+<li><code>guard let</code> 在读取失败时进入 <code>else</code>。</li>
+<li><code>map</code> 将 <code>[URL]</code> 转为 <code>[FinderItem]</code>。</li>
+<li><code>sorted</code> 按修改时间从新到旧排列。</li>
+<li><code>$0</code> 和 <code>$1</code> 是闭包中前两个参数的简写。</li>
+</ul>
+<p><strong>可改进点：</strong> <code>fatalError()</code> 会直接终止应用。目录读取失败通常更适合通过 <code>throws</code>、错误状态或空状态反馈给界面。</p>
+<h3 id="删除条目"><a href="#删除条目" class="headerlink" title="删除条目"></a>删除条目</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> <span class="title function_">deleteItem</span>(<span class="params">item</span>: <span class="type">FinderItem</span>?) &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> item <span class="operator">=</span> item <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> index <span class="operator">=</span> items.firstIndex(of: item) &#123;</span><br><span class="line">        items.remove(at: index)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    item.destroy()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>guard let</code>：条目不存在时提前退出。</li>
+<li><code>firstIndex(of:)</code>：查找条目在数组中的位置，返回可选下标。</li>
+<li><code>if let</code>：只有找到下标才从数组移除。</li>
+<li><code>item.destroy()</code>：删除磁盘上的文件或目录。</li>
+</ul>
+<p><strong>注意：</strong> 如果条目不在当前 <code>items</code> 数组中，代码仍会执行 <code>item.destroy()</code>。这可能是设计意图，也可能需要根据业务规则调整。</p>
+<h3 id="创建文件或文件夹"><a href="#创建文件或文件夹" class="headerlink" title="创建文件或文件夹"></a>创建文件或文件夹</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> <span class="title function_">addItem</span>(<span class="params">name</span>: <span class="type">String</span>, <span class="params">isDirectory</span>: <span class="type">Bool</span>) &#123;</span><br><span class="line">    <span class="keyword">let</span> url <span class="operator">=</span> <span class="keyword">self</span>.url.appendingPathComponent(name)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> isDirectory &#123;</span><br><span class="line">        <span class="keyword">try?</span> <span class="type">FileManager</span>.default.createDirectory(</span><br><span class="line">            at: url,</span><br><span class="line">            withIntermediateDirectories: <span class="literal">false</span></span><br><span class="line">        )</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="keyword">try?</span> <span class="string">&quot;&quot;</span>.write(to: url, atomically: <span class="literal">true</span>, encoding: .utf8)</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    refresh()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>self.url</code> 是当前目录的 URL。</li>
+<li><code>appendingPathComponent(name)</code> 构造新条目的 URL。</li>
+<li><code>isDirectory</code> 决定创建文件夹还是空文件。</li>
+<li><code>try?</code> 会忽略创建失败的错误。</li>
+<li><code>refresh()</code> 重新读取目录内容。</li>
+</ul>
+<p><strong>可改进点：</strong> 如果创建失败，列表仍会刷新，但用户不会知道失败原因。实际产品通常需要展示或记录错误。</p>
+<h3 id="下载并写入数据"><a href="#下载并写入数据" class="headerlink" title="下载并写入数据"></a>下载并写入数据</h3><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">func</span> <span class="title function_">downloadItem</span>(<span class="params">urlString</span>: <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> url <span class="operator">=</span> <span class="type">URL</span>(string: urlString) <span class="keyword">else</span> &#123; <span class="keyword">return</span> &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">let</span> data <span class="operator">=</span> <span class="keyword">try?</span> <span class="type">Data</span>(contentsOf: url) &#123;</span><br><span class="line">        <span class="keyword">try?</span> data.write(</span><br><span class="line">            to: <span class="keyword">self</span>.url.appendingPathComponent(url.lastPathComponent)</span><br><span class="line">        )</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    refresh()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><code>URL(string:)</code> 可能无法生成 URL，因此使用 <code>guard let</code> 检查。</li>
+<li><code>Data(contentsOf:)</code> 读取数据，成功后写入当前目录。</li>
+<li><code>refresh()</code> 更新列表。</li>
+</ul>
+<p>这个示例中的 <code>Data(contentsOf:)</code> 是直接读取数据的简化方式。真正的网络下载通常应使用异步网络 API，并处理请求失败、状态码和用户取消等情况。</p>
+<h2 id="十四、项目中的主要-Swift-难点"><a href="#十四、项目中的主要-Swift-难点" class="headerlink" title="十四、项目中的主要 Swift 难点"></a>十四、项目中的主要 Swift 难点</h2><ol>
+<li><strong>SwiftUI 状态流</strong>：理解 <code>@State</code>、<code>@Binding</code>、<code>@Published</code>、<code>@ObservedObject</code> 和 <code>@StateObject</code> 各自对应的状态归属。</li>
+<li><strong>SwiftUI 与 UIKit 桥接</strong>：区分 <code>makeUIView</code> 和 <code>updateUIView</code> 的职责。</li>
+<li><strong>可选值与错误处理</strong>：理解 <code>try?</code>、<code>guard let</code> 和 <code>if let</code>，同时留意错误是否被隐藏。</li>
+<li><strong>异步闭包生命周期</strong>：理解 <code>@escaping</code>、<code>[weak self]</code> 和回调调用次数。</li>
+<li><strong>单例与持久化</strong>：区分共享对象与跨重启存储。</li>
+<li><strong>文件系统错误</strong>：理解读写权限、路径有效性和文件操作失败的处理方式。</li>
+</ol>
+<h3 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><p><strong>Edhita 展示了 SwiftUI 应用如何把界面状态、文件读写、UIKit 桥接和异步 SDK 组合起来；读懂它的关键是追踪“状态归谁、变化如何传播、失败如何处理”。</strong></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/10/20/edhita%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/" data-id="cuidSw07gGtOZHObwOKJb2sDT" data-title="Edhita 项目学习" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2026/10/20/Leetcode/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Leetcode</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithms/" rel="tag">Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-Systems/" rel="tag">ML Systems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Programming-Language/" rel="tag">Programming Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 10px;">AI</a> <a href="/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/LLM/" style="font-size: 10px;">LLM</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/ML-Systems/" style="font-size: 10px;">ML Systems</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Programming-Language/" style="font-size: 10px;">Programming Language</a> <a href="/tags/Software-Engineering/" style="font-size: 20px;">Software Engineering</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/10/">October 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/10/20/edhita%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/">Edhita 项目学习</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/20/Leetcode/">Leetcode</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/20/Swift%20Basic/">Swift Basics</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/19/%E7%A8%8B%E5%BA%8F%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">程序设计模式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 CAI<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
