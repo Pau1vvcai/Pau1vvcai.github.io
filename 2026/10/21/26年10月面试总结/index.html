@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  
+  <title>26年10月面试总结 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="10 月 21 日这是第一次比较正式的面试。题目涉及 Python、SQL、动态规划和 AI 辅助编程。 Q1：Python 基础与 JSON 解析12345678import jsondef read_user(text):    data &#x3D; json.loads(text)    name &#x3D; data.get(&quot;name&quot;)    age &#x3D; data.get(&amp;quo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="26年10月面试总结">
+<meta property="og:url" content="http://example.com/2026/10/21/26%E5%B9%B410%E6%9C%88%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="10 月 21 日这是第一次比较正式的面试。题目涉及 Python、SQL、动态规划和 AI 辅助编程。 Q1：Python 基础与 JSON 解析12345678import jsondef read_user(text):    data &#x3D; json.loads(text)    name &#x3D; data.get(&quot;name&quot;)    age &#x3D; data.get(&amp;quo">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2026-10-21T08:39:38.000Z">
+<meta property="article:modified_time" content="2026-10-21T09:03:07.169Z">
+<meta property="article:author" content="CAI">
+<meta property="article:tag" content="Interview">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="shortcut icon" href="/favicon.png">
+  
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+    
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+
+  
+  
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
+
+<meta name="generator" content="Hexo 8.1.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+        
+          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+        
+        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+
+      <div class="outer">
+        <section id="main"><article id="post-26年10月面试总结" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/10/21/26%E5%B9%B410%E6%9C%88%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" class="article-date">
+  <time class="dt-published" datetime="2026-10-21T08:39:38.000Z" itemprop="datePublished">2026-10-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="p-name article-title" itemprop="headline name">
+      26年10月面试总结
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <h2 id="10-月-21-日"><a href="#10-月-21-日" class="headerlink" title="10 月 21 日"></a>10 月 21 日</h2><p>这是第一次比较正式的面试。题目涉及 Python、SQL、动态规划和 AI 辅助编程。</p>
+<h2 id="Q1：Python-基础与-JSON-解析"><a href="#Q1：Python-基础与-JSON-解析" class="headerlink" title="Q1：Python 基础与 JSON 解析"></a>Q1：Python 基础与 JSON 解析</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_user</span>(<span class="params">text</span>):</span><br><span class="line">    data = json.loads(text)</span><br><span class="line">    name = data.get(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">    age = data.get(<span class="string">&quot;age&quot;</span>)</span><br><span class="line">    address = data[<span class="string">&quot;address&quot;</span>][<span class="string">&quot;city&quot;</span>]</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;name: <span class="subst">&#123;name&#125;</span>, age: <span class="subst">&#123;age&#125;</span>, address: <span class="subst">&#123;address&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="get-name-和-name-的区别"><a href="#get-name-和-name-的区别" class="headerlink" title="get(&quot;name&quot;) 和 [&quot;name&quot;] 的区别"></a><code>get(&quot;name&quot;)</code> 和 <code>[&quot;name&quot;]</code> 的区别</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data.get(<span class="string">&quot;name&quot;</span>)  <span class="comment"># 键不存在时返回 None</span></span><br><span class="line">data[<span class="string">&quot;name&quot;</span>]      <span class="comment"># 键不存在时抛出 KeyError</span></span><br></pre></td></tr></table></figure>
+
+<p>可以为 <code>get</code> 指定默认值：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">data.get(<span class="string">&quot;name&quot;</span>, <span class="string">&quot;Unknown&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>但要注意：如果键存在且值为 <code>None</code>，<code>get(&quot;name&quot;)</code> 仍会返回 <code>None</code>。需要区分“键缺失”和“值为 None”时，可以用 <code>&quot;name&quot; in data</code> 判断。</p>
+<h3 id="可能出现的错误"><a href="#可能出现的错误" class="headerlink" title="可能出现的错误"></a>可能出现的错误</h3><p>这段代码可能在以下位置出错：</p>
+<ol>
+<li><p><strong><code>json.loads(text)</code></strong><br>如果输入不是合法 JSON，会抛出 <code>json.JSONDecodeError</code>。</p>
+</li>
+<li><p><strong><code>data.get(&quot;name&quot;)</code></strong><br>JSON 虽然合法，但顶层可能是数组、字符串或数字，而不是字典。这时调用 <code>.get()</code> 可能抛出 <code>AttributeError</code>。</p>
+</li>
+<li><p><strong><code>data[&quot;address&quot;][&quot;city&quot;]</code></strong>  </p>
+<ul>
+<li>缺少 <code>&quot;address&quot;</code>：抛出 <code>KeyError</code>。</li>
+<li><code>&quot;address&quot;</code> 的值是 <code>null</code>：会得到 <code>None[&quot;city&quot;]</code>，抛出 <code>TypeError</code>。</li>
+<li><code>&quot;address&quot;</code> 的值不是字典：访问 <code>&quot;city&quot;</code> 时也可能抛出 <code>TypeError</code>。</li>
+<li>缺少 <code>&quot;city&quot;</code>：抛出 <code>KeyError</code>。</li>
+</ul>
+</li>
+<li><p><strong>返回语句</strong><br>原示例里的 <code>f(name:&quot; &quot;,age:&quot; &quot;,address:&quot; &quot;)</code> 不是 Python 的 f-string 语法。应写成：</p>
+</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">return</span> <span class="string">f&quot;name: <span class="subst">&#123;name&#125;</span>, age: <span class="subst">&#123;age&#125;</span>, address: <span class="subst">&#123;address&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="三种测试情况"><a href="#三种测试情况" class="headerlink" title="三种测试情况"></a>三种测试情况</h3><p>假设函数使用上面的修正返回语句：</p>
+<h4 id="测试-1：字段完整"><a href="#测试-1：字段完整" class="headerlink" title="测试 1：字段完整"></a>测试 1：字段完整</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="string">&#x27;&#123;&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 24, &quot;address&quot;: &#123;&quot;city&quot;: &quot;Beijing&quot;&#125; &#125;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(read_user(text))</span><br></pre></td></tr></table></figure>
+
+<p>输出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name: Alice, age: 24, address: Beijing</span><br></pre></td></tr></table></figure>
+
+<h4 id="测试-2：缺少地址"><a href="#测试-2：缺少地址" class="headerlink" title="测试 2：缺少地址"></a>测试 2：缺少地址</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="string">&#x27;&#123;&quot;name&quot;: &quot;Alice&quot;, &quot;age&quot;: 24&#125;&#x27;</span></span><br><span class="line"><span class="built_in">print</span>(read_user(text))</span><br></pre></td></tr></table></figure>
+
+<p><code>data.get(&quot;name&quot;)</code> 和 <code>data.get(&quot;age&quot;)</code> 可以正常运行，但 <code>data[&quot;address&quot;][&quot;city&quot;]</code> 会抛出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">KeyError: &#x27;address&#x27;</span><br></pre></td></tr></table></figure>
+
+<p>如果地址是可选字段，可以改用安全访问：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">address_data = data.get(<span class="string">&quot;address&quot;</span>) <span class="keyword">or</span> &#123;&#125;</span><br><span class="line">address = address_data.get(<span class="string">&quot;city&quot;</span>)</span><br></pre></td></tr></table></figure>
+
+<p>这样缺少地址时，<code>address</code> 会是 <code>None</code>。</p>
+<h4 id="测试-3：不是合法-JSON"><a href="#测试-3：不是合法-JSON" class="headerlink" title="测试 3：不是合法 JSON"></a>测试 3：不是合法 JSON</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">text = <span class="string">&quot;not a json&quot;</span></span><br><span class="line"><span class="built_in">print</span>(read_user(text))</span><br></pre></td></tr></table></figure>
+
+<p>程序会在 <code>json.loads(text)</code> 处抛出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">json.JSONDecodeError</span><br></pre></td></tr></table></figure>
+
+<p>函数中的其他代码不会执行。</p>
+<h3 id="一个更稳健的写法"><a href="#一个更稳健的写法" class="headerlink" title="一个更稳健的写法"></a>一个更稳健的写法</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_user</span>(<span class="params">text</span>):</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        data = json.loads(text)</span><br><span class="line">    <span class="keyword">except</span> json.JSONDecodeError <span class="keyword">as</span> error:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">f&quot;Invalid JSON: <span class="subst">&#123;error.msg&#125;</span>&quot;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="built_in">isinstance</span>(data, <span class="built_in">dict</span>):</span><br><span class="line">        <span class="keyword">return</span> <span class="string">&quot;Invalid data: expected a JSON object&quot;</span></span><br><span class="line"></span><br><span class="line">    name = data.get(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">    age = data.get(<span class="string">&quot;age&quot;</span>)</span><br><span class="line"></span><br><span class="line">    address_data = data.get(<span class="string">&quot;address&quot;</span>)</span><br><span class="line">    <span class="keyword">if</span> <span class="built_in">isinstance</span>(address_data, <span class="built_in">dict</span>):</span><br><span class="line">        city = address_data.get(<span class="string">&quot;city&quot;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        city = <span class="literal">None</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;name: <span class="subst">&#123;name&#125;</span>, age: <span class="subst">&#123;age&#125;</span>, address: <span class="subst">&#123;city&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>完整输入会输出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name: Alice, age: 24, address: Beijing</span><br></pre></td></tr></table></figure>
+
+<p>缺少地址时会输出：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">name: Alice, age: 24, address: None</span><br></pre></td></tr></table></figure>
+
+<p>非法 JSON 则会返回错误说明，而不是让异常直接中断程序。</p>
+<h3 id="面试回答要点"><a href="#面试回答要点" class="headerlink" title="面试回答要点"></a>面试回答要点</h3><p>可以这样概括：</p>
+<blockquote>
+<p><code>json.loads</code> 负责解析 JSON，格式错误时抛出 <code>JSONDecodeError</code>。<code>dict.get()</code> 在键缺失时默认返回 <code>None</code>，而 <code>dict[key]</code> 会抛出 <code>KeyError</code>。对于嵌套字段 <code>data[&quot;address&quot;][&quot;city&quot;]</code>，地址或城市字段缺失、或者 <code>address</code> 类型不符合预期，都可能出错。因此需要根据字段是否必需，选择直接访问、默认值处理或显式校验。</p>
+</blockquote>
+<h2 id="Q2：SQL-查询"><a href="#Q2：SQL-查询" class="headerlink" title="Q2：SQL 查询"></a>Q2：SQL 查询</h2><p>要求从 <code>user</code> 表中筛选年龄小于 35、地址为北京的用户，并按降序排列，尽可能高效。</p>
+<h3 id="基本查询"><a href="#基本查询" class="headerlink" title="基本查询"></a>基本查询</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SELECT</span> <span class="operator">*</span></span><br><span class="line"><span class="keyword">FROM</span> <span class="keyword">user</span></span><br><span class="line"><span class="keyword">WHERE</span> age <span class="operator">&lt;</span> <span class="number">35</span></span><br><span class="line">  <span class="keyword">AND</span> address <span class="operator">=</span> <span class="string">&#x27;北京&#x27;</span></span><br><span class="line"><span class="keyword">ORDER</span> <span class="keyword">BY</span> age <span class="keyword">DESC</span>;</span><br></pre></td></tr></table></figure>
+
+<p>这里假设“降序”指按年龄降序。如果题目要求按其他字段排序，应明确指定对应的 <code>ORDER BY</code> 列。</p>
+<h3 id="性能与索引"><a href="#性能与索引" class="headerlink" title="性能与索引"></a>性能与索引</h3><ul>
+<li>只需要部分字段时，用明确列名替代 <code>SELECT *</code>，减少不必要的数据读取。</li>
+<li>数据量较大时，可以评估为筛选条件添加复合索引，例如：</li>
+</ul>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">CREATE</span> INDEX idx_user_address_age</span><br><span class="line"><span class="keyword">ON</span> <span class="keyword">user</span> (address, age);</span><br></pre></td></tr></table></figure>
+
+<p>该索引是否最优取决于数据分布、查询频率、排序字段和数据库执行计划。可使用数据库的 <code>EXPLAIN</code> 工具检查实际查询计划。索引会占用存储空间，也会增加插入、更新和删除时的维护成本。</p>
+<h3 id="面试回答要点-1"><a href="#面试回答要点-1" class="headerlink" title="面试回答要点"></a>面试回答要点</h3><p>先写正确查询，再询问或说明“降序”按哪个字段。谈性能时，不要只说“加索引”，而要结合过滤条件、排序字段和执行计划解释。</p>
+<hr>
+<h2 id="Q3：算法思想——网格最短路径"><a href="#Q3：算法思想——网格最短路径" class="headerlink" title="Q3：算法思想——网格最短路径"></a>Q3：算法思想——网格最短路径</h2><p>给定一个 <code>N × N</code> 的网格，只允许向右或向下移动。每个格子有一个代价，求从左上角到右下角路径代价最小的路径总和。</p>
+<p>示例：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">1  3  1</span><br><span class="line">1  5  1</span><br><span class="line">4  2  1</span><br></pre></td></tr></table></figure>
+
+<p>路径代价最小的一条路线是：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">1 → 3 → 1 → 1 → 1</span><br></pre></td></tr></table></figure>
+
+<p>总和为 <code>7</code>。</p>
+<h3 id="动态规划"><a href="#动态规划" class="headerlink" title="动态规划"></a>动态规划</h3><p>令 <code>dp[i][j]</code> 表示从左上角到达格子 <code>(i, j)</code> 的最小路径和。</p>
+<p>由于只能从上方或左侧进入当前格子：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = grid[i][j] + min(dp[i-1][j], dp[i][j-1])</span><br></pre></td></tr></table></figure>
+
+<p>边界条件：</p>
+<ul>
+<li>起点：<code>dp[0][0] = grid[0][0]</code></li>
+<li>第一行：只能从左侧到达。</li>
+<li>第一列：只能从上方到达。</li>
+</ul>
+<p>Python 实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">min_path_sum</span>(<span class="params">grid</span>):</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> grid <span class="keyword">or</span> <span class="keyword">not</span> grid[<span class="number">0</span>]:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    rows, cols = <span class="built_in">len</span>(grid), <span class="built_in">len</span>(grid[<span class="number">0</span>])</span><br><span class="line">    dp = [[<span class="number">0</span>] * cols <span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(rows)]</span><br><span class="line">    dp[<span class="number">0</span>][<span class="number">0</span>] = grid[<span class="number">0</span>][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, cols):</span><br><span class="line">        dp[<span class="number">0</span>][col] = dp[<span class="number">0</span>][col - <span class="number">1</span>] + grid[<span class="number">0</span>][col]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, rows):</span><br><span class="line">        dp[row][<span class="number">0</span>] = dp[row - <span class="number">1</span>][<span class="number">0</span>] + grid[row][<span class="number">0</span>]</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> row <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, rows):</span><br><span class="line">        <span class="keyword">for</span> col <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span>, cols):</span><br><span class="line">            dp[row][col] = grid[row][col] + <span class="built_in">min</span>(</span><br><span class="line">                dp[row - <span class="number">1</span>][col],</span><br><span class="line">                dp[row][col - <span class="number">1</span>],</span><br><span class="line">            )</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> dp[-<span class="number">1</span>][-<span class="number">1</span>]</span><br></pre></td></tr></table></figure>
+
+<h3 id="复杂度"><a href="#复杂度" class="headerlink" title="复杂度"></a>复杂度</h3><ul>
+<li>时间复杂度：<code>O(rows × cols)</code></li>
+<li>空间复杂度：<code>O(rows × cols)</code></li>
+<li>若只需要最小路径和，可以将空间优化为 <code>O(cols)</code>，因为每一行只依赖当前行左边和上一行对应位置。</li>
+</ul>
+<h3 id="动态规划还是优先队列？"><a href="#动态规划还是优先队列？" class="headerlink" title="动态规划还是优先队列？"></a>动态规划还是优先队列？</h3><p>本题只能向右或向下，网格形成有方向的无环依赖关系，动态规划更直接，时间复杂度为 <code>O(N²)</code>。</p>
+<p>如果移动方向更多、路径中可能存在一般图结构，可以考虑 Dijkstra 等优先队列算法。若边权非负且方向限制仍然只允许向右或向下，优先队列通常不是必要工具。</p>
+<h3 id="口头推导方法"><a href="#口头推导方法" class="headerlink" title="口头推导方法"></a>口头推导方法</h3><ol>
+<li>明确状态：<code>dp[i][j]</code> 是什么？</li>
+<li>找到进入当前格子的前驱：上方和左侧。</li>
+<li>写转移方程。</li>
+<li>设置首行、首列和起点。</li>
+<li>分析复杂度并检查示例。</li>
+</ol>
+<hr>
+<h2 id="Q4：AI-辅助开发-Python-脚本"><a href="#Q4：AI-辅助开发-Python-脚本" class="headerlink" title="Q4：AI 辅助开发 Python 脚本"></a>Q4：AI 辅助开发 Python 脚本</h2><p>任务是使用 AI 辅助编写一个识别 JSON 并优化效率的 Python 脚本。</p>
+<h3 id="推荐工作流程"><a href="#推荐工作流程" class="headerlink" title="推荐工作流程"></a>推荐工作流程</h3><ol>
+<li><strong>明确输入与输出</strong>：输入是单个 JSON、JSON 文件，还是一行一个 JSON 的数据集？</li>
+<li><strong>列出异常情况</strong>：非法 JSON、缺少字段、字段类型错误、空输入。</li>
+<li><strong>先写正确版本</strong>：优先完成解析、校验和输出。</li>
+<li><strong>补测试样例</strong>：覆盖正常输入和边界情况。</li>
+<li><strong>分析性能瓶颈</strong>：明确数据规模，再决定是否需要优化。</li>
+<li><strong>验证 AI 生成的代码</strong>：检查异常处理、数据类型、输入输出边界和性能假设。</li>
+</ol>
+<p>“优化效率”不能只凭代码看起来简短来判断。应先说明输入规模与目标，再通过计时或 profiling 找出瓶颈。</p>
+<h3 id="使用-AI-时的检查清单"><a href="#使用-AI-时的检查清单" class="headerlink" title="使用 AI 时的检查清单"></a>使用 AI 时的检查清单</h3><ul>
+<li>AI 是否把非法 JSON 和缺失字段混为一谈？</li>
+<li>是否验证解析结果是预期的数据类型？</li>
+<li>是否捕获了过宽的异常，例如直接使用裸 <code>except</code>？</li>
+<li>对大文件是否一次性载入内存？是否需要流式处理？</li>
+<li>所谓性能优化是否有基准测试支持？</li>
+<li>是否检查生成代码在给定测试用例上的实际输出？</li>
+</ul>
+<hr>
+<h2 id="面试复盘"><a href="#面试复盘" class="headerlink" title="面试复盘"></a>面试复盘</h2><h3 id="暴露的问题"><a href="#暴露的问题" class="headerlink" title="暴露的问题"></a>暴露的问题</h3><p>面对不熟悉的问题或概念时有些犹豫，心态影响了整体表现。</p>
+<h3 id="改进方法：先讲思路，再补细节"><a href="#改进方法：先讲思路，再补细节" class="headerlink" title="改进方法：先讲思路，再补细节"></a>改进方法：先讲思路，再补细节</h3><p>遇到不确定的问题时，可以先明确已知条件，再逐步推理：</p>
+<ol>
+<li><strong>重述问题</strong>：确认输入、输出和限制。</li>
+<li><strong>说出已知事实</strong>：例如“只能向右或向下，所以每个格子的来源只有上方和左侧”。</li>
+<li><strong>提出候选方案</strong>：说明为什么考虑动态规划、索引或异常处理。</li>
+<li><strong>检查边界情况</strong>：空输入、缺失字段、最小规模、非法值。</li>
+<li><strong>给出复杂度或风险</strong>：解释运行时间、空间使用或错误来源。</li>
+<li><strong>承认不确定部分并继续推导</strong>：不要停在“我不太会”，而是说明可以从哪些条件推出答案。</li>
+</ol>
+<h3 id="需要补强的地方"><a href="#需要补强的地方" class="headerlink" title="需要补强的地方"></a>需要补强的地方</h3><ol>
+<li><strong>基础</strong>：基础的语法理解没有偏差。</li>
+<li><strong>算法</strong>：中等难度的题要多做一些，可以重视动态规划。</li>
+</ol>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/10/21/26%E5%B9%B410%E6%9C%88%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" data-id="cuid9F1jo3QoKbm9LTI1qlOtw" data-title="26年10月面试总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Interview/" rel="tag">Interview</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2026/10/22/LLM-%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A6%82%E8%A7%88/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          LLM 应用开发概览
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2026/10/20/edhita%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Edhita 项目学习</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithms/" rel="tag">Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/" rel="tag">Interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-Systems/" rel="tag">ML Systems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Programming-Language/" rel="tag">Programming Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LLM/" style="font-size: 15px;">LLM</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/ML-Systems/" style="font-size: 10px;">ML Systems</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Programming-Language/" style="font-size: 10px;">Programming Language</a> <a href="/tags/Software-Engineering/" style="font-size: 20px;">Software Engineering</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2026/10/">October 2026</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2026/10/22/LLM-%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A6%82%E8%A7%88/">LLM 应用开发概览</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/21/26%E5%B9%B410%E6%9C%88%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/">26年10月面试总结</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/20/edhita%E9%A1%B9%E7%9B%AE%E5%AD%A6%E4%B9%A0/">Edhita 项目学习</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/20/Leetcode/">Leetcode</a>
+          </li>
+        
+          <li>
+            <a href="/2026/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      
+      &copy; 2026 CAI<br>
+      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+
+<script src="/js/jquery-3.6.4.min.js"></script>
+
+
+
+  
+<script src="/fancybox/jquery.fancybox.min.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+
+
+
+  </div>
+</body>
+</html>
