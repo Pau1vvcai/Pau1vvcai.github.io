@@ -93,7 +93,7 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Edhita-项目学习"><a href="#Edhita-项目学习" class="headerlink" title="Edhita 项目学习"></a>Edhita 项目学习</h1><p>仓库：<a target="_blank" rel="noopener" href="https://github.com/tnantoka/edhita">tnantoka&#x2F;edhita</a></p>
+        <p>仓库：<a target="_blank" rel="noopener" href="https://github.com/tnantoka/edhita">tnantoka&#x2F;edhita</a></p>
 <p>Edhita 是一个使用 SwiftUI 编写的 iOS 文本编辑器。本笔记通过阅读项目代码，梳理应用启动、文件浏览、文本编辑、预览、设置保存及 SwiftUI 与 UIKit 的协作方式。</p>
 <h2 id="一、应用核心流程"><a href="#一、应用核心流程" class="headerlink" title="一、应用核心流程"></a>一、应用核心流程</h2><figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">应用启动</span><br><span class="line">  → 首次启动时创建示例文件</span><br><span class="line">  → 显示文件浏览器</span><br><span class="line">  → 选择文件或文件夹</span><br><span class="line">  → 编辑文件并写回磁盘</span><br><span class="line">  → 使用 WebKit 预览 Markdown 或网页</span><br></pre></td></tr></table></figure>
 
@@ -440,6 +440,18 @@
 <p>数组的特性：<br>紧凑连续存储，可以随机访问，通过索引快速找到对应元素，相对节约存储空间。</p>
 <p>内存分配问题。数组扩容的时间复杂度是<em><strong>O(N)</strong></em>，想要在数组中间进行插入和删除的时间复杂度也是<em><strong>O(N)</strong></em></p>
 <p>链表的特性：<br>元素不连续，不存在扩容问题。只需要知道某元素的前序和后序就可以进行删除和插入操作。但不能随机访问，且消耗的存储空间更大，因为要存储指针。</p>
+<p>循环链表指向链表的头节点。<br>双向链表含两个指针，分别指向前一个节点和后一个节点。</p>
+<p>栈的特性：<br>栈（Stack）只允许在有序的线性数据集合的一端（称为栈顶 top）进行加入数据（push）和移除数据（pop）。因而按照 后进先出（LIFO） 的原理运作。在栈中，push 和 pop 的操作都发生在栈顶。</p>
+<p>栈常用一维数组或链表来实现，用数组实现的栈叫作 顺序栈，用链表实现的栈叫作 链式栈。<br>可以用来实现“符号成对出现”，DFS或浏览器前进后退。</p>
+<p>使用数组实现栈</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyStack</span> &#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span>[] storage;<span class="comment">//存放栈中元素的数组</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> capacity;<span class="comment">//栈的容量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">int</span> count;<span class="comment">//栈中元素数量</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="type">int</span> <span class="variable">GROW_FACTOR</span> <span class="operator">=</span> <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//不带初始容量的构造方法。默认容量为8</span></span><br><span class="line">    <span class="type">public</span> <span class="title function_">MyStack</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="built_in">this</span>.capacity = <span class="number">8</span>;</span><br><span class="line">        <span class="built_in">this</span>.storage=<span class="keyword">new</span> <span class="title class_">int</span>[<span class="number">8</span>];</span><br><span class="line">        <span class="built_in">this</span>.count = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//带初始容量的构造方法</span></span><br><span class="line">    <span class="type">public</span> <span class="title function_">MyStack</span><span class="params">(<span class="type">int</span> initialCapacity)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (initialCapacity &lt; <span class="number">1</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Capacity too small.&quot;</span>);</span><br><span class="line"></span><br><span class="line">        <span class="built_in">this</span>.capacity = initialCapacity;</span><br><span class="line">        <span class="built_in">this</span>.storage = <span class="keyword">new</span> <span class="title class_">int</span>[initialCapacity];</span><br><span class="line">        <span class="built_in">this</span>.count = <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//入栈</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">void</span> <span class="title function_">push</span><span class="params">(<span class="type">int</span> value)</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (count == capacity) &#123;</span><br><span class="line">            ensureCapacity();</span><br><span class="line">        &#125;</span><br><span class="line">        storage[count++] = value;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//确保容量大小</span></span><br><span class="line">    <span class="keyword">private</span> <span class="type">void</span> <span class="title function_">ensureCapacity</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="type">int</span> <span class="variable">newCapacity</span> <span class="operator">=</span> capacity * GROW_FACTOR;</span><br><span class="line">        storage = Arrays.copyOf(storage, newCapacity);</span><br><span class="line">        capacity = newCapacity;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回栈顶元素并出栈</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">pop</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (count == <span class="number">0</span>)</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Stack is empty.&quot;</span>);</span><br><span class="line">        count--;</span><br><span class="line">        <span class="keyword">return</span> storage[count];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回栈顶元素不出栈</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">peek</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">if</span> (count == <span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> <span class="title class_">IllegalArgumentException</span>(<span class="string">&quot;Stack is empty.&quot;</span>);</span><br><span class="line">        &#125;<span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="keyword">return</span> storage[count-<span class="number">1</span>];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//判断栈是否为空</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">boolean</span> <span class="title function_">isEmpty</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> count == <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//返回栈中元素的个数</span></span><br><span class="line">    <span class="keyword">public</span> <span class="type">int</span> <span class="title function_">size</span><span class="params">()</span> &#123;</span><br><span class="line">        <span class="keyword">return</span> count;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+<p>队列的特性：<br>队列（Queue） 是 先进先出（FIFO，First In, First Out） 的线性表。在具体应用中通常用链表或者数组来实现，用数组实现的队列叫作 顺序队列，用链表实现的队列叫作 链式队列。队列只允许在后端（rear）进行插入操作也就是入队 enqueue，在前端（front）进行删除操作也就是出队 dequeue。</p>
+<p>队列的操作方式和堆栈类似，唯一的区别在于队列只允许新数据在后端进行添加。</p>
+<p>树</p>
+<p>堆</p>
+<p>图</p>
 
       
     </div>
@@ -1256,6 +1268,244 @@
 </tbody></table>
 <hr>
 <h3 id="One-Sentence-Summary"><a href="#One-Sentence-Summary" class="headerlink" title="One-Sentence Summary"></a>One-Sentence Summary</h3><p><strong>ML Systems is about making system-level tradeoffs among model quality, computation time, memory use, and communication between devices.</strong></p>
+<h1 id="Week-3-GPU-Architecture-CUDA-Programming"><a href="#Week-3-GPU-Architecture-CUDA-Programming" class="headerlink" title="Week 3: GPU Architecture &amp; CUDA Programming"></a>Week 3: GPU Architecture &amp; CUDA Programming</h1><blockquote>
+<p>This week covers the CUDA programming model and GPU execution architecture, using matrix multiplication and parallel reduction to introduce common optimization techniques.<br>References: <a target="_blank" rel="noopener" href="https://www.cs.cmu.edu/~zhihaoj2/15-779/slides/03-CUDA-programming.pdf">CMU 15-779 Lecture 3 &amp; 4: GPU Architecture &amp; CUDA Programming</a> · <a target="_blank" rel="noopener" href="https://developer.nvidia.com/blog/even-easier-introduction-cuda/">NVIDIA: An Even Easier Introduction to CUDA</a></p>
+</blockquote>
+<h2 id="1-CPU-vs-GPU"><a href="#1-CPU-vs-GPU" class="headerlink" title="1. CPU vs. GPU"></a>1. CPU vs. GPU</h2><p>CPUs and GPUs make different design tradeoffs for different workloads:</p>
+<ul>
+<li><strong>CPU:</strong> Typically has fewer, more powerful cores. It is well suited to complex control logic, branching, and tasks with strong sequential dependencies.</li>
+<li><strong>GPU:</strong> Has many execution units and is well suited to applying similar operations to large amounts of data, such as vector operations and matrix multiplication.</li>
+<li><strong>Heterogeneous computing:</strong> Combines the CPU and GPU. The CPU handles control and task orchestration, while the GPU performs large-scale data-parallel computation.</li>
+</ul>
+<p>The phrase <strong>“lightweight GPU threads”</strong> describes CUDA’s programming and execution model. It does not mean GPU threads are free: thread count, register usage, shared memory, and scheduling resources still affect performance.</p>
+<h2 id="2-Topics"><a href="#2-Topics" class="headerlink" title="2. Topics"></a>2. Topics</h2><ul>
+<li>CUDA programming abstractions: grids, blocks, and threads</li>
+<li>GPU architecture and thread-block scheduling</li>
+<li>CUDA implementation and optimization of matrix multiplication</li>
+<li>Parallel reduction</li>
+</ul>
+<h2 id="3-The-CUDA-Programming-Model"><a href="#3-The-CUDA-Programming-Model" class="headerlink" title="3. The CUDA Programming Model"></a>3. The CUDA Programming Model</h2><p>CUDA is NVIDIA’s parallel computing platform and programming model. CUDA C++ lets programmers express GPU thread organization, memory access, and synchronization with a relatively low abstraction distance from the hardware.</p>
+<h3 id="Host-and-Device"><a href="#Host-and-Device" class="headerlink" title="Host and Device"></a>Host and Device</h3><ul>
+<li><strong>Host:</strong> Usually refers to the CPU and the code that runs on it.</li>
+<li><strong>Device:</strong> Usually refers to the GPU and the code that runs on it.</li>
+<li><code>__global__</code>: Declares a kernel that runs on the device and can be launched from host code.</li>
+<li><code>__device__</code>: Declares a function that runs on the device, usually called by other device code.</li>
+<li><code>__host__</code>: Declares a function that runs on the host.</li>
+</ul>
+<p>A kernel is typically launched by CPU-side code and executed by many GPU threads:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">kernel&lt;&lt;&lt;gridSize, blockSize&gt;&gt;&gt;(arguments);</span><br></pre></td></tr></table></figure>
+
+<p>The values inside <code>&lt;&lt;&lt;...&gt;&gt;&gt;</code> are the <strong>execution configuration</strong>. They specify how many blocks are in the grid and how many threads are in each block.</p>
+<h3 id="Grid-Block-and-Thread"><a href="#Grid-Block-and-Thread" class="headerlink" title="Grid, Block, and Thread"></a>Grid, Block, and Thread</h3><p>CUDA organizes a kernel launch hierarchically:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Grid</span><br><span class="line">└── Blocks</span><br><span class="line">    └── Threads</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li><strong>Thread:</strong> The basic execution unit for a kernel.</li>
+<li><strong>Block:</strong> A group of threads that can cooperate using shared memory and synchronize with one another.</li>
+<li><strong>Grid:</strong> All the blocks launched by one kernel call.</li>
+</ul>
+<p>CUDA provides built-in variables that describe thread positions and launch dimensions:</p>
+<table>
+<thead>
+<tr>
+<th>Variable</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>gridDim</code></td>
+<td>The dimensions of the grid; how many blocks there are along each dimension</td>
+</tr>
+<tr>
+<td><code>blockIdx</code></td>
+<td>The current block’s index within the grid</td>
+</tr>
+<tr>
+<td><code>blockDim</code></td>
+<td>The number of threads per block along each dimension</td>
+</tr>
+<tr>
+<td><code>threadIdx</code></td>
+<td>The current thread’s index within its block</td>
+</tr>
+</tbody></table>
+<p>These dimensions can be one-, two-, or three-dimensional. The common type for specifying them is <code>dim3</code>.</p>
+<p>For a one-dimensional array, a thread’s global index is commonly computed as:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> i = blockIdx.x * blockDim.x + threadIdx.x;</span><br></pre></td></tr></table></figure>
+
+<p>If the array length is not an exact multiple of the total number of launched threads, check the bounds:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (i &lt; n) &#123;</span><br><span class="line">    output[i] = input[i];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>For two-dimensional data, map the two dimensions to <code>x</code> and <code>y</code>:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">int</span> x = blockIdx.x * blockDim.x + threadIdx.x;</span><br><span class="line"><span class="type">int</span> y = blockIdx.y * blockDim.y + threadIdx.y;</span><br></pre></td></tr></table></figure>
+
+<h2 id="4-CUDA-Memory-Model"><a href="#4-CUDA-Memory-Model" class="headerlink" title="4. CUDA Memory Model"></a>4. CUDA Memory Model</h2><p>In the traditional CUDA memory model, host and device use distinct address spaces:</p>
+<ul>
+<li>A kernel cannot directly use an ordinary host memory address.</li>
+<li>The CPU cannot access device memory like a local CPU array.</li>
+<li>Data is typically copied explicitly between host and device.</li>
+</ul>
+<p>A common device-memory allocation and copy sequence looks like this:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cudaMalloc</span>(&amp;devicePtr, bytes);</span><br><span class="line"><span class="built_in">cudaMemcpy</span>(devicePtr, hostPtr, bytes, cudaMemcpyHostToDevice);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Launch kernel</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">cudaMemcpy</span>(hostPtr, devicePtr, bytes, cudaMemcpyDeviceToHost);</span><br><span class="line"><span class="built_in">cudaFree</span>(devicePtr);</span><br></pre></td></tr></table></figure>
+
+<h3 id="Common-Device-Side-Memory-Levels"><a href="#Common-Device-Side-Memory-Levels" class="headerlink" title="Common Device-Side Memory Levels"></a>Common Device-Side Memory Levels</h3><table>
+<thead>
+<tr>
+<th>Memory type</th>
+<th>Scope</th>
+<th>Typical use</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Per-thread private state &#x2F; registers</td>
+<td>One thread</td>
+<td>Temporary variables and accumulators</td>
+</tr>
+<tr>
+<td>Shared memory</td>
+<td>Threads within one block</td>
+<td>Cooperation and data reuse</td>
+</tr>
+<tr>
+<td>Global memory</td>
+<td>All threads</td>
+<td>Inputs, outputs, and large data structures</td>
+</tr>
+<tr>
+<td>Constant &#x2F; texture and other cached paths</td>
+<td>Depends on hardware and access pattern</td>
+<td>Specific read-only or spatial access patterns</td>
+</tr>
+</tbody></table>
+<p>Registers and shared memory are typically closer to the execution units and faster to access, but their capacity is limited. Global memory is larger, but has higher access latency and bandwidth costs. Performance often depends on how well data is reused and whether memory accesses can be coalesced.</p>
+<blockquote>
+<p>CUDA features such as Unified Memory provide additional abstractions. Understanding traditional host&#x2F;device data movement is still useful.</p>
+</blockquote>
+<h3 id="Typical-CUDA-Program-Workflow"><a href="#Typical-CUDA-Program-Workflow" class="headerlink" title="Typical CUDA Program Workflow"></a>Typical CUDA Program Workflow</h3><ol>
+<li>Allocate and initialize input data on the host.</li>
+<li>Allocate memory for device data.</li>
+<li>Copy inputs from host to device.</li>
+<li>Launch a kernel.</li>
+<li>Wait for the required work to finish and check for execution errors.</li>
+<li>Copy results from device to host.</li>
+<li>Free allocated host and device resources.</li>
+</ol>
+<h2 id="5-Vector-Addition-Example"><a href="#5-Vector-Addition-Example" class="headerlink" title="5. Vector Addition Example"></a>5. Vector Addition Example</h2><p>The example in the original notes uses Unified Memory and launches one block with one thread:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">add&lt;&lt;&lt;<span class="number">1</span>, <span class="number">1</span>&gt;&gt;&gt;(N, x, y);</span><br></pre></td></tr></table></figure>
+
+<p>Because the kernel contains a <code>for</code> loop, that single thread can process the entire array sequentially and produce the correct result. However, this does not use the GPU’s large number of threads for parallel computation. NVIDIA’s introductory article presents this as an initial step and then shows how to distribute the work across threads. <a target="_blank" rel="noopener" href="https://developer.nvidia.com/blog/even-easier-introduction-cuda/">NVIDIA CUDA introduction</a></p>
+<p>A common parallel version assigns one element to each thread:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">__global__ <span class="type">void</span> <span class="title">add</span><span class="params">(<span class="type">int</span> n, <span class="type">const</span> <span class="type">float</span>* x, <span class="type">const</span> <span class="type">float</span>* y, <span class="type">float</span>* out)</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> i = blockIdx.x * blockDim.x + threadIdx.x;</span><br><span class="line">    <span class="keyword">if</span> (i &lt; n) &#123;</span><br><span class="line">        out[i] = x[i] + y[i];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Host code</span></span><br><span class="line"><span class="type">int</span> threadsPerBlock = <span class="number">256</span>;</span><br><span class="line"><span class="type">int</span> blocks = (N + threadsPerBlock - <span class="number">1</span>) / threadsPerBlock;</span><br><span class="line">add&lt;&lt;&lt;blocks, threadsPerBlock&gt;&gt;&gt;(N, x, y, out);</span><br></pre></td></tr></table></figure>
+
+<p>Here:</p>
+<ul>
+<li>The global index <code>i</code> determines which element the current thread processes.</li>
+<li>The number of blocks is rounded up so every element is covered.</li>
+<li><code>if (i &lt; n)</code> prevents out-of-bounds accesses by extra threads in the final block.</li>
+</ul>
+<p>Kernel launches are usually asynchronous: after issuing a launch, the host can continue running. If the CPU needs to read GPU results afterward, it must wait for the relevant work to finish, for example with <code>cudaDeviceSynchronize()</code> or another synchronization operation.</p>
+<h2 id="6-Synchronization-and-Atomic-Operations"><a href="#6-Synchronization-and-Atomic-Operations" class="headerlink" title="6. Synchronization and Atomic Operations"></a>6. Synchronization and Atomic Operations</h2><h3 id="syncthreads"><a href="#syncthreads" class="headerlink" title="__syncthreads()"></a><code>__syncthreads()</code></h3><p><code>__syncthreads()</code> is a block-level barrier:</p>
+<ul>
+<li>All threads in the block must reach the barrier before any of them continue.</li>
+<li>It is commonly used after threads cooperatively load data into shared memory.</li>
+<li>Threads in a block must reach the barrier consistently. If some threads skip it while others wait, the program may hang or behave incorrectly.</li>
+</ul>
+<p>It is <strong>not</strong> a global barrier across the grid and cannot synchronize different blocks.</p>
+<h3 id="Atomic-Operations"><a href="#Atomic-Operations" class="headerlink" title="Atomic Operations"></a>Atomic Operations</h3><p>Atomic operations provide indivisible read-modify-write behavior on a memory location. For example:</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">atomicAdd</span>(address, value);</span><br></pre></td></tr></table></figure>
+
+<p>They are commonly used when multiple threads update the same counter or accumulator. Atomics can prevent certain race conditions, but heavy contention on one address can become a performance bottleneck.</p>
+<h3 id="Kernel-Boundaries-and-Synchronization"><a href="#Kernel-Boundaries-and-Synchronization" class="headerlink" title="Kernel Boundaries and Synchronization"></a>Kernel Boundaries and Synchronization</h3><p>Blocks can execute in any order and may run concurrently. A normal CUDA kernel cannot assume synchronization between blocks. One common way to express a global dependency is to split the computation across multiple kernel launches: a later kernel uses results produced by an earlier one.</p>
+<h2 id="7-GPU-Architecture-and-Execution"><a href="#7-GPU-Architecture-and-Execution" class="headerlink" title="7. GPU Architecture and Execution"></a>7. GPU Architecture and Execution</h2><h3 id="Streaming-Multiprocessor-SM"><a href="#Streaming-Multiprocessor-SM" class="headerlink" title="Streaming Multiprocessor (SM)"></a>Streaming Multiprocessor (SM)</h3><p>A GPU contains multiple <strong>Streaming Multiprocessors (SMs)</strong>. Blocks are scheduled onto available SMs, and an SM can host multiple blocks concurrently if its resources allow.</p>
+<p>Scheduling depends on resources such as:</p>
+<ul>
+<li>Number of threads and warps</li>
+<li>Register usage</li>
+<li>Shared-memory usage</li>
+<li>Available execution resources on the SM</li>
+</ul>
+<p>Therefore, launching many blocks does not mean they all run simultaneously. Blocks are scheduled as SM resources become available.</p>
+<blockquote>
+<p>Specific figures in the lecture—such as the maximum number of resident warps per SM or shared-memory capacity—describe particular GPU architectures. They are not fixed values for every NVIDIA GPU.</p>
+</blockquote>
+<h3 id="Warp"><a href="#Warp" class="headerlink" title="Warp"></a>Warp</h3><p>A <strong>warp</strong> is an execution and scheduling unit on NVIDIA GPUs. A modern NVIDIA warp typically consists of <strong>32 threads</strong>.</p>
+<p>Threads in a warp execute the same instruction stream on different data. Warps are an important link between CUDA’s programming model and the hardware execution model.</p>
+<h3 id="Branch-Divergence"><a href="#Branch-Divergence" class="headerlink" title="Branch Divergence"></a>Branch Divergence</h3><p>If threads within one warp take different branches, the hardware may need to execute each path separately while masking threads that are not active on that path. This can reduce effective parallelism and is called <strong>warp divergence</strong>.</p>
+<p>GPU programs often aim for consistent control flow within each warp. A branch is not automatically inefficient; the important question is whether threads in the same warp take different paths and how much work each path requires.</p>
+<h2 id="8-Memory-Access-and-Performance"><a href="#8-Memory-Access-and-Performance" class="headerlink" title="8. Memory Access and Performance"></a>8. Memory Access and Performance</h2><h3 id="Coalesced-Memory-Access"><a href="#Coalesced-Memory-Access" class="headerlink" title="Coalesced Memory Access"></a>Coalesced Memory Access</h3><p>When threads in the same warp access adjacent or consecutive memory addresses, the hardware can often combine these accesses into fewer, more efficient memory transactions.</p>
+<p>For a continuous array, a common mapping is:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Thread 0 → A[0]</span><br><span class="line">Thread 1 → A[1]</span><br><span class="line">Thread 2 → A[2]</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<p>Irregular accesses or large strides may require more memory transactions and reduce effective bandwidth.</p>
+<h3 id="Data-Reuse-and-Shared-Memory"><a href="#Data-Reuse-and-Shared-Memory" class="headerlink" title="Data Reuse and Shared Memory"></a>Data Reuse and Shared Memory</h3><p>If multiple threads reuse the same data, a block can load it from global memory into shared memory once and then reuse it.</p>
+<p>A typical pattern is:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">Threads cooperatively load data from global memory into shared memory</span><br><span class="line">  → __syncthreads()</span><br><span class="line">  → Threads reuse the shared-memory data</span><br></pre></td></tr></table></figure>
+
+<p>This optimization requires careful consideration of shared-memory capacity, synchronization overhead, and access patterns. It does not improve every workload.</p>
+<h2 id="9-Case-Study-1-CUDA-Matrix-Multiplication"><a href="#9-Case-Study-1-CUDA-Matrix-Multiplication" class="headerlink" title="9. Case Study 1: CUDA Matrix Multiplication"></a>9. Case Study 1: CUDA Matrix Multiplication</h2><p>Compute:</p>
+<p><code>C = A × B</code></p>
+<p>If <code>A</code> has shape <code>M × K</code> and <code>B</code> has shape <code>K × N</code>, then:</p>
+<p><code>C[i, j] = Σ(k = 0..K-1) A[i, k] × B[k, j]</code></p>
+<h3 id="Basic-Version-One-Output-Element-per-Thread"><a href="#Basic-Version-One-Output-Element-per-Thread" class="headerlink" title="Basic Version: One Output Element per Thread"></a>Basic Version: One Output Element per Thread</h3><p>Each thread computes one output element <code>C[i, j]</code> by iterating over <code>k</code> and accumulating products.</p>
+<p>This maps easily to a two-dimensional thread grid. However, different threads may repeatedly load the same elements of <code>A</code> and <code>B</code> from global memory, resulting in limited data reuse.</p>
+<h3 id="Optimization-1-Multiple-Outputs-per-Thread-Register-Tiling"><a href="#Optimization-1-Multiple-Outputs-per-Thread-Register-Tiling" class="headerlink" title="Optimization 1: Multiple Outputs per Thread (Register Tiling)"></a>Optimization 1: Multiple Outputs per Thread (Register Tiling)</h3><p>Each thread computes a small output tile instead of a single element. It can keep partial inputs and accumulators in registers, increasing the amount of computation performed per load.</p>
+<p>The tradeoff is higher register usage per thread. Excessive register usage can reduce the number of warps that reside on an SM at the same time.</p>
+<h3 id="Optimization-2-Block-Level-Shared-Memory-Tiling"><a href="#Optimization-2-Block-Level-Shared-Memory-Tiling" class="headerlink" title="Optimization 2: Block-Level Shared-Memory Tiling"></a>Optimization 2: Block-Level Shared-Memory Tiling</h3><p>Each block computes a tile of the output matrix:</p>
+<ol>
+<li>Threads in the block cooperatively load parts of <code>A</code> and <code>B</code> from global memory into shared memory.</li>
+<li>Call <code>__syncthreads()</code> to ensure the data is ready.</li>
+<li>Threads reuse the tiles for multiply-accumulate operations.</li>
+<li>Load the next tiles and continue until the accumulation is complete.</li>
+</ol>
+<p><strong>Main benefit:</strong> Reduces repeated accesses to slower global memory by increasing data reuse.</p>
+<p>Matrix multiplication optimization usually requires balancing tile size, register use, shared-memory capacity, memory coalescing, and occupancy.</p>
+<h2 id="10-Case-Study-2-Parallel-Reduction"><a href="#10-Case-Study-2-Parallel-Reduction" class="headerlink" title="10. Case Study 2: Parallel Reduction"></a>10. Case Study 2: Parallel Reduction</h2><p>A reduction combines many values into one or a small number of results. Examples include sum, maximum, mean, and parts of softmax and normalization.</p>
+<h3 id="Tree-Based-Reduction-within-a-Block"><a href="#Tree-Based-Reduction-within-a-Block" class="headerlink" title="Tree-Based Reduction within a Block"></a>Tree-Based Reduction within a Block</h3><p>For one block, threads can load one or more elements and combine them in a tree-like sequence:</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Input values</span><br><span class="line">  → Combine neighboring pairs</span><br><span class="line">  → Combine partial results</span><br><span class="line">  → Produce one block-level result</span><br></pre></td></tr></table></figure>
+
+<p>A common implementation places local values in shared memory and calls <code>__syncthreads()</code> after each stage to ensure that updates are visible before the next stage.</p>
+<h3 id="Reduction-Across-Blocks"><a href="#Reduction-Across-Blocks" class="headerlink" title="Reduction Across Blocks"></a>Reduction Across Blocks</h3><p>Large arrays usually require multiple blocks. Each block first computes a partial result and writes it to global memory. A second kernel then reduces those partial results.</p>
+<p>The reason is that a normal CUDA kernel has no global synchronization barrier between arbitrary blocks. A kernel boundary can serve as a global phase boundary.</p>
+<h3 id="Reduction-Optimization-Considerations"><a href="#Reduction-Optimization-Considerations" class="headerlink" title="Reduction Optimization Considerations"></a>Reduction Optimization Considerations</h3><ul>
+<li><strong>Consistent control flow:</strong> Reduce warp divergence.</li>
+<li><strong>Coalesced memory access:</strong> Have adjacent threads access adjacent addresses.</li>
+<li><strong>Fewer barriers:</strong> Synchronize only when there are cross-thread dependencies.</li>
+<li><strong>Multiple blocks:</strong> Use multiple SMs for large inputs.</li>
+<li><strong>Numerical precision:</strong> Floating-point addition is not strictly associative, so different reduction orders may produce slightly different results.</li>
+</ul>
+<h2 id="11-Tensor-Cores"><a href="#11-Tensor-Cores" class="headerlink" title="11. Tensor Cores"></a>11. Tensor Cores</h2><p>Tensor Cores are specialized NVIDIA GPU units for matrix operations, especially the matrix multiply-accumulate workloads common in deep learning.</p>
+<p>They can greatly increase throughput for supported data types and matrix shapes. Effective use generally requires:</p>
+<ul>
+<li>Supported data types and operation forms.</li>
+<li>Suitable matrix dimensions and layouts.</li>
+<li>Framework, library, or kernel support that selects an appropriate Tensor Core path.</li>
+<li>Verification that the result meets precision requirements.</li>
+</ul>
+<p>Tensor Cores are specialized for certain matrix computations; they do not replace general-purpose CUDA cores for all workloads.</p>
+<h2 id="12-Key-Takeaways"><a href="#12-Key-Takeaways" class="headerlink" title="12. Key Takeaways"></a>12. Key Takeaways</h2><ol>
+<li>CUDA expresses parallel work using grids, blocks, and threads.</li>
+<li>A common one-dimensional thread index is <code>blockIdx.x * blockDim.x + threadIdx.x</code>.</li>
+<li>Host and device have different execution and memory locations; traditional workflows explicitly manage data transfer.</li>
+<li>Threads within a block can cooperate through shared memory and synchronize with <code>__syncthreads()</code>.</li>
+<li>Ordinary CUDA blocks cannot assume an execution order or synchronize globally.</li>
+<li>A warp typically contains 32 threads; warp divergence can reduce effective execution efficiency.</li>
+<li>Coalesced access and data reuse can improve GPU memory efficiency.</li>
+<li>Common matrix-multiplication optimizations include register tiling and shared-memory tiling.</li>
+<li>Parallel reductions often compute block-level partial results, then combine them in a later kernel.</li>
+<li>Tensor Cores provide specialized hardware acceleration for supported matrix operations.</li>
+</ol>
+<h2 id="13-Review-Questions"><a href="#13-Review-Questions" class="headerlink" title="13. Review Questions"></a>13. Review Questions</h2><ol>
+<li>What do <code>gridDim</code>, <code>blockIdx</code>, <code>blockDim</code>, and <code>threadIdx</code> represent?</li>
+<li>Why is the number of blocks for an array of length <code>N</code> often computed as <code>(N + blockSize - 1) / blockSize</code>?</li>
+<li>Why can <code>add&lt;&lt;&lt;1, 1&gt;&gt;&gt;</code> produce the right answer without performing data-parallel execution?</li>
+<li>Can <code>__syncthreads()</code> synchronize different blocks? How can you handle dependencies between blocks?</li>
+<li>Why can different branches within one warp waste execution cycles?</li>
+<li>Why does matrix multiplication use shared-memory tiles? What cost do they reduce?</li>
+<li>Why is parallel reduction often split across multiple kernel launches?</li>
+<li>What is coalesced memory access, and why is it useful for adjacent threads to access adjacent data?</li>
+<li>What computations are Tensor Cores designed for, and what else must be considered when using them?</li>
+</ol>
+<h3 id="One-Sentence-Summary-1"><a href="#One-Sentence-Summary-1" class="headerlink" title="One-Sentence Summary"></a>One-Sentence Summary</h3><p><strong>CUDA performance comes from mapping work effectively across many threads while carefully managing data layout, memory reuse, synchronization, and hardware resources.</strong></p>
 
       
     </div>
