@@ -6,15 +6,15 @@
   
   <title>CMU 15-779 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Week 1: IntroductionWhat Are ML Systems?Machine Learning Systems (ML Systems) studies how to train, run, and deploy machine learning models efficiently on real hardware and software systems. It consid">
+  <meta name="description" content="Week 1: IntroductionWhat Are ML Systems?Machine Learning Systems (ML Systems) studies how to train, run, and deploy machine learning models efficiently on real hardware and software systems. It cons">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CMU 15-779">
 <meta property="og:url" content="http://example.com/2026/10/19/CMU-15-779/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Week 1: IntroductionWhat Are ML Systems?Machine Learning Systems (ML Systems) studies how to train, run, and deploy machine learning models efficiently on real hardware and software systems. It consid">
+<meta property="og:description" content="Week 1: IntroductionWhat Are ML Systems?Machine Learning Systems (ML Systems) studies how to train, run, and deploy machine learning models efficiently on real hardware and software systems. It cons">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-10-19T04:02:05.000Z">
-<meta property="article:modified_time" content="2026-10-21T01:22:28.704Z">
+<meta property="article:modified_time" content="2026-10-24T16:22:04.225Z">
 <meta property="article:author" content="CAI">
 <meta property="article:tag" content="CUDA">
 <meta property="article:tag" content="LLM">
@@ -39,7 +39,8 @@
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
 
-<meta name="generator" content="Hexo 8.1.2"></head>
+<meta name="generator" content="Hexo 8.1.2">  <link rel="stylesheet" href="/css/blog-features.css">
+</head>
 
 <body>
   <div id="container">
@@ -60,6 +61,8 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories/">分类</a>
         
       </nav>
       <nav id="sub-nav">
@@ -83,6 +86,10 @@
   <time class="dt-published" datetime="2026-10-19T04:02:05.000Z" itemprop="datePublished">2026-10-19</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -99,7 +106,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="Week-1-Introduction"><a href="#Week-1-Introduction" class="headerlink" title="Week 1: Introduction"></a>Week 1: Introduction</h2><h3 id="What-Are-ML-Systems"><a href="#What-Are-ML-Systems" class="headerlink" title="What Are ML Systems?"></a>What Are ML Systems?</h3><p><strong>Machine Learning Systems (ML Systems)</strong> studies how to train, run, and deploy machine learning models efficiently on real hardware and software systems. It considers more than the model itself: algorithms, compilers, GPUs, memory, communication, and networks all affect performance.</p>
+        <div class="article-page-break" data-page-title="Week 1" aria-hidden="true"></div>
+
+<h2 id="Week-1-Introduction"><a href="#Week-1-Introduction" class="headerlink" title="Week 1: Introduction"></a>Week 1: Introduction</h2><h3 id="What-Are-ML-Systems"><a href="#What-Are-ML-Systems" class="headerlink" title="What Are ML Systems?"></a>What Are ML Systems?</h3><p><strong>Machine Learning Systems (ML Systems)</strong> studies how to train, run, and deploy machine learning models efficiently on real hardware and software systems. It considers more than the model itself: algorithms, compilers, GPUs, memory, communication, and networks all affect performance.</p>
 <p>A model that is mathematically valid may still be inefficient to run. The central challenge in ML Systems is to make models run faster and use fewer resources under limited compute, memory, and communication capacity.</p>
 <h3 id="Major-Areas-of-ML-Systems"><a href="#Major-Areas-of-ML-Systems" class="headerlink" title="Major Areas of ML Systems"></a>Major Areas of ML Systems</h3><ul>
 <li><strong>ML Models:</strong> Model architectures, parameters, and training methods.</li>
@@ -175,6 +184,8 @@
 <li>What are its costs, limitations, and intended use cases?</li>
 </ul>
 <hr>
+<div class="article-page-break" data-page-title="Week 2" aria-hidden="true"></div>
+
 <h2 id="Week-2-Introduction-to-ML-Systems"><a href="#Week-2-Introduction-to-ML-Systems" class="headerlink" title="Week 2: Introduction to ML Systems"></a>Week 2: Introduction to ML Systems</h2><h3 id="Deep-Neural-Networks"><a href="#Deep-Neural-Networks" class="headerlink" title="Deep Neural Networks"></a>Deep Neural Networks</h3><p>A <strong>Deep Neural Network (DNN)</strong> consists of many trainable mathematical units that work together to learn complex input-output mappings.</p>
 <p>Training a DNN typically requires many matrix operations, storage for intermediate activations, and updates to model parameters. As a result, training performance depends not only on the algorithm but also on GPU compute, memory capacity, and communication between devices.</p>
 <h3 id="Stochastic-Gradient-Descent-SGD"><a href="#Stochastic-Gradient-Descent-SGD" class="headerlink" title="Stochastic Gradient Descent (SGD)"></a>Stochastic Gradient Descent (SGD)</h3><p>Model training typically repeats the following steps:</p>
@@ -335,6 +346,8 @@
 </tbody></table>
 <hr>
 <h3 id="One-Sentence-Summary"><a href="#One-Sentence-Summary" class="headerlink" title="One-Sentence Summary"></a>One-Sentence Summary</h3><p><strong>ML Systems is about making system-level tradeoffs among model quality, computation time, memory use, and communication between devices.</strong></p>
+<div class="article-page-break" data-page-title="Week 3" aria-hidden="true"></div>
+
 <h1 id="Week-3-GPU-Architecture-CUDA-Programming"><a href="#Week-3-GPU-Architecture-CUDA-Programming" class="headerlink" title="Week 3: GPU Architecture &amp; CUDA Programming"></a>Week 3: GPU Architecture &amp; CUDA Programming</h1><blockquote>
 <p>This week covers the CUDA programming model and GPU execution architecture, using matrix multiplication and parallel reduction to introduce common optimization techniques.<br>References: <a target="_blank" rel="noopener" href="https://www.cs.cmu.edu/~zhihaoj2/15-779/slides/03-CUDA-programming.pdf">CMU 15-779 Lecture 3 &amp; 4: GPU Architecture &amp; CUDA Programming</a> · <a target="_blank" rel="noopener" href="https://developer.nvidia.com/blog/even-easier-introduction-cuda/">NVIDIA: An Even Easier Introduction to CUDA</a></p>
 </blockquote>
@@ -577,7 +590,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/10/19/CMU-15-779/" data-id="cuidMXx-BxyZppouXty4N8YKF" data-title="CMU 15-779" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/10/19/CMU-15-779/" data-id="cuidmCGPRoAcCXT0_gkE6MwSZ" data-title="CMU 15-779" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -615,13 +628,20 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Swift-%E5%BC%80%E5%8F%91/">Swift 开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AB%99%E7%82%B9%E8%AE%B0%E5%BD%95/">站点记录</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%98/">面试复盘</a></li></ul>
+    </div>
+  </div>
+
 
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithms/" rel="tag">Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/" rel="tag">Interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-Systems/" rel="tag">ML Systems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Programming-Language/" rel="tag">Programming Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithms/" rel="tag">Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Career/" rel="tag">Career</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/" rel="tag">Interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-Systems/" rel="tag">ML Systems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Programming-Language/" rel="tag">Programming Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
     </div>
   </div>
 
@@ -631,7 +651,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LLM/" style="font-size: 15px;">LLM</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/ML-Systems/" style="font-size: 10px;">ML Systems</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Programming-Language/" style="font-size: 10px;">Programming Language</a> <a href="/tags/Software-Engineering/" style="font-size: 20px;">Software Engineering</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a>
+      <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a> <a href="/tags/Career/" style="font-size: 10px;">Career</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LLM/" style="font-size: 15px;">LLM</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/ML-Systems/" style="font-size: 10px;">ML Systems</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Programming-Language/" style="font-size: 10px;">Programming Language</a> <a href="/tags/Software-Engineering/" style="font-size: 20px;">Software Engineering</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a>
     </div>
   </div>
 
@@ -653,6 +673,10 @@
       <ul>
         
           <li>
+            <a href="/2026/10/25/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/">个人提升计划</a>
+          </li>
+        
+          <li>
             <a href="/2026/10/22/LLM-%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A6%82%E8%A7%88/">LLM 应用开发概览</a>
           </li>
         
@@ -666,10 +690,6 @@
         
           <li>
             <a href="/2026/10/20/Leetcode/">Leetcode</a>
-          </li>
-        
-          <li>
-            <a href="/2026/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
           </li>
         
       </ul>
@@ -698,6 +718,8 @@
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
+    <a href="/categories/" class="mobile-nav-link">分类</a>
+  
 </nav>
     
 
@@ -719,5 +741,6 @@
 
 
   </div>
+  <script src="/js/blog-features.js" defer></script>
 </body>
 </html>

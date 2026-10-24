@@ -6,15 +6,15 @@
   
   <title>26年10月面试总结 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="10 月 21 日这是第一次比较正式的面试。题目涉及 Python、SQL、动态规划和 AI 辅助编程。 Q1：Python 基础与 JSON 解析12345678import jsondef read_user(text):    data &#x3D; json.loads(text)    name &#x3D; data.get(&quot;name&quot;)    age &#x3D; data.get(&amp;quo">
+  <meta name="description" content="10 月 21 日这是第一次比较正式的面试。题目涉及 Python、SQL、动态规划和 AI 辅助编程。 Q1：Python 基础与 JSON 解析12345678import jsondef read_user(text):    data &#x3D; json.loads(text)    name &#x3D; data.get(&quot;name&quot;)    age &#x3D; data.get(&amp;q">
 <meta property="og:type" content="article">
 <meta property="og:title" content="26年10月面试总结">
 <meta property="og:url" content="http://example.com/2026/10/21/26%E5%B9%B410%E6%9C%88%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="10 月 21 日这是第一次比较正式的面试。题目涉及 Python、SQL、动态规划和 AI 辅助编程。 Q1：Python 基础与 JSON 解析12345678import jsondef read_user(text):    data &#x3D; json.loads(text)    name &#x3D; data.get(&quot;name&quot;)    age &#x3D; data.get(&amp;quo">
+<meta property="og:description" content="10 月 21 日这是第一次比较正式的面试。题目涉及 Python、SQL、动态规划和 AI 辅助编程。 Q1：Python 基础与 JSON 解析12345678import jsondef read_user(text):    data &#x3D; json.loads(text)    name &#x3D; data.get(&quot;name&quot;)    age &#x3D; data.get(&amp;q">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-10-21T08:39:38.000Z">
-<meta property="article:modified_time" content="2026-10-21T09:03:07.169Z">
+<meta property="article:modified_time" content="2026-10-24T16:24:43.678Z">
 <meta property="article:author" content="CAI">
 <meta property="article:tag" content="Interview">
 <meta name="twitter:card" content="summary">
@@ -36,7 +36,8 @@
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
 
-<meta name="generator" content="Hexo 8.1.2"></head>
+<meta name="generator" content="Hexo 8.1.2">  <link rel="stylesheet" href="/css/blog-features.css">
+</head>
 
 <body>
   <div id="container">
@@ -57,6 +58,8 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories/">分类</a>
         
       </nav>
       <nav id="sub-nav">
@@ -80,6 +83,10 @@
   <time class="dt-published" datetime="2026-10-21T08:39:38.000Z" itemprop="datePublished">2026-10-21</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%98/">面试复盘</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -96,7 +103,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h2 id="10-月-21-日"><a href="#10-月-21-日" class="headerlink" title="10 月 21 日"></a>10 月 21 日</h2><p>这是第一次比较正式的面试。题目涉及 Python、SQL、动态规划和 AI 辅助编程。</p>
+        <div class="article-page-break" data-page-title="10 月 21 日" aria-hidden="true"></div>
+
+<h2 id="10-月-21-日"><a href="#10-月-21-日" class="headerlink" title="10 月 21 日"></a>10 月 21 日</h2><p>这是第一次比较正式的面试。题目涉及 Python、SQL、动态规划和 AI 辅助编程。</p>
 <h2 id="Q1：Python-基础与-JSON-解析"><a href="#Q1：Python-基础与-JSON-解析" class="headerlink" title="Q1：Python 基础与 JSON 解析"></a>Q1：Python 基础与 JSON 解析</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> json</span><br><span class="line"></span><br><span class="line"><span class="keyword">def</span> <span class="title function_">read_user</span>(<span class="params">text</span>):</span><br><span class="line">    data = json.loads(text)</span><br><span class="line">    name = data.get(<span class="string">&quot;name&quot;</span>)</span><br><span class="line">    age = data.get(<span class="string">&quot;age&quot;</span>)</span><br><span class="line">    address = data[<span class="string">&quot;address&quot;</span>][<span class="string">&quot;city&quot;</span>]</span><br><span class="line">    <span class="keyword">return</span> <span class="string">f&quot;name: <span class="subst">&#123;name&#125;</span>, age: <span class="subst">&#123;age&#125;</span>, address: <span class="subst">&#123;address&#125;</span>&quot;</span></span><br></pre></td></tr></table></figure>
 
 <h3 id="get-name-和-name-的区别"><a href="#get-name-和-name-的区别" class="headerlink" title="get(&quot;name&quot;) 和 [&quot;name&quot;] 的区别"></a><code>get(&quot;name&quot;)</code> 和 <code>[&quot;name&quot;]</code> 的区别</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">data.get(<span class="string">&quot;name&quot;</span>)  <span class="comment"># 键不存在时返回 None</span></span><br><span class="line">data[<span class="string">&quot;name&quot;</span>]      <span class="comment"># 键不存在时抛出 KeyError</span></span><br></pre></td></tr></table></figure>
@@ -240,11 +249,132 @@
 <li><strong>基础</strong>：基础的语法理解没有偏差。</li>
 <li><strong>算法</strong>：中等难度的题要多做一些，可以重视动态规划。</li>
 </ol>
+<div class="article-page-break" data-page-title="10 月 22 日" aria-hidden="true"></div>
+
+<h2 id="10月22日"><a href="#10月22日" class="headerlink" title="10月22日"></a>10月22日</h2><h3 id="后端技术面谈（四轮）"><a href="#后端技术面谈（四轮）" class="headerlink" title="后端技术面谈（四轮）"></a>后端技术面谈（四轮）</h3><p>面试官主要围绕简历中的项目和技术经历提问，整体回答较好。</p>
+<p>面试中主要使用 <strong>STAR 法则</strong>组织项目经历：</p>
+<ul>
+<li><strong>S（Situation）</strong>：当时的背景或具体场景。</li>
+<li><strong>T（Task）</strong>：需要完成的任务或解决的问题。</li>
+<li><strong>A（Action）</strong>：自己采取了哪些行动。</li>
+<li><strong>R（Result）</strong>：最终取得了什么结果。</li>
+</ul>
+<p>除了介绍项目和技术细节，也要展示自己持续学习、解决问题和不断进步的能力。当然，前提是简历经历和实际工作内容经得起追问。</p>
+<h3 id="游戏开发笔试"><a href="#游戏开发笔试" class="headerlink" title="游戏开发笔试"></a>游戏开发笔试</h3><p>笔试涉及不少不熟悉的游戏开发领域知识，也包含两个编程题。题目要求编写函数签名、设计测试用例，并分析时间复杂度。</p>
+<h4 id="Q1：返回列表中第二次出现的元素"><a href="#Q1：返回列表中第二次出现的元素" class="headerlink" title="Q1：返回列表中第二次出现的元素"></a>Q1：返回列表中第二次出现的元素</h4><p>给定一个列表，按从左到右的顺序查找元素；当某个元素第二次出现时，返回它。若没有任何元素重复，返回 <code>-1</code>。</p>
+<p><strong>思路：</strong></p>
+<p>遍历列表，用集合记录已经出现过的元素。遇到已记录的元素时立即返回。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">first_repeated_item</span>(<span class="params">items</span>):</span><br><span class="line">    seen = <span class="built_in">set</span>()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> item <span class="keyword">in</span> items:</span><br><span class="line">        <span class="keyword">if</span> item <span class="keyword">in</span> seen:</span><br><span class="line">            <span class="keyword">return</span> item</span><br><span class="line">        seen.add(item)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>当时我的思路是使用列表 <code>appeared</code> 保存已见元素，如果改用集合，平均查找时间会从 <code>O(n)</code> 降为 <code>O(1)</code>。</p>
+</blockquote>
+<p><strong>测试用例：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">assert</span> first_repeated_item([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>]) == <span class="number">2</span></span><br><span class="line"><span class="keyword">assert</span> first_repeated_item([<span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>]) == <span class="number">4</span></span><br><span class="line"><span class="keyword">assert</span> first_repeated_item([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]) == -<span class="number">1</span></span><br><span class="line"><span class="keyword">assert</span> first_repeated_item([]) == -<span class="number">1</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>使用集合：平均时间 <code>O(n)</code>，额外空间 <code>O(n)</code>。</li>
+<li>使用列表记录：最坏时间 <code>O(n²)</code>，额外空间 <code>O(n)</code>。</li>
+</ul>
+<h4 id="Q2：原地删除列表中的负数"><a href="#Q2：原地删除列表中的负数" class="headerlink" title="Q2：原地删除列表中的负数"></a>Q2：原地删除列表中的负数</h4><p>要求在原列表上删除所有负数，不创建另一个完整列表。</p>
+<p><strong>快慢指针思路：</strong></p>
+<ul>
+<li><code>slow</code> 指向下一个应保留元素的位置。</li>
+<li><code>fast</code> 从左到右扫描列表。</li>
+<li>如果 <code>items[fast] &gt;= 0</code>，就把该元素放到 <code>slow</code> 位置，再递增 <code>slow</code>。</li>
+<li>扫描完成后，删除 <code>slow</code> 之后的剩余元素。</li>
+</ul>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">remove_negatives</span>(<span class="params">items</span>):</span><br><span class="line">    slow = <span class="number">0</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> fast <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(items)):</span><br><span class="line">        <span class="keyword">if</span> items[fast] &gt;= <span class="number">0</span>:</span><br><span class="line">            items[slow] = items[fast]</span><br><span class="line">            slow += <span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">del</span> items[slow:]</span><br><span class="line">    <span class="keyword">return</span> items</span><br></pre></td></tr></table></figure>
+
+<p><strong>测试用例：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">items = [<span class="number">3</span>, -<span class="number">1</span>, <span class="number">0</span>, -<span class="number">5</span>, <span class="number">8</span>]</span><br><span class="line"><span class="keyword">assert</span> remove_negatives(items) == [<span class="number">3</span>, <span class="number">0</span>, <span class="number">8</span>]</span><br><span class="line"><span class="keyword">assert</span> items == [<span class="number">3</span>, <span class="number">0</span>, <span class="number">8</span>]  <span class="comment"># 确认原列表已被修改</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">assert</span> remove_negatives([-<span class="number">1</span>, -<span class="number">2</span>]) == []</span><br><span class="line"><span class="keyword">assert</span> remove_negatives([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]) == [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</span><br><span class="line"><span class="keyword">assert</span> remove_negatives([]) == []</span><br></pre></td></tr></table></figure>
+
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>时间：<code>O(n)</code>。</li>
+<li>额外空间：<code>O(1)</code>，不计列表切片删除时运行环境内部的实现成本。</li>
+<li>该写法保留非负数的相对顺序。</li>
+</ul>
+<h3 id="复盘"><a href="#复盘" class="headerlink" title="复盘"></a>复盘</h3><ul>
+<li>对不熟悉的领域问题，不要不懂装懂。</li>
+<li>编程题要完整说明函数签名、边界测试和复杂度。</li>
+<li>回答算法题时，可以先讲简单正确的方案，再说明如何优化。</li>
+</ul>
+<div class="article-page-break" data-page-title="10 月 23 日" aria-hidden="true"></div>
+
+<h2 id="10月23日"><a href="#10月23日" class="headerlink" title="10月23日"></a>10月23日</h2><h3 id="iOS-开发岗位面试"><a href="#iOS-开发岗位面试" class="headerlink" title="iOS 开发岗位面试"></a>iOS 开发岗位面试</h3><p>面试主要讨论了 AI 前沿技术和编程基础，也询问了未来的职业规划。</p>
+<h4 id="Q1：两个线程分别执行一万次-a-a-1，最终结果是什么？"><a href="#Q1：两个线程分别执行一万次-a-a-1，最终结果是什么？" class="headerlink" title="Q1：两个线程分别执行一万次 a = a + 1，最终结果是什么？"></a>Q1：两个线程分别执行一万次 <code>a = a + 1</code>，最终结果是什么？</h4><p>结果不确定，不能保证是 <code>20000</code>。</p>
+<p><code>a = a + 1</code> 通常包含读取、加一、写回几个步骤。如果两个线程同时读取到相同旧值，再分别写回新值，就会发生<strong>竞态条件（race condition）</strong>，导致部分更新丢失。</p>
+<p><strong>解决方法：</strong></p>
+<ul>
+<li>使用锁保护临界区。</li>
+<li>使用原子整数和原子递增操作。</li>
+<li>将计数任务串行化，或使用线程安全的计数器。</li>
+</ul>
+<p>使用原子递增的思路：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">atomic_increment(a)</span><br></pre></td></tr></table></figure>
+
+<p>原子操作保证读取和更新作为一个不可分割的操作完成。</p>
+<hr>
+<h4 id="Q2：A-向-B-转账-100，程序中途崩溃，导致-A-已扣款但-B-未收到，怎么避免？"><a href="#Q2：A-向-B-转账-100，程序中途崩溃，导致-A-已扣款但-B-未收到，怎么避免？" class="headerlink" title="Q2：A 向 B 转账 100，程序中途崩溃，导致 A 已扣款但 B 未收到，怎么避免？"></a>Q2：A 向 B 转账 100，程序中途崩溃，导致 A 已扣款但 B 未收到，怎么避免？</h4><p>关键是让转账操作具备<strong>原子性（atomicity）</strong>：扣款和入账要么都成功，要么都失败。</p>
+<p><strong>常见做法：</strong></p>
+<ol>
+<li>把扣款和入账放在同一个数据库事务中。</li>
+<li>事务提交前发生错误，就回滚扣款。</li>
+<li>只有两步都成功后，才提交事务。</li>
+</ol>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">BEGIN</span><br><span class="line">  扣除 A 的余额 100</span><br><span class="line">  增加 B 的余额 100</span><br><span class="line">COMMIT</span><br></pre></td></tr></table></figure>
+
+<p>若中途失败：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ROLLBACK</span><br></pre></td></tr></table></figure>
+
+<p>分布式系统中，如果两笔操作涉及不同服务或数据库，单个数据库事务可能不够，需要考虑 Saga、补偿操作、幂等处理和重试机制。</p>
+<hr>
+<h4 id="Q3：0-01-和-0-02-的浮点数精度问题是什么？"><a href="#Q3：0-01-和-0-02-的浮点数精度问题是什么？" class="headerlink" title="Q3：0.01 和 0.02 的浮点数精度问题是什么？"></a>Q3：<code>0.01</code> 和 <code>0.02</code> 的浮点数精度问题是什么？</h4><p>许多十进制小数无法用二进制浮点数精确表示，因此计算结果可能出现微小误差。例如，浮点计算中的 <code>0.01 + 0.02</code> 可能不严格等于 <code>0.03</code>。</p>
+<p>金额计算通常可以用整数保存最小单位：</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">0.01 元 → 1 分</span><br><span class="line">0.02 元 → 2 分</span><br></pre></td></tr></table></figure>
+
+<p>然后用整数进行加减，避免二进制浮点表示误差。真实金融计算还要明确定义舍入规则；某些场景也会使用十进制定点数类型。</p>
+<hr>
+<h4 id="Q4：给定-n-个数字，找出最大的-10-个"><a href="#Q4：给定-n-个数字，找出最大的-10-个" class="headerlink" title="Q4：给定 n 个数字，找出最大的 10 个"></a>Q4：给定 <code>n</code> 个数字，找出最大的 10 个</h4><p>适合使用大小为 10 的<strong>最小堆</strong>。</p>
+<p><strong>思路：</strong></p>
+<ol>
+<li>用前 10 个数建立最小堆。</li>
+<li>遍历剩余数字。</li>
+<li>若新数字大于堆顶，就用它替换堆顶并调整堆。</li>
+<li>遍历结束后，堆中保存的就是最大的 10 个数。</li>
+</ol>
+<p>最小堆堆顶是当前这 10 个数中的最小值，便于判断新数字是否应该进入结果集合。</p>
+<p><strong>复杂度：</strong></p>
+<ul>
+<li>初始化堆：<code>O(k)</code>，这里 <code>k = 10</code>。</li>
+<li>遍历剩余 <code>n-k</code> 个数：每次可能进行 <code>O(log k)</code> 的堆调整。</li>
+<li>总时间：<code>O(n log k)</code>，其中 <code>k = 10</code>。</li>
+<li>额外空间：<code>O(k)</code>。</li>
+</ul>
+<p>因为 <code>k</code> 固定为 10，总时间可以视为 <code>O(n)</code>，额外空间为 <code>O(1)</code>（相对于输入规模而言）。</p>
+<blockquote>
+<p>我原来的思路是维护一个<code>n</code>个元素的自平衡树；但实际上用大小为 10 的最小堆就足够，不需要维护全部 <code>n</code> 个元素的自平衡树。若把所有元素都插入平衡树，复杂度通常为 <code>O(n log n)</code>，空间也会达到 <code>O(n)</code>。</p>
+</blockquote>
+<hr>
+<h3 id="职业规划问题"><a href="#职业规划问题" class="headerlink" title="职业规划问题"></a>职业规划问题</h3><p>回答职业规划时，可以说明：</p>
+<ul>
+<li>希望深入的技术方向，例如 iOS 工程、客户端架构或 AI 应用。</li>
+<li>希望承担的工作范围和成长目标。</li>
+<li>计划如何提升能力并为团队创造价值。</li>
+</ul>
+<h3 id="面试复盘-1"><a href="#面试复盘-1" class="headerlink" title="面试复盘"></a>面试复盘</h3><h4 id="需要加强"><a href="#需要加强" class="headerlink" title="需要加强"></a>需要加强</h4><ul>
+<li>重温编程基础，重点练习并发、事务、数值精度和常见数据结构。</li>
+<li>准备职业规划回答，并结合具体岗位说明匹配点。</li>
+<li>面对不确定的问题时，先讲出自己的理解、假设和推理过程。</li>
+</ul>
+<h4 id="心态提醒"><a href="#心态提醒" class="headerlink" title="心态提醒"></a>心态提醒</h4><p>即使觉得某题回答得不理想，也要自然、大方地继续交流。面试不仅看答案，也会观察分析过程、沟通方式和面对问题时的状态。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/10/21/26%E5%B9%B410%E6%9C%88%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" data-id="cuid9F1jo3QoKbm9LTI1qlOtw" data-title="26年10月面试总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/10/21/26%E5%B9%B410%E6%9C%88%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93/" data-id="cuidzuwJ8GfaO1QEHJBQxG6Iv" data-title="26年10月面试总结" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -282,13 +412,20 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Swift-%E5%BC%80%E5%8F%91/">Swift 开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AB%99%E7%82%B9%E8%AE%B0%E5%BD%95/">站点记录</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%98/">面试复盘</a></li></ul>
+    </div>
+  </div>
+
 
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithms/" rel="tag">Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/" rel="tag">Interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-Systems/" rel="tag">ML Systems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Programming-Language/" rel="tag">Programming Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithms/" rel="tag">Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Career/" rel="tag">Career</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/" rel="tag">Interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-Systems/" rel="tag">ML Systems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Programming-Language/" rel="tag">Programming Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
     </div>
   </div>
 
@@ -298,7 +435,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LLM/" style="font-size: 15px;">LLM</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/ML-Systems/" style="font-size: 10px;">ML Systems</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Programming-Language/" style="font-size: 10px;">Programming Language</a> <a href="/tags/Software-Engineering/" style="font-size: 20px;">Software Engineering</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a>
+      <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a> <a href="/tags/Career/" style="font-size: 10px;">Career</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LLM/" style="font-size: 15px;">LLM</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/ML-Systems/" style="font-size: 10px;">ML Systems</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Programming-Language/" style="font-size: 10px;">Programming Language</a> <a href="/tags/Software-Engineering/" style="font-size: 20px;">Software Engineering</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a>
     </div>
   </div>
 
@@ -320,6 +457,10 @@
       <ul>
         
           <li>
+            <a href="/2026/10/25/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/">个人提升计划</a>
+          </li>
+        
+          <li>
             <a href="/2026/10/22/LLM-%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A6%82%E8%A7%88/">LLM 应用开发概览</a>
           </li>
         
@@ -333,10 +474,6 @@
         
           <li>
             <a href="/2026/10/20/Leetcode/">Leetcode</a>
-          </li>
-        
-          <li>
-            <a href="/2026/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
           </li>
         
       </ul>
@@ -365,6 +502,8 @@
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
+    <a href="/categories/" class="mobile-nav-link">分类</a>
+  
 </nav>
     
 
@@ -386,5 +525,6 @@
 
 
   </div>
+  <script src="/js/blog-features.js" defer></script>
 </body>
 </html>

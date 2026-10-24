@@ -31,7 +31,8 @@
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
 
-<meta name="generator" content="Hexo 8.1.2"></head>
+<meta name="generator" content="Hexo 8.1.2">  <link rel="stylesheet" href="/css/blog-features.css">
+</head>
 
 <body>
   <div id="container">
@@ -53,6 +54,8 @@
         
           <a class="main-nav-link" href="/archives">Archives</a>
         
+          <a class="main-nav-link" href="/categories/">分类</a>
+        
       </nav>
       <nav id="sub-nav">
         
@@ -71,12 +74,391 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CS50AI" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+  <div class="article-meta">
+    <a href="/2026/10/17/CS50AI/" class="article-date">
+  <time class="dt-published" datetime="2026-10-17T11:41:11.000Z" itemprop="datePublished">2026-10-17</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="p-name article-title" href="/2026/10/17/CS50AI/">CS50AI</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="e-content article-entry" itemprop="articleBody">
+      
+        <div class="article-page-break" data-page-title="Search" aria-hidden="true"></div>
+
+<h1 id="Artificial-Intelligence"><a href="#Artificial-Intelligence" class="headerlink" title="Artificial Intelligence"></a>Artificial Intelligence</h1><h2 id="Search（搜索）"><a href="#Search（搜索）" class="headerlink" title="Search（搜索）"></a>Search（搜索）</h2><p>搜索是：从初始状态出发，探索可能的行动序列，直到找到目标状态。导航软件寻找路线、棋类程序寻找下一步，都可以建模为搜索问题。</p>
+<h3 id="搜索问题的组成"><a href="#搜索问题的组成" class="headerlink" title="搜索问题的组成"></a>搜索问题的组成</h3><ul>
+<li><strong>Agent（智能体）</strong>：感知环境并对环境采取行动的实体。</li>
+<li><strong>State（状态）</strong>：环境在某一时刻的配置。搜索通常从初始状态出发，寻找通向目标状态的路径。</li>
+<li><strong>Actions（行动）</strong>：某个状态下允许采取的选择。可写为 <code>Actions(state)</code>，返回该状态可执行的行动集合。</li>
+<li><strong>Transition Model（转移模型）</strong>：描述执行行动后会进入什么状态。可写为 <code>Result(state, action) → new_state</code>。</li>
+<li><strong>State Space（状态空间）</strong>：从初始状态出发，通过任意行动序列能够到达的所有状态。</li>
+<li><strong>Goal Test（目标测试）</strong>：判断某个状态是否满足目标条件。</li>
+<li><strong>Path Cost（路径成本）</strong>：一条路径上各步成本的总和。搜索目标可能是找到任意解，也可能是找到成本最低的解。</li>
+</ul>
+<p>一个搜索问题通常可表示为：</p>
+<p><code>(initial state, actions, transition model, goal test, path cost)</code></p>
+<h3 id="解与最优解"><a href="#解与最优解" class="headerlink" title="解与最优解"></a>解与最优解</h3><ul>
+<li><strong>Solution（解）</strong>：从初始状态到目标状态的一系列行动。</li>
+<li><strong>Optimal Solution（最优解）</strong>：在所有可行解中，路径成本最低的解。</li>
+</ul>
+<h3 id="搜索节点"><a href="#搜索节点" class="headerlink" title="搜索节点"></a>搜索节点</h3><p>搜索过程中，节点通常保存：</p>
+<ol>
+<li>当前状态。</li>
+<li>父节点。</li>
+<li>从父状态到当前状态所采取的行动。</li>
+<li>从初始状态到当前节点的累计路径成本 <code>g(n)</code>。</li>
+</ol>
+<p>节点是搜索树中的记录；状态是问题本身的配置。不同节点可能对应同一个状态，例如通过不同路径到达同一位置。</p>
+<h3 id="搜索算法比较"><a href="#搜索算法比较" class="headerlink" title="搜索算法比较"></a>搜索算法比较</h3><table>
+<thead>
+<tr>
+<th>算法</th>
+<th>选择下一个节点的方式</th>
+<th>完备性</th>
+<th>最优性</th>
+<th>主要特点</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>深度优先搜索 DFS</td>
+<td>先扩展最深的节点</td>
+<td>无限深度空间中不保证</td>
+<td>否</td>
+<td>内存较省，可能陷入很深的路径</td>
+</tr>
+<tr>
+<td>广度优先搜索 BFS</td>
+<td>先扩展最浅的节点</td>
+<td>有限分支时保证</td>
+<td>每步成本相同时保证</td>
+<td>能找到最少步数解，但内存开销大</td>
+</tr>
+<tr>
+<td>贪心最佳优先搜索</td>
+<td>选择启发式估计最接近目标的节点</td>
+<td>通常不保证</td>
+<td>否</td>
+<td>依赖启发式，速度可能很快</td>
+</tr>
+<tr>
+<td>A* 搜索</td>
+<td>选择 <code>f(n)=g(n)+h(n)</code> 最小的节点</td>
+<td>满足条件时保证</td>
+<td>满足条件时保证</td>
+<td>同时考虑已付成本与剩余成本估计</td>
+</tr>
+</tbody></table>
+<ul>
+<li><code>g(n)</code>：从起点到节点 <code>n</code> 的实际成本。</li>
+<li><code>h(n)</code>：从节点 <code>n</code> 到目标的估计成本，即<strong>启发式函数</strong>。</li>
+<li>若 <code>h(n)</code> 从不高估真实剩余成本，则称它为**可采纳（admissible）*<em>启发式，有助于保证 A</em> 找到最优解。</li>
+<li><code>h(n)=0</code> 时，A* 退化为按路径成本扩展的搜索。</li>
+</ul>
+<h3 id="对抗搜索（Adversarial-Search）"><a href="#对抗搜索（Adversarial-Search）" class="headerlink" title="对抗搜索（Adversarial Search）"></a>对抗搜索（Adversarial Search）</h3><p>在棋类等有对手的环境中，智能体必须考虑对手会如何回应。</p>
+<ul>
+<li><strong>MAX</strong>：选择使自己收益最大的行动。</li>
+<li><strong>MIN</strong>：假设对手选择使 MAX 收益最小的行动。</li>
+<li><strong>Minimax</strong>：从可能的终局结果向前推导，在双方都采取最优策略的假设下选择行动。</li>
+<li><strong>效用函数（utility function）</strong>：为终局状态赋值，例如赢、平、输分别记为 <code>1、0、-1</code>。</li>
+<li><strong>深度限制与评估函数</strong>：游戏树太大时，只搜索有限深度，再用评估函数估计当前局面的好坏。</li>
+<li><strong>Alpha-Beta Pruning（α-β 剪枝）</strong>：删除不可能影响最终 Minimax 选择的分支。它不改变搜索结果，只减少需要检查的节点数。</li>
+</ul>
+<p><strong>井字棋 AI</strong>：可以将棋盘配置作为状态、落子作为行动，以 Minimax 搜索之后双方的最优回应。</p>
+<hr>
+<div class="article-page-break" data-page-title="Knowledge" aria-hidden="true"></div>
+
+<h2 id="Knowledge（知识）"><a href="#Knowledge（知识）" class="headerlink" title="Knowledge（知识）"></a>Knowledge（知识）</h2><p>知识表示是把信息写成可操作的形式，让程序能根据已知事实推导出结论。</p>
+<h3 id="Knowledge-Based-Agents（基于知识的智能体）"><a href="#Knowledge-Based-Agents（基于知识的智能体）" class="headerlink" title="Knowledge-Based Agents（基于知识的智能体）"></a>Knowledge-Based Agents（基于知识的智能体）</h3><p>这类智能体把信息存入<strong>知识库（Knowledge Base, KB）</strong>，再通过推理回答问题或选择行动。常见流程：</p>
+<ol>
+<li>将观察到的事实加入知识库。</li>
+<li>使用推理规则从已有知识推出新结论。</li>
+<li>根据推理结果回答查询或采取行动。</li>
+</ol>
+<h3 id="Sentence（句子）"><a href="#Sentence（句子）" class="headerlink" title="Sentence（句子）"></a>Sentence（句子）</h3><p>在逻辑中，句子是一个可以判断真假的表达式。</p>
+<ul>
+<li><strong>命题符号</strong>表示事实，例如 <code>P</code> 可以代表“正在下雨”。</li>
+<li>知识库中的句子共同描述智能体相信什么。</li>
+</ul>
+<h3 id="Propositional-Logic（命题逻辑）"><a href="#Propositional-Logic（命题逻辑）" class="headerlink" title="Propositional Logic（命题逻辑）"></a>Propositional Logic（命题逻辑）</h3><p>命题逻辑用符号和逻辑连接词表达事实之间的关系。</p>
+<table>
+<thead>
+<tr>
+<th>符号</th>
+<th>含义</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>¬P</code></td>
+<td>非 P</td>
+<td>没有下雨</td>
+</tr>
+<tr>
+<td><code>P ∧ Q</code></td>
+<td>P 且 Q</td>
+<td>下雨并且刮风</td>
+</tr>
+<tr>
+<td><code>P ∨ Q</code></td>
+<td>P 或 Q（包含两者同时为真）</td>
+<td>下雨或刮风</td>
+</tr>
+<tr>
+<td><code>P → Q</code></td>
+<td>若 P，则 Q</td>
+<td>如果下雨，就带伞</td>
+</tr>
+<tr>
+<td><code>P ↔ Q</code></td>
+<td>P 当且仅当 Q</td>
+<td>两者真值相同</td>
+</tr>
+</tbody></table>
+<ul>
+<li><strong>模型（model）</strong>：给所有命题符号分配真或假的一种可能情况。</li>
+<li><strong>蕴含（entailment）</strong>：若 KB 在所有为真的模型中都使 <code>α</code> 为真，则 <code>KB ⊨ α</code>，即 KB 蕴含 <code>α</code>。</li>
+<li><strong>等价（equivalence）</strong>：两个句子在所有模型中真值相同。</li>
+<li><strong>有效（valid）</strong>：在所有模型中都为真。</li>
+<li><strong>可满足（satisfiable）</strong>：至少存在一个模型使其为真。</li>
+</ul>
+<p><strong>重要区别</strong>：程序“能够推出”某结论（句法层面的推导），与知识本身“逻辑上蕴含”该结论（语义层面）是相关但不同的概念。</p>
+<h3 id="Inference（推理）"><a href="#Inference（推理）" class="headerlink" title="Inference（推理）"></a>Inference（推理）</h3><p>推理是根据已有句子推出新句子的过程。常见方法包括：</p>
+<ul>
+<li><strong>模型检查</strong>：枚举可能的真值组合，检查结论是否在所有满足 KB 的模型中成立。</li>
+<li><strong>规则推理</strong>：应用有效的逻辑规则，例如 Modus Ponens：从 <code>P</code> 和 <code>P → Q</code> 推出 <code>Q</code>。</li>
+<li><strong>归结（resolution）</strong>：把逻辑句子转为合取范式后，反复消去互补文字，以检查矛盾或证明结论。</li>
+</ul>
+<h3 id="一阶逻辑与量词"><a href="#一阶逻辑与量词" class="headerlink" title="一阶逻辑与量词"></a>一阶逻辑与量词</h3><p>命题逻辑把每个命题当作整体；一阶逻辑还能表示对象、属性和对象之间的关系。</p>
+<ul>
+<li><strong>Universal Quantification（全称量词）</strong>：<code>∀x P(x)</code> 表示对所有 <code>x</code>，<code>P(x)</code> 都成立。</li>
+<li><strong>Existential Quantification（存在量词）</strong>：<code>∃x P(x)</code> 表示至少存在一个 <code>x</code>，使 <code>P(x)</code> 成立。</li>
+<li><code>∀x P(x)</code> 不等同于“对大多数对象成立”。</li>
+<li><code>∃x P(x)</code> 只表示至少一个，不表示唯一一个。</li>
+</ul>
+<hr>
+<div class="article-page-break" data-page-title="Uncertainty" aria-hidden="true"></div>
+
+<h2 id="Uncertainty（不确定性）"><a href="#Uncertainty（不确定性）" class="headerlink" title="Uncertainty（不确定性）"></a>Uncertainty（不确定性）</h2><p>现实中的信息往往不完整、不可靠，或存在随机性。概率模型可以表示不确定信念，并帮助智能体在有限信息下做判断。</p>
+<h3 id="概率基础"><a href="#概率基础" class="headerlink" title="概率基础"></a>概率基础</h3><ul>
+<li><strong>随机变量</strong>：表示可能取多个值的变量，例如天气 <code>Rain</code>。</li>
+<li><strong>先验概率</strong>：观察新证据前的概率，如 <code>P(Rain)</code>。</li>
+<li><strong>条件概率</strong>：已知证据 <code>E</code> 时事件 <code>A</code> 的概率：<code>P(A | E)</code>。</li>
+<li><strong>联合概率</strong>：多个变量同时取特定值的概率，如 <code>P(A, B)</code>。</li>
+<li><strong>边缘化</strong>：对未知变量求和，得到目标变量的概率：<code>P(A)=Σ_b P(A,b)</code>。</li>
+</ul>
+<p><strong>Bayes’ Rule（贝叶斯定理）</strong></p>
+<p><code>P(A | B) = P(B | A) P(A) / P(B)</code></p>
+<p>它把观察证据后的概率（后验）与观察前的概率（先验）联系起来。</p>
+<h3 id="概率推断与决策"><a href="#概率推断与决策" class="headerlink" title="概率推断与决策"></a>概率推断与决策</h3><ul>
+<li><strong>概率推断</strong>：根据已知证据计算未知变量的概率。</li>
+<li><strong>贝叶斯网络</strong>：用有向无环图表示变量之间的条件依赖关系；每个节点通常附有条件概率表。</li>
+<li><strong>独立性</strong>：若知道 <code>B</code> 不会改变对 <code>A</code> 的判断，则 <code>A</code> 与 <code>B</code> 独立。</li>
+<li><strong>期望效用</strong>：对每个行动，计算不同结果的效用乘以其概率，再选择期望效用最大的行动。</li>
+<li><strong>效用（utility）</strong>：表示结果对智能体的价值；概率描述“会发生什么”，效用描述“结果有多好或多坏”。</li>
+</ul>
+<hr>
+<div class="article-page-break" data-page-title="Optimization" aria-hidden="true"></div>
+
+<h2 id="Optimization（优化）"><a href="#Optimization（优化）" class="headerlink" title="Optimization（优化）"></a>Optimization（优化）</h2><p>优化问题关注如何在大量可行方案中找到更好的方案，常用于排程、资源分配和约束满足。</p>
+<h3 id="Local-Search（局部搜索）"><a href="#Local-Search（局部搜索）" class="headerlink" title="Local Search（局部搜索）"></a>Local Search（局部搜索）</h3><p>局部搜索从一个候选解出发，反复检查邻近解并改进当前方案。它关注当前候选解，不一定保留完整搜索路径，因此适合状态空间很大的问题。</p>
+<ul>
+<li><strong>Hill Climbing（爬山算法）</strong>：每一步转移到更好的邻居。<ul>
+<li>可能卡在局部最优、平台或山脊。</li>
+<li>随机重启可以从多个初始点尝试，减少卡在局部最优的风险。</li>
+</ul>
+</li>
+<li><strong>Simulated Annealing（模拟退火）</strong>：有时也接受较差的邻居；随着“温度”降低，接受差解的概率逐渐下降。这样早期更容易跳出局部最优，后期逐步稳定。</li>
+</ul>
+<h3 id="Linear-Programming（线性规划）"><a href="#Linear-Programming（线性规划）" class="headerlink" title="Linear Programming（线性规划）"></a>Linear Programming（线性规划）</h3><p>在线性规划中，目标函数和约束通常都是变量的线性表达式。</p>
+<p>例如：在满足资源限制的前提下，最大化利润：</p>
+<ul>
+<li>目标：最大化 <code>c₁x₁ + c₂x₂</code></li>
+<li>约束：<code>a₁x₁ + a₂x₂ ≤ b</code></li>
+<li>还可以规定 <code>xᵢ ≥ 0</code></li>
+</ul>
+<h3 id="Constraint-Satisfaction-Problems（约束满足问题）"><a href="#Constraint-Satisfaction-Problems（约束满足问题）" class="headerlink" title="Constraint Satisfaction Problems（约束满足问题）"></a>Constraint Satisfaction Problems（约束满足问题）</h3><p>CSP 由三部分组成：</p>
+<ol>
+<li><strong>变量（variables）</strong>：要赋值的对象。</li>
+<li><strong>域（domains）</strong>：每个变量允许的取值。</li>
+<li><strong>约束（constraints）</strong>：限制哪些变量取值组合有效。</li>
+</ol>
+<p>目标是找到满足所有约束的赋值。</p>
+<ul>
+<li><strong>Node Consistency（节点一致性）</strong>：每个变量的取值都满足与它自身相关的一元约束。</li>
+<li><strong>Arc Consistency（弧一致性）</strong>：对变量 <code>X</code> 的每个候选值，都能在相邻变量 <code>Y</code> 的域中找到至少一个与约束兼容的值。</li>
+<li><strong>Backtracking Search（回溯搜索）</strong>：逐个给变量赋值；若违反约束，就撤销最近的选择并尝试其他值。</li>
+<li><strong>最少剩余值（MRV）</strong>：优先选择合法取值最少的变量。</li>
+<li><strong>度启发式（Degree Heuristic）</strong>：平局时优先选择约束其他未赋值变量最多的变量。</li>
+<li><strong>前向检查（Forward Checking）</strong>：每次赋值后，提前从相邻变量的域中删除不兼容取值；若某个域变空，则立即回溯。</li>
+</ul>
+<hr>
+<div class="article-page-break" data-page-title="Learning" aria-hidden="true"></div>
+
+<h2 id="Learning（学习）"><a href="#Learning（学习）" class="headerlink" title="Learning（学习）"></a>Learning（学习）</h2><p>机器学习让程序从数据或经验中改进表现，而不是只依赖人工编写的固定规则。</p>
+<h3 id="机器学习类型"><a href="#机器学习类型" class="headerlink" title="机器学习类型"></a>机器学习类型</h3><ul>
+<li><strong>Supervised Learning（监督学习）</strong>：从带标签的示例学习输入与答案之间的关系。</li>
+<li><strong>Unsupervised Learning（无监督学习）</strong>：从无标签数据中发现结构或分组。</li>
+<li><strong>Reinforcement Learning（强化学习）</strong>：通过行动及其奖励或惩罚学习策略。</li>
+</ul>
+<h3 id="监督学习"><a href="#监督学习" class="headerlink" title="监督学习"></a>监督学习</h3><ul>
+<li><strong>分类（classification）</strong>：预测离散类别，例如垃圾邮件或非垃圾邮件。</li>
+<li><strong>回归（regression）</strong>：预测连续数值，例如房价。</li>
+</ul>
+<h4 id="最近邻分类（Nearest-Neighbor-Classification）"><a href="#最近邻分类（Nearest-Neighbor-Classification）" class="headerlink" title="最近邻分类（Nearest-Neighbor Classification）"></a>最近邻分类（Nearest-Neighbor Classification）</h4><p>根据新样本附近的训练样本预测类别。<code>k</code> 表示参考的邻居数；距离度量、特征尺度和 <code>k</code> 的选择都会影响结果。</p>
+<h4 id="感知机（Perceptron）"><a href="#感知机（Perceptron）" class="headerlink" title="感知机（Perceptron）"></a>感知机（Perceptron）</h4><p>线性分类器的一种。它对输入特征加权求和，再通过阈值决定类别。若数据不能被一条线性边界分开，单层感知机无法完美分类。</p>
+<h4 id="支持向量机（SVM）"><a href="#支持向量机（SVM）" class="headerlink" title="支持向量机（SVM）"></a>支持向量机（SVM）</h4><p>寻找能最大化类别间隔的决策边界。核方法可把非线性问题映射到更高维空间中处理。</p>
+<h4 id="损失函数（Loss-Function）"><a href="#损失函数（Loss-Function）" class="headerlink" title="损失函数（Loss Function）"></a>损失函数（Loss Function）</h4><p>衡量模型预测与真实答案之间差异的函数。训练过程通常试图降低总体损失。</p>
+<h4 id="过拟合与正则化"><a href="#过拟合与正则化" class="headerlink" title="过拟合与正则化"></a>过拟合与正则化</h4><ul>
+<li><strong>Overfitting（过拟合）</strong>：模型过度贴合训练数据中的细节或噪声，导致对新数据表现较差。</li>
+<li><strong>Regularization（正则化）</strong>：在训练目标中加入对复杂模型的惩罚，限制模型复杂度，帮助改善泛化。</li>
+<li>应用时通常将数据分为训练集、验证集和测试集：训练集用于拟合，验证集用于选择模型或参数，测试集用于最终评估。</li>
+</ul>
+<h4 id="scikit-learn"><a href="#scikit-learn" class="headerlink" title="scikit-learn"></a>scikit-learn</h4><p>Python 机器学习库，提供常见的分类、回归、聚类、数据预处理和模型评估工具。</p>
+<h3 id="强化学习"><a href="#强化学习" class="headerlink" title="强化学习"></a>强化学习</h3><p>智能体在环境中采取行动并观察结果，通过奖励学习怎样获得更好的长期回报。</p>
+<ul>
+<li><strong>状态（state）</strong>：环境当前情况。</li>
+<li><strong>行动（action）</strong>：智能体可以选择的操作。</li>
+<li><strong>奖励（reward）</strong>：环境对行动结果的反馈。</li>
+<li><strong>策略（policy）</strong>：从状态映射到行动的规则。</li>
+<li><strong>折扣因子 <code>γ</code></strong>：控制未来奖励相对于即时奖励的重要程度。</li>
+</ul>
+<h4 id="Markov-Decision-Process（MDP）"><a href="#Markov-Decision-Process（MDP）" class="headerlink" title="Markov Decision Process（MDP）"></a>Markov Decision Process（MDP）</h4><p>MDP 用状态、行动、转移概率、奖励函数和折扣因子描述序贯决策问题。马尔可夫性质表示：给定当前状态后，未来不再需要依赖更早的历史。</p>
+<h4 id="Q-Learning"><a href="#Q-Learning" class="headerlink" title="Q-Learning"></a>Q-Learning</h4><p>学习状态—行动价值 <code>Q(s,a)</code>，即在状态 <code>s</code> 采取行动 <code>a</code> 后，预期能获得的长期回报。</p>
+<p>更新公式：</p>
+<p><code>Q(s,a) ← Q(s,a) + α [r + γ maxₐ′ Q(s′,a′) − Q(s,a)]</code></p>
+<p>其中：</p>
+<ul>
+<li><code>α</code>：学习率，控制新信息对旧估计的影响。</li>
+<li><code>r</code>：当前奖励。</li>
+<li><code>s′</code>：采取行动后的新状态。</li>
+<li><code>γ</code>：折扣因子。</li>
+</ul>
+<p>智能体常用 <strong>ε-greedy</strong> 策略平衡探索与利用：大部分时候选择当前价值最高的行动，小概率随机尝试其他行动。</p>
+<h3 id="无监督学习"><a href="#无监督学习" class="headerlink" title="无监督学习"></a>无监督学习</h3><h4 id="k-means-聚类"><a href="#k-means-聚类" class="headerlink" title="k-means 聚类"></a>k-means 聚类</h4><p>将数据分成 <code>k</code> 个簇，反复执行：</p>
+<ol>
+<li>将每个样本分配给最近的簇中心。</li>
+<li>将每个簇中心更新为该簇样本的均值。</li>
+<li>重复直到分组基本稳定。</li>
+</ol>
+<p>k-means 需要预先指定 <code>k</code>，也可能受到初始中心和特征尺度影响。它适合寻找近似球状的簇，不适合所有数据形状。</p>
+<hr>
+<div class="article-page-break" data-page-title="Neural Networks" aria-hidden="true"></div>
+
+<h2 id="Neural-Networks（神经网络）"><a href="#Neural-Networks（神经网络）" class="headerlink" title="Neural Networks（神经网络）"></a>Neural Networks（神经网络）</h2><p>神经网络由相互连接的计算单元组成，能够通过训练数据学习复杂的输入—输出关系。</p>
+<h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><ul>
+<li><strong>输入层</strong>：接收特征。</li>
+<li><strong>隐藏层</strong>：组合特征并进行变换。</li>
+<li><strong>输出层</strong>：生成预测。</li>
+<li>每条连接有<strong>权重</strong>，神经元通常还带有<strong>偏置</strong>。</li>
+<li>一层的输出会成为下一层的输入。</li>
+</ul>
+<h3 id="激活函数（Activation-Functions）"><a href="#激活函数（Activation-Functions）" class="headerlink" title="激活函数（Activation Functions）"></a>激活函数（Activation Functions）</h3><p>激活函数为网络加入非线性能力。若每层都只是线性变换，叠加多层仍等价于一个线性变换，无法表达复杂的非线性关系。</p>
+<p>常见函数包括：</p>
+<ul>
+<li><strong>ReLU</strong>：<code>max(0, x)</code>，常用于隐藏层。</li>
+<li><strong>Sigmoid</strong>：将值映射到 <code>(0,1)</code>，常用于二分类概率输出。</li>
+<li><strong>Softmax</strong>：将多个输出转换成总和为 1 的类别概率。</li>
+</ul>
+<h3 id="梯度下降（Gradient-Descent）"><a href="#梯度下降（Gradient-Descent）" class="headerlink" title="梯度下降（Gradient Descent）"></a>梯度下降（Gradient Descent）</h3><p>通过计算损失函数对参数的梯度，沿着使损失下降的方向更新权重。</p>
+<p><code>参数 ← 参数 − 学习率 × 梯度</code></p>
+<ul>
+<li>学习率过大可能导致训练不稳定；过小则训练缓慢。</li>
+<li><strong>随机梯度下降</strong>通常使用一个样本或一个小批次估计梯度。</li>
+<li>梯度是损失对参数变化的敏感程度。</li>
+</ul>
+<h3 id="多层网络与反向传播"><a href="#多层网络与反向传播" class="headerlink" title="多层网络与反向传播"></a>多层网络与反向传播</h3><ul>
+<li><strong>Multilayer Neural Network（多层神经网络）</strong>：包含一个或多个隐藏层，可学习逐层组合的特征。</li>
+<li><strong>Backpropagation（反向传播）</strong>：使用链式法则，从输出层向前一层计算损失对各参数的梯度，再用于更新参数。</li>
+</ul>
+<p>神经网络也会过拟合，可通过正则化、数据增强、提前停止或减少模型复杂度缓解。</p>
+<h3 id="TensorFlow"><a href="#TensorFlow" class="headerlink" title="TensorFlow"></a>TensorFlow</h3><p>用于构建和训练机器学习模型的框架，支持张量运算、自动微分和神经网络训练。</p>
+<h3 id="Computer-Vision（计算机视觉）"><a href="#Computer-Vision（计算机视觉）" class="headerlink" title="Computer Vision（计算机视觉）"></a>Computer Vision（计算机视觉）</h3><p>让程序从图像或视频中提取信息，例如分类图像、识别物体或定位目标。</p>
+<h4 id="图像卷积（Image-Convolution）"><a href="#图像卷积（Image-Convolution）" class="headerlink" title="图像卷积（Image Convolution）"></a>图像卷积（Image Convolution）</h4><p>卷积核在图像上滑动，对局部像素进行加权组合，提取边缘、纹理等局部特征。多个卷积核可以学习不同类型的特征。</p>
+<h4 id="卷积神经网络（CNN）"><a href="#卷积神经网络（CNN）" class="headerlink" title="卷积神经网络（CNN）"></a>卷积神经网络（CNN）</h4><p>CNN 常通过卷积层提取空间局部特征，再使用池化或其他操作降低空间尺寸，最后完成分类或其他任务。卷积核权重在不同图像位置共享，能减少参数量并利用图像的空间结构。</p>
+<h4 id="循环神经网络（RNN）"><a href="#循环神经网络（RNN）" class="headerlink" title="循环神经网络（RNN）"></a>循环神经网络（RNN）</h4><p>RNN 用于序列数据。它把前一步的隐藏状态传递到后续步骤，使模型能够利用之前的信息。普通 RNN 在长序列上可能难以保留远距离信息；LSTM、GRU 等结构通过门控改善这一问题。</p>
+<hr>
+<div class="article-page-break" data-page-title="Language" aria-hidden="true"></div>
+
+<h2 id="Language（语言）"><a href="#Language（语言）" class="headerlink" title="Language（语言）"></a>Language（语言）</h2><p>自然语言处理研究如何让程序处理人类语言，包括识别结构、表示含义、预测文本和生成回应。</p>
+<h3 id="Syntax-与-Semantics"><a href="#Syntax-与-Semantics" class="headerlink" title="Syntax 与 Semantics"></a>Syntax 与 Semantics</h3><ul>
+<li><strong>Syntax（句法）</strong>：句子的结构是否符合语法规则。</li>
+<li><strong>Semantics（语义）</strong>：句子表达的含义。</li>
+<li>合乎语法的句子不一定有合理含义；含义也依赖上下文。</li>
+</ul>
+<h3 id="Context-Free-Grammar（上下文无关文法）"><a href="#Context-Free-Grammar（上下文无关文法）" class="headerlink" title="Context-Free Grammar（上下文无关文法）"></a>Context-Free Grammar（上下文无关文法）</h3><p>用一组重写规则描述句子结构。例如：</p>
+<ul>
+<li><code>S → NP VP</code>：句子由名词短语和动词短语构成。</li>
+<li><code>NP → N | Det N</code>：名词短语可由名词构成，也可由限定词加名词构成。</li>
+</ul>
+<p>解析器可以根据语法规则生成或分析句子的语法树。但自然语言存在歧义，同一句话可能有多个解析结果。</p>
+<h3 id="nltk"><a href="#nltk" class="headerlink" title="nltk"></a>nltk</h3><p>Python 自然语言处理工具包，提供分词、语法分析、语料处理等功能。</p>
+<h3 id="Tokenization（分词）"><a href="#Tokenization（分词）" class="headerlink" title="Tokenization（分词）"></a>Tokenization（分词）</h3><p>将文本拆分为词、子词或标点等基本单位。不同的分词方法会影响模型如何处理词形变化、罕见词和标点。</p>
+<h3 id="n-grams-与-Markov-Models"><a href="#n-grams-与-Markov-Models" class="headerlink" title="n-grams 与 Markov Models"></a>n-grams 与 Markov Models</h3><ul>
+<li><strong>n-gram</strong>：长度为 <code>n</code> 的连续 token 序列。</li>
+<li>n-gram 语言模型依据前面有限个 token 预测下一个 token。</li>
+<li><strong>马尔可夫假设</strong>：把未来预测简化为只依赖有限的近期历史。</li>
+<li><strong>困惑度（perplexity）</strong>：常用来衡量语言模型对文本的预测能力；在同一评估条件下通常越低越好。</li>
+</ul>
+<h3 id="Bag-of-Words（词袋模型）"><a href="#Bag-of-Words（词袋模型）" class="headerlink" title="Bag-of-Words（词袋模型）"></a>Bag-of-Words（词袋模型）</h3><p>把文本表示为词语出现情况或次数，忽略词序。它简单有效，但丢失语序和长距离关系。</p>
+<h3 id="Naive-Bayes（朴素贝叶斯）"><a href="#Naive-Bayes（朴素贝叶斯）" class="headerlink" title="Naive Bayes（朴素贝叶斯）"></a>Naive Bayes（朴素贝叶斯）</h3><p>利用贝叶斯定理进行分类，并假设给定类别后，各特征条件独立。这个假设在自然语言中往往并不完全成立，但模型仍可能表现良好，尤其适合作为文本分类基线。</p>
+<h3 id="Word-Representation（词表示）"><a href="#Word-Representation（词表示）" class="headerlink" title="Word Representation（词表示）"></a>Word Representation（词表示）</h3><ul>
+<li><strong>独热编码（one-hot）</strong>：每个词对应一个只有一个位置为 1 的向量；维度通常很高，词之间没有语义距离。</li>
+<li><strong>词嵌入（word embedding）</strong>：用较短的稠密向量表示词。语义或用法相近的词，向量往往也更接近。</li>
+</ul>
+<h4 id="word2vec"><a href="#word2vec" class="headerlink" title="word2vec"></a>word2vec</h4><p>通过上下文预测词，或通过词预测上下文来学习词向量。它体现了分布式表示的思想：经常出现在相似上下文中的词，可能具有相似表示。</p>
+<h3 id="Attention（注意力）"><a href="#Attention（注意力）" class="headerlink" title="Attention（注意力）"></a>Attention（注意力）</h3><p>注意力机制让模型在处理当前位置时，对输入的不同部分分配不同权重，从而聚焦相关信息。它能直接建立远距离 token 之间的联系。</p>
+<h3 id="Transformers（Transformer）"><a href="#Transformers（Transformer）" class="headerlink" title="Transformers（Transformer）"></a>Transformers（Transformer）</h3><p>Transformer 主要依赖注意力机制处理序列，不需要像传统 RNN 那样按顺序逐步传递隐藏状态，因此可以并行处理许多位置。</p>
+<ul>
+<li><strong>Self-Attention（自注意力）</strong>：序列中的每个 token 根据与其他 token 的相关性汇总信息。</li>
+<li><strong>位置编码</strong>：为模型提供 token 在序列中的位置信息。</li>
+<li><strong>编码器</strong>常用于理解输入；<strong>解码器</strong>常用于逐步生成输出；也有只使用编码器或解码器的架构。</li>
+<li>Transformer 能处理长距离依赖，但计算成本会随序列长度增加；实际效果还依赖训练数据、模型规模和训练方式。</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://example.com/2026/10/17/CS50AI/" data-id="cuidJqTDXldChfrHkHXNzz2Wk" data-title="CS50AI" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/AI/" rel="tag">AI</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+
+  
     <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/2026/10/17/hello-world/" class="article-date">
   <time class="dt-published" datetime="2026-10-17T10:21:26.484Z" itemprop="datePublished">2026-10-17</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E7%AB%99%E7%82%B9%E8%AE%B0%E5%BD%95/">站点记录</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -110,7 +492,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/10/17/hello-world/" data-id="cuid9cYKl32nUkm8s4-mUnfvE" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/10/17/hello-world/" data-id="cuidTKAlTo9URhHSaOzZoGSra" data-title="Hello World" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -134,13 +516,20 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Swift-%E5%BC%80%E5%8F%91/">Swift 开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AB%99%E7%82%B9%E8%AE%B0%E5%BD%95/">站点记录</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%98/">面试复盘</a></li></ul>
+    </div>
+  </div>
+
 
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithms/" rel="tag">Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/" rel="tag">Interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-Systems/" rel="tag">ML Systems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Programming-Language/" rel="tag">Programming Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithms/" rel="tag">Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Career/" rel="tag">Career</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/" rel="tag">Interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-Systems/" rel="tag">ML Systems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Programming-Language/" rel="tag">Programming Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
     </div>
   </div>
 
@@ -150,7 +539,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LLM/" style="font-size: 15px;">LLM</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/ML-Systems/" style="font-size: 10px;">ML Systems</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Programming-Language/" style="font-size: 10px;">Programming Language</a> <a href="/tags/Software-Engineering/" style="font-size: 20px;">Software Engineering</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a>
+      <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a> <a href="/tags/Career/" style="font-size: 10px;">Career</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LLM/" style="font-size: 15px;">LLM</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/ML-Systems/" style="font-size: 10px;">ML Systems</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Programming-Language/" style="font-size: 10px;">Programming Language</a> <a href="/tags/Software-Engineering/" style="font-size: 20px;">Software Engineering</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a>
     </div>
   </div>
 
@@ -172,6 +561,10 @@
       <ul>
         
           <li>
+            <a href="/2026/10/25/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/">个人提升计划</a>
+          </li>
+        
+          <li>
             <a href="/2026/10/22/LLM-%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A6%82%E8%A7%88/">LLM 应用开发概览</a>
           </li>
         
@@ -185,10 +578,6 @@
         
           <li>
             <a href="/2026/10/20/Leetcode/">Leetcode</a>
-          </li>
-        
-          <li>
-            <a href="/2026/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
           </li>
         
       </ul>
@@ -217,6 +606,8 @@
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
+    <a href="/categories/" class="mobile-nav-link">分类</a>
+  
 </nav>
     
 
@@ -238,5 +629,6 @@
 
 
   </div>
+  <script src="/js/blog-features.js" defer></script>
 </body>
 </html>

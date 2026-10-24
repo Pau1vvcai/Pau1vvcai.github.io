@@ -6,15 +6,15 @@
   
   <title>CS50AI | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="Artificial IntelligenceSearch（搜索）搜索是：从初始状态出发，探索可能的行动序列，直到找到目标状态。导航软件寻找路线、棋类程序寻找下一步，都可以建模为搜索问题。 搜索问题的组成 Agent（智能体）：感知环境并对环境采取行动的实体。 State（状态）：环境在某一时刻的配置。搜索通常从初始状态出发，寻找通向目标状态的路径。 Actions（行动）：某个状态下允许采取的选">
+  <meta name="description" content="Artificial IntelligenceSearch（搜索）搜索是：从初始状态出发，探索可能的行动序列，直到找到目标状态。导航软件寻找路线、棋类程序寻找下一步，都可以建模为搜索问题。 搜索问题的组成 Agent（智能体）：感知环境并对环境采取行动的实体。 State（状态）：环境在某一时刻的配置。搜索通常从初始状态出发，寻找通向目标状态的路径。 Actions（行动）：某个状态下允许采取">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CS50AI">
 <meta property="og:url" content="http://example.com/2026/10/17/CS50AI/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="Artificial IntelligenceSearch（搜索）搜索是：从初始状态出发，探索可能的行动序列，直到找到目标状态。导航软件寻找路线、棋类程序寻找下一步，都可以建模为搜索问题。 搜索问题的组成 Agent（智能体）：感知环境并对环境采取行动的实体。 State（状态）：环境在某一时刻的配置。搜索通常从初始状态出发，寻找通向目标状态的路径。 Actions（行动）：某个状态下允许采取的选">
+<meta property="og:description" content="Artificial IntelligenceSearch（搜索）搜索是：从初始状态出发，探索可能的行动序列，直到找到目标状态。导航软件寻找路线、棋类程序寻找下一步，都可以建模为搜索问题。 搜索问题的组成 Agent（智能体）：感知环境并对环境采取行动的实体。 State（状态）：环境在某一时刻的配置。搜索通常从初始状态出发，寻找通向目标状态的路径。 Actions（行动）：某个状态下允许采取">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2026-10-17T11:41:11.000Z">
-<meta property="article:modified_time" content="2026-10-18T13:18:49.276Z">
+<meta property="article:modified_time" content="2026-10-24T16:22:04.246Z">
 <meta property="article:author" content="CAI">
 <meta property="article:tag" content="AI">
 <meta name="twitter:card" content="summary">
@@ -36,7 +36,8 @@
   
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/fork-awesome@1.2.0/css/fork-awesome.min.css">
 
-<meta name="generator" content="Hexo 8.1.2"></head>
+<meta name="generator" content="Hexo 8.1.2">  <link rel="stylesheet" href="/css/blog-features.css">
+</head>
 
 <body>
   <div id="container">
@@ -57,6 +58,8 @@
           <a class="main-nav-link" href="/">Home</a>
         
           <a class="main-nav-link" href="/archives">Archives</a>
+        
+          <a class="main-nav-link" href="/categories/">分类</a>
         
       </nav>
       <nav id="sub-nav">
@@ -80,6 +83,10 @@
   <time class="dt-published" datetime="2026-10-17T11:41:11.000Z" itemprop="datePublished">2026-10-17</time>
 </a>
     
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a>
+  </div>
+
   </div>
   <div class="article-inner">
     
@@ -96,7 +103,9 @@
     
     <div class="e-content article-entry" itemprop="articleBody">
       
-        <h1 id="Artificial-Intelligence"><a href="#Artificial-Intelligence" class="headerlink" title="Artificial Intelligence"></a>Artificial Intelligence</h1><h2 id="Search（搜索）"><a href="#Search（搜索）" class="headerlink" title="Search（搜索）"></a>Search（搜索）</h2><p>搜索是：从初始状态出发，探索可能的行动序列，直到找到目标状态。导航软件寻找路线、棋类程序寻找下一步，都可以建模为搜索问题。</p>
+        <div class="article-page-break" data-page-title="Search" aria-hidden="true"></div>
+
+<h1 id="Artificial-Intelligence"><a href="#Artificial-Intelligence" class="headerlink" title="Artificial Intelligence"></a>Artificial Intelligence</h1><h2 id="Search（搜索）"><a href="#Search（搜索）" class="headerlink" title="Search（搜索）"></a>Search（搜索）</h2><p>搜索是：从初始状态出发，探索可能的行动序列，直到找到目标状态。导航软件寻找路线、棋类程序寻找下一步，都可以建模为搜索问题。</p>
 <h3 id="搜索问题的组成"><a href="#搜索问题的组成" class="headerlink" title="搜索问题的组成"></a>搜索问题的组成</h3><ul>
 <li><strong>Agent（智能体）</strong>：感知环境并对环境采取行动的实体。</li>
 <li><strong>State（状态）</strong>：环境在某一时刻的配置。搜索通常从初始状态出发，寻找通向目标状态的路径。</li>
@@ -176,6 +185,8 @@
 </ul>
 <p><strong>井字棋 AI</strong>：可以将棋盘配置作为状态、落子作为行动，以 Minimax 搜索之后双方的最优回应。</p>
 <hr>
+<div class="article-page-break" data-page-title="Knowledge" aria-hidden="true"></div>
+
 <h2 id="Knowledge（知识）"><a href="#Knowledge（知识）" class="headerlink" title="Knowledge（知识）"></a>Knowledge（知识）</h2><p>知识表示是把信息写成可操作的形式，让程序能根据已知事实推导出结论。</p>
 <h3 id="Knowledge-Based-Agents（基于知识的智能体）"><a href="#Knowledge-Based-Agents（基于知识的智能体）" class="headerlink" title="Knowledge-Based Agents（基于知识的智能体）"></a>Knowledge-Based Agents（基于知识的智能体）</h3><p>这类智能体把信息存入<strong>知识库（Knowledge Base, KB）</strong>，再通过推理回答问题或选择行动。常见流程：</p>
 <ol>
@@ -245,6 +256,8 @@
 <li><code>∃x P(x)</code> 只表示至少一个，不表示唯一一个。</li>
 </ul>
 <hr>
+<div class="article-page-break" data-page-title="Uncertainty" aria-hidden="true"></div>
+
 <h2 id="Uncertainty（不确定性）"><a href="#Uncertainty（不确定性）" class="headerlink" title="Uncertainty（不确定性）"></a>Uncertainty（不确定性）</h2><p>现实中的信息往往不完整、不可靠，或存在随机性。概率模型可以表示不确定信念，并帮助智能体在有限信息下做判断。</p>
 <h3 id="概率基础"><a href="#概率基础" class="headerlink" title="概率基础"></a>概率基础</h3><ul>
 <li><strong>随机变量</strong>：表示可能取多个值的变量，例如天气 <code>Rain</code>。</li>
@@ -264,6 +277,8 @@
 <li><strong>效用（utility）</strong>：表示结果对智能体的价值；概率描述“会发生什么”，效用描述“结果有多好或多坏”。</li>
 </ul>
 <hr>
+<div class="article-page-break" data-page-title="Optimization" aria-hidden="true"></div>
+
 <h2 id="Optimization（优化）"><a href="#Optimization（优化）" class="headerlink" title="Optimization（优化）"></a>Optimization（优化）</h2><p>优化问题关注如何在大量可行方案中找到更好的方案，常用于排程、资源分配和约束满足。</p>
 <h3 id="Local-Search（局部搜索）"><a href="#Local-Search（局部搜索）" class="headerlink" title="Local Search（局部搜索）"></a>Local Search（局部搜索）</h3><p>局部搜索从一个候选解出发，反复检查邻近解并改进当前方案。它关注当前候选解，不一定保留完整搜索路径，因此适合状态空间很大的问题。</p>
 <ul>
@@ -297,6 +312,8 @@
 <li><strong>前向检查（Forward Checking）</strong>：每次赋值后，提前从相邻变量的域中删除不兼容取值；若某个域变空，则立即回溯。</li>
 </ul>
 <hr>
+<div class="article-page-break" data-page-title="Learning" aria-hidden="true"></div>
+
 <h2 id="Learning（学习）"><a href="#Learning（学习）" class="headerlink" title="Learning（学习）"></a>Learning（学习）</h2><p>机器学习让程序从数据或经验中改进表现，而不是只依赖人工编写的固定规则。</p>
 <h3 id="机器学习类型"><a href="#机器学习类型" class="headerlink" title="机器学习类型"></a>机器学习类型</h3><ul>
 <li><strong>Supervised Learning（监督学习）</strong>：从带标签的示例学习输入与答案之间的关系。</li>
@@ -345,6 +362,8 @@
 </ol>
 <p>k-means 需要预先指定 <code>k</code>，也可能受到初始中心和特征尺度影响。它适合寻找近似球状的簇，不适合所有数据形状。</p>
 <hr>
+<div class="article-page-break" data-page-title="Neural Networks" aria-hidden="true"></div>
+
 <h2 id="Neural-Networks（神经网络）"><a href="#Neural-Networks（神经网络）" class="headerlink" title="Neural Networks（神经网络）"></a>Neural Networks（神经网络）</h2><p>神经网络由相互连接的计算单元组成，能够通过训练数据学习复杂的输入—输出关系。</p>
 <h3 id="基本结构"><a href="#基本结构" class="headerlink" title="基本结构"></a>基本结构</h3><ul>
 <li><strong>输入层</strong>：接收特征。</li>
@@ -378,6 +397,8 @@
 <h4 id="卷积神经网络（CNN）"><a href="#卷积神经网络（CNN）" class="headerlink" title="卷积神经网络（CNN）"></a>卷积神经网络（CNN）</h4><p>CNN 常通过卷积层提取空间局部特征，再使用池化或其他操作降低空间尺寸，最后完成分类或其他任务。卷积核权重在不同图像位置共享，能减少参数量并利用图像的空间结构。</p>
 <h4 id="循环神经网络（RNN）"><a href="#循环神经网络（RNN）" class="headerlink" title="循环神经网络（RNN）"></a>循环神经网络（RNN）</h4><p>RNN 用于序列数据。它把前一步的隐藏状态传递到后续步骤，使模型能够利用之前的信息。普通 RNN 在长序列上可能难以保留远距离信息；LSTM、GRU 等结构通过门控改善这一问题。</p>
 <hr>
+<div class="article-page-break" data-page-title="Language" aria-hidden="true"></div>
+
 <h2 id="Language（语言）"><a href="#Language（语言）" class="headerlink" title="Language（语言）"></a>Language（语言）</h2><p>自然语言处理研究如何让程序处理人类语言，包括识别结构、表示含义、预测文本和生成回应。</p>
 <h3 id="Syntax-与-Semantics"><a href="#Syntax-与-Semantics" class="headerlink" title="Syntax 与 Semantics"></a>Syntax 与 Semantics</h3><ul>
 <li><strong>Syntax（句法）</strong>：句子的结构是否符合语法规则。</li>
@@ -417,7 +438,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2026/10/17/CS50AI/" data-id="cuidG3MKwyTOqq_I9rokgxY20" data-title="CS50AI" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2026/10/17/CS50AI/" data-id="cuidJqTDXldChfrHkHXNzz2Wk" data-title="CS50AI" class="article-share-link"><span class="fa fa-share">Share</span></a>
       
       
       
@@ -455,13 +476,20 @@
           <aside id="sidebar">
   
     
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/Swift-%E5%BC%80%E5%8F%91/">Swift 开发</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E4%BA%BA%E5%B7%A5%E6%99%BA%E8%83%BD/">人工智能</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/">机器学习</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AB%99%E7%82%B9%E8%AE%B0%E5%BD%95/">站点记录</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E7%AE%97%E6%B3%95/">算法</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E8%BD%AF%E4%BB%B6%E5%B7%A5%E7%A8%8B/">软件工程</a></li><li class="category-list-item"><a class="category-list-link" href="/categories/%E9%9D%A2%E8%AF%95%E5%A4%8D%E7%9B%98/">面试复盘</a></li></ul>
+    </div>
+  </div>
+
 
   
     
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithms/" rel="tag">Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/" rel="tag">Interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-Systems/" rel="tag">ML Systems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Programming-Language/" rel="tag">Programming Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/AI/" rel="tag">AI</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithms/" rel="tag">Algorithms</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Apple/" rel="tag">Apple</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/CUDA/" rel="tag">CUDA</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Career/" rel="tag">Career</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Data-Structure/" rel="tag">Data Structure</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Deep-Learning/" rel="tag">Deep Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Interview/" rel="tag">Interview</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/LLM/" rel="tag">LLM</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Leetcode/" rel="tag">Leetcode</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ML-Systems/" rel="tag">ML Systems</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Machine-Learning/" rel="tag">Machine Learning</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Programming-Language/" rel="tag">Programming Language</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Software-Engineering/" rel="tag">Software Engineering</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Swift/" rel="tag">Swift</a></li></ul>
     </div>
   </div>
 
@@ -471,7 +499,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LLM/" style="font-size: 15px;">LLM</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/ML-Systems/" style="font-size: 10px;">ML Systems</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Programming-Language/" style="font-size: 10px;">Programming Language</a> <a href="/tags/Software-Engineering/" style="font-size: 20px;">Software Engineering</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a>
+      <a href="/tags/AI/" style="font-size: 15px;">AI</a> <a href="/tags/Algorithms/" style="font-size: 10px;">Algorithms</a> <a href="/tags/Apple/" style="font-size: 10px;">Apple</a> <a href="/tags/CUDA/" style="font-size: 10px;">CUDA</a> <a href="/tags/Career/" style="font-size: 10px;">Career</a> <a href="/tags/Data-Structure/" style="font-size: 10px;">Data Structure</a> <a href="/tags/Deep-Learning/" style="font-size: 10px;">Deep Learning</a> <a href="/tags/Interview/" style="font-size: 10px;">Interview</a> <a href="/tags/LLM/" style="font-size: 15px;">LLM</a> <a href="/tags/Leetcode/" style="font-size: 10px;">Leetcode</a> <a href="/tags/ML-Systems/" style="font-size: 10px;">ML Systems</a> <a href="/tags/Machine-Learning/" style="font-size: 15px;">Machine Learning</a> <a href="/tags/Programming-Language/" style="font-size: 10px;">Programming Language</a> <a href="/tags/Software-Engineering/" style="font-size: 20px;">Software Engineering</a> <a href="/tags/Swift/" style="font-size: 15px;">Swift</a>
     </div>
   </div>
 
@@ -493,6 +521,10 @@
       <ul>
         
           <li>
+            <a href="/2026/10/25/%E4%B8%AA%E4%BA%BA%E5%AD%A6%E4%B9%A0%E8%B7%AF%E5%BE%84/">个人提升计划</a>
+          </li>
+        
+          <li>
             <a href="/2026/10/22/LLM-%E5%BA%94%E7%94%A8%E5%BC%80%E5%8F%91%E6%A6%82%E8%A7%88/">LLM 应用开发概览</a>
           </li>
         
@@ -506,10 +538,6 @@
         
           <li>
             <a href="/2026/10/20/Leetcode/">Leetcode</a>
-          </li>
-        
-          <li>
-            <a href="/2026/10/20/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E4%B8%8E%E7%AE%97%E6%B3%95/">数据结构与算法</a>
           </li>
         
       </ul>
@@ -538,6 +566,8 @@
   
     <a href="/archives" class="mobile-nav-link">Archives</a>
   
+    <a href="/categories/" class="mobile-nav-link">分类</a>
+  
 </nav>
     
 
@@ -559,5 +589,6 @@
 
 
   </div>
+  <script src="/js/blog-features.js" defer></script>
 </body>
 </html>
